@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f9fafb;
+  --foreground: #111;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #111;
+  --accent: #f3f4f6;
+  --accent-foreground: #111;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --ring: #000000;
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #a1a1aa;
+  --border: #27272a;
+  --input: #1a1a1a;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --accent: #1a1a1a;
+  --accent-foreground: #ffffff;
+  --destructive: #7f1d1d;
+  --destructive-foreground: #ffffff;
+  --ring: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@font-face {
+  font-family: 'TrenchSlab';
+  src: url('/fonts/TrenchSlab-Bold.woff2') format('woff2'),
+       url('/fonts/TrenchSlab-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.seamless-gradient-text {
+  background: linear-gradient(90deg, 
+    /* Dark Blues to Muted Blues */
+    #1a1a3a, #2d2d5a, #4a4a7a, #5a5a8a, #6a6a9a, #7a7aaa,
+    /* Muted Blues to Soft Purples */
+    #8a8aba, #9a9aca, #aa9ada, #ba8aca, #ca7aba, #da6aaa,
+    /* Soft Purples to Muted Pinks */
+    #ea5a9a, #fa4a8a, #ff4a7a, #ff5a6a, #ff6a5a, #ff7a4a,
+    /* Muted Pinks to Soft Reds */
+    #b86b7a, #a05a6a, #8a4a5a, #7a3a4a, #6a2a3a,
+    /* Muted Reds to Teals */
+    #5a4a6a, #4a5a7a, #3a6a8a, #2a7a9a, #1a8aaa, #0a9aba,
+    /* Teals to Blues */
+    #009aac, #008a9c, #007a8c, #006a7c, #005a6c, #004a5c,
+    /* Back to start for seamless loop */
+    #1a1a3a
+  );
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  animation: gradient-flow 20s linear infinite;
+}
+
+/* Enhanced dark mode adaptations */
+.dark .seamless-gradient-text {
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Smooth transitions for all theme changes */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* Enhanced card hover effects for dark mode */
+.dark .group:hover {
+  box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.04);
+}
+
+/* Improved button states for dark mode */
+.dark button:hover {
+  background-color: var(--muted);
+}
+
+/* Enhanced focus states for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Dark mode specific link hover effects */
+.dark a:hover {
+  color: var(--primary);
+}
+
+/* Improved form elements for dark mode */
+.dark input,
+.dark textarea,
+.dark select {
+  background-color: var(--input);
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px var(--ring);
 }
