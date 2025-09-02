@@ -10,7 +10,7 @@ const ALL_PROJECTS = [
     github: "https://github.com/saintparish4/siminvest",
     link: "https://sequoiax.vercel.app/",
     category: "Investment Education",
-    status: "Development"
+    status: "Discontinued"
   },
   {
     name: "MindSync: AI-Powered Wellness w/ Biometric Integration",
@@ -19,7 +19,7 @@ const ALL_PROJECTS = [
     github: "https://github.com/saintparish4/mindsync",
     link: "https://sequoiax.vercel.app/",
     category: "AI-Powered Wellness",
-    status: "Development"
+    status: "Discontinued"
   },
   {
     name: "BridgeBanking: Fintech Platform for NGOs and Underserved Communities",
@@ -28,7 +28,7 @@ const ALL_PROJECTS = [
     github: "https://github.com/saintparish4/bridgebank",
     link: "https://unbanked-mu.vercel.app/",
     category: "Fintech",
-    status: "Live"
+    status: "Discontinued"
   },
   {
     name: "Willow: Modern Property Management System",
@@ -37,7 +37,7 @@ const ALL_PROJECTS = [
     github: "https://github.com/saintparish4/willow",
     link: "https://rentpay-platform.vercel.app/",
     category: "Real Estate, Consumer Finance",
-    status: "Live"
+    status: "Discontinued"
   },
   {
     name: "RewindGP: Formula 1 Fan Project",
@@ -46,7 +46,7 @@ const ALL_PROJECTS = [
     github: "https://github.com/saintparish4/rewindgp1",
     link: "https://rewindgp1.vercel.app/",
     category: "Formula 1",
-    status: "Live"
+    status: "Discontinued"
   },
 ];
 

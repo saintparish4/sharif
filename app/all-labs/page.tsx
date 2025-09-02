@@ -4,13 +4,13 @@ import Link from "next/link";
 
 const ALL_LABS = [
      {
-    name: "- Code Review",
-    description: "Experimental tool using machine learning to analyze code quality and suggest improvements",
-    technologies: ["Python", "TensorFlow", "React", "FastAPI"],
-    github: "https://github.com/placeholder/ai-code-review",
-    link: "https://placeholder.com/ai-code-review",
-    category: "AI/ML",
-    status: "Development"
+    name: "Project Name",
+    description: "Project description goes here",
+    technologies: ["Technology 1", "Technology 2", "Technology 3"],
+    github: "https://github.com/username/project",
+    link: "https://project-url.com",
+    category: "Category",
+    status: "Status"
   },
 ];
 

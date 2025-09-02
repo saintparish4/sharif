@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import Link from "next/link";
 
 const MOTTO_LIST = [
   "Build. Learn. Repeat.",
@@ -84,19 +83,19 @@ const PROJECTS = [
 
 const SOCIALS = [
   {
-    name: "Instagram",
-    url: "https://www.instagram.com/senpaiisaint/",
-    icon: "https://placeholder.com/ig.svg",
-  },
-  {
-    name: "X",
-    url: "https://x.com/senpaiisaint",
-    icon: "https://placeholder.com/x.svg",
+    name: "Github",
+    url: "https://github.com/saintparish4",
+    icon: "https://placeholder.com/github-logo.svg",
   },
   {
     name: "Threads",
     url: "https://www.threads.com/@senpaiisaint",
     icon: "https://placeholder.com/threads.svg",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/sharifparish/",
+    icon: "https://placeholder.com/linkedin-logo.svg",
   },
 ];
 
@@ -105,51 +104,56 @@ const labsProjects = [
     title: "OneLife AI: AI-Powered Personalized Health and Wellness",
     description:
       "OneLife simplifies the path to long-term healthy eating, and our technology motivates users to live a more balanced lifestyle with personalized plans for better and healthier eating.",
-    tech: [
-      "React Native",
-      "Expo",
-      "Tamagui",
-      "Zustand",
-      "TensorFlow",
-      "Supabase",
-    ],
+    tech: ["X", "X", "X", "X", "X", "X"],
     status: "Concept",
     github: "https://github.com/saintparish4/onelife",
     link: "https://github.com/saintparish4/onelife",
   },
   {
-    title:
-      "Fragmented: Decentralized Low-Latency Compute Mesh for On-Chain ML Inference",
+    title: "FIREBORN: Treasury Management Platform for DeFi Yield Strategies",
     description:
-      "Fragmented is a decentralized low-latency compute mesh for on-chain ML inference, enabling real-time AI-driven decision-making in blockchain applications.",
-    tech: [
-      "Next.js",
-      "Better-Auth",
-      "Stripe",
-      "Terraform",
-      "Express.js",
-      "Prisma ORM",
-      "CLI",
-    ],
+      "FIREBORN is a treasury management platform that provides sophisticated DeFi yield strategies to DAOs, corporate treasuries, and family offices.",
+    tech: ["X", "X", "X", "X", "X", "X", "X"],
     status: "Concept",
-    github: "https://github.com/saintparish4/fragmented",
-    link: "https://github.com/saintparish4/fragmented",
+    github: "https://github.com/saintparish4/fireborn-treasury",
+    link: "https://github.com/saintparish4/fireborn-treasury",
   },
   {
     title: "OCTA: Geospatial Network Analysis Platform",
     description:
       "A full-stack geospatial analysis application that combines network relationship mapping with location-based intelligence to uncover patterns in publicly available datasets.",
-    tech: ["Neo4j", "Python", "Redis", "FastAPI"],
+    tech: ["X", "X", "X", "X"],
     status: "Concept",
+    github: "https://github.com/saintparish4/octa",
+    link: "https://github.com/saintparish4/octa",
   },
   {
-    title: "Excalibur: Traffic Analysis Engine",
+    title: "Fūma: Analysis & Design Project Management Tool",
     description:
-      "Excalibur is a Rust based traffic analysis and threat detection engine. This engine processess network packets, performing deep packet inspection, flow tracking, and behavioral analysis to detect malicious activity.",
-    tech: ["Rust", "Golang", "Python"],
+      "Fūma is a web-based tool for managing analysis and design projects. It allows users to create, edit, and track projects, tasks, and resources. Includes features like project management, task tracking, resource allocation, and progress tracking.",
+    tech: ["X", "X", "X"],
     status: "Concept",
-    github: "https://github.com/saintparish4/excaliburs-firewall",
-    link: "https://github.com/saintparish4/excaliburs-firewall",
+    github: "https://github.com/saintparish4/fuma",
+    link: "https://github.com/saintparish4/fuma",
+    // link: "https://github.com/saintparish4/excaliburs-firewall",
+  },
+  {
+    title: "Sai Labs: Future of Language AI",
+    description:
+      "Sai Labs is empowering every developer and enterprise to build amazing products and capture true business value with language AI.",
+    tech: ["X", "X", "X"],
+    status: "Concept",
+    github: "https://github.com/saintparish4/sai-labs",
+    link: "https://github.com/saintparish4/sai-labs",
+  },
+  {
+    title: "SigmaX: Growth Engine",
+    description:
+      "SigmaX is building growth engines that blend AI workflows with experts. From content to distribution to conversion.",
+    tech: ["X", "X", "X"],
+    status: "Concept",
+    github: "https://github.com/saintparish4/sigma",
+    link: "https://github.com/saintparish4/sigma",
   },
 ];
 
@@ -210,13 +214,13 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
         >
-          I&apos;m a Full-stack engineer who thinks in TypeScript and dreams in
-          distributed systems. Engineering at the intersection of performance
-          and practicality — I debug performance bottlenecks, architect
-          blockchain payment flows, and turn AWS complexity into simple scaling
-          solutions. Every line of code has a purpose, every optimization tells
-          a story. Building bridges between traditional web apps and Web3, one
-          commit at a time.
+          I&apos;m a Full-stack engineer who thinks in TypeScript, dreams in
+          distributed systems, and believes technology should amplify human
+          potential. I live at the intersection of web performance, blockchain
+          innovation, and AI intelligence — crafting React apps that enrich life,
+          smart contracts that secure, and ML systems that clarify. Every
+          optimization tells a story, every commit moves us toward technology
+          that feels less like technology.
         </motion.p>
       </section>
 
@@ -385,7 +389,9 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4 font-mono">Fragmented Garden</h2>
+            <h2 className="text-3xl font-bold mb-4 font-mono">
+              Fragmented Garden
+            </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-mono">
               My experimental playground for breaking things on purpose and
               building what probably shouldn&apos;t exist. Testing frameworks,
@@ -434,6 +440,8 @@ export default function Home() {
                             ? "bg-gradient-to-r from-[#C8E6C9] to-[#A5D6A7] text-black dark:from-[#C8E6C9]/20 dark:to-[#A5D6A7]/20 dark:text-black border border-[#C8E6C9]/50 dark:border-[#C8E6C9]/30"
                             : project.status === "Experimental"
                             ? "bg-gradient-to-r from-[#F3E5F5] to-[#E1BEE7] text-black dark:from-[#F3E5F5]/20 dark:to-[#E1BEE7]/20 dark:text-black border border-[#F3E5F5]/50 dark:border-[#F3E5F5]/30"
+                            : project.status === "Discontinued"
+                            ? "bg-gradient-to-r from-[#FFEBEE] to-[#FFCDD2] text-black dark:from-[#FFEBEE]/20 dark:to-[#FFCDD2]/20 dark:text-black border border-[#FFEBEE]/50 dark:border-[#FFEBEE]/30"
                             : "bg-gradient-to-r from-red-100 to-pink-100 text-black dark:from-red-500/20 dark:to-pink-500/20 dark:text-black border border-red-200 dark:border-red-500/30"
                         }`}
                         whileHover={{ scale: 1.05, y: -1 }}
@@ -578,33 +586,6 @@ export default function Home() {
               </a>
             ))}
           </div>
-          <Link
-            href="https://github.com/saintparish4"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group block w-full border border-dashed rounded p-4 text-center font-mono text-base transition-all duration-300"
-          >
-            <span className="inline-flex items-center gap-2 group-hover:underline">
-              GITHUB
-              <motion.svg
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-                animate={{ x: [0, 4, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <path d="M9 18l6-6-6-6" />
-              </motion.svg>
-            </span>
-          </Link>
         </div>
       </section>
 
