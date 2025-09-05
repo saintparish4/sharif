@@ -106,8 +106,8 @@ const labsProjects = [
       "OneLife simplifies the path to long-term healthy eating, and our technology motivates users to live a more balanced lifestyle with personalized plans for better and healthier eating.",
     tech: ["X", "X", "X", "X", "X", "X"],
     status: "Concept",
-    github: "https://github.com/saintparish4/onelife",
-    link: "https://github.com/saintparish4/onelife",
+    github: "https://github.com/saintparish4/onelife-ai",
+    link: "https://github.com/saintparish4/onelife-ai",
   },
   {
     title: "FIREBORN: Treasury Management Platform for DeFi Yield Strategies",
