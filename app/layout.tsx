@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sharif Parish - Developer",
-  description: "Full-stack developer crafting elegant digital solutions",
+  title: "Sharif | Software Engineer",
+  description: "Software Engineer crafting elegant digital solutions",
 };
 
 export default function RootLayout({
