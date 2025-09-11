@@ -159,7 +159,7 @@ export default function Home() {
               className="mb-16 max-w-2xl mx-auto"
             >
               <p className="text-lg text-muted-foreground leading-relaxed font-mono">
-                We're currently undergoing a complete transformation to deliver an even more 
+                I am currently undergoing a complete transformation to deliver an even more 
                 exceptional experience. Every detail is being carefully crafted to exceed 
                 the highest standards of digital excellence.
               </p>
