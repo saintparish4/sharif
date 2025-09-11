@@ -235,7 +235,7 @@ export default function Home() {
               
               <div className="flex flex-wrap justify-center gap-6">
                 {[
-                  { name: "Email", href: "mailto:hello@sharifparish.com", icon: "✉" },
+                  { name: "Email.", href: "mailto:hello@sharifparish.com", icon: "✉" },
                   { name: "LinkedIn", href: "https://linkedin.com/in/sharifparish", icon: "💼" },
                   { name: "GitHub", href: "https://github.com/saintparish4", icon: "⚡" }
                 ].map((contact, index) => (
