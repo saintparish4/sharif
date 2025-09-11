@@ -21,7 +21,7 @@ const PROGRESS_STEPS = [
   { label: "Launch", progress: 0, status: "pending" }
 ] as const;
 
-export default function RebrandingPage() {
+export default function Home() {
   const [messageIdx, setMessageIdx] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 

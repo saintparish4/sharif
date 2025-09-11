@@ -157,7 +157,7 @@ const labsProjects = [
   },
 ];
 
-export default function Home() {
+export default function RebrandingPage() {
   const [mottoIdx, setMottoIdx] = useState(0);
 
   useEffect(() => {
