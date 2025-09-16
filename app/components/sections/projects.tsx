@@ -77,8 +77,8 @@ export const Projects = () => {
   });
 
   return (
-    <section id="projects" ref={projectsRef} className="min-h-screen py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="projects" ref={projectsRef} className="min-h-screen section-padding bg-[var(--color-accent-200)]">
+      <div className="container mx-auto">
         <div className="max-w-7xl mx-auto">
           {/* Section Title */}
           <motion.div
@@ -86,16 +86,16 @@ export const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mb-20"
+            className="mb-[var(--space-2xl)]"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="section-heading text-[var(--color-secondary-400)] mb-[var(--space-xs)]">
               <TextReveal text="Selected Works" delay={0.2} />
             </h2>
-            <div className="w-24 h-1 bg-black"></div>
+            <div className="w-[var(--space-lg)] h-[2px] bg-[var(--color-secondary-400)]"></div>
           </motion.div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-md)] md:gap-[var(--space-lg)]">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -103,12 +103,12 @@ export const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group cursor-pointer"
+                className="group cursor-pointer project-card"
                 onMouseEnter={() => setSelectedProject(project.id)}
                 onMouseLeave={() => setSelectedProject(null)}
               >
                 {/* Project Card */}
-                <div className="relative overflow-hidden bg-gray-100 rounded-lg aspect-[4/3] mb-6">
+                <div className="relative overflow-hidden bg-[var(--color-accent-400)] rounded-xl aspect-[4/3] mb-[var(--space-sm)]">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -118,14 +118,14 @@ export const Projects = () => {
                   
                   {/* Overlay */}
                   <motion.div
-                    className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 bg-[var(--color-secondary-400)]/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     whileHover={{ opacity: 1 }}
                   >
                     <motion.a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors custom-cursor-area"
+                      className="bg-[var(--color-secondary-50)] text-[var(--color-secondary-400)] px-[var(--space-sm)] py-[var(--space-2xs)] rounded-full font-[600] hover:bg-[var(--color-accent-200)] transition-colors custom-cursor-area text-[length:var(--text-base-small)]"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -134,36 +134,38 @@ export const Projects = () => {
                   </motion.div>
 
                   {/* Year Badge */}
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-mono">
+                  <div className="absolute top-[var(--space-xs)] right-[var(--space-xs)] bg-[var(--color-secondary-50)]/90 backdrop-blur-xl px-[var(--space-2xs)] py-[var(--space-3xs)] rounded-full text-[length:var(--text-mono)] font-montrealMono tracking-[var(--tracking-mono)] text-[var(--color-secondary-400)]">
                     {project.year}
                   </div>
                 </div>
 
                 {/* Project Info */}
-                <div className="space-y-3">
+                <div className="space-y-[var(--space-2xs)]">
                   <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-semibold group-hover:text-gray-600 transition-colors">
+                    <h3 className="text-[length:var(--text-heading-4)] font-[600] group-hover:text-[var(--color-secondary-100)] transition-colors text-[var(--color-secondary-400)]">
                       {project.title}
                     </h3>
-                    <span className="text-sm text-gray-500">{project.category}</span>
+                    <span className="text-[length:var(--text-mono)] text-[var(--color-secondary-200)] font-montrealMono uppercase tracking-[var(--tracking-mono)]">
+                      {project.category}
+                    </span>
                   </div>
                   
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-[var(--color-secondary-100)] text-[length:var(--text-base-small)] leading-base">
                     {project.description}
                   </p>
 
                   {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-[var(--space-3xs)]">
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
-                        className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded-full"
+                        className="tag text-[var(--color-secondary-200)] border-[var(--color-secondary-200)]"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.technologies.length > 3 && (
-                      <span className="text-xs text-gray-500">
+                      <span className="text-[length:var(--text-mono)] text-[var(--color-secondary-200)] font-montrealMono">
                         +{project.technologies.length - 3} more
                       </span>
                     )}
@@ -179,13 +181,13 @@ export const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mt-16"
+            className="text-center mt-[var(--space-2xl)]"
           >
             <motion.a
               href="https://github.com/saintparish4"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full hover:bg-gray-800 transition-colors custom-cursor-area"
+              className="inline-flex items-center gap-[var(--space-2xs)] px-[var(--space-md)] py-[var(--space-xs)] bg-[var(--color-secondary-400)] text-[var(--color-secondary-50)] rounded-full hover:bg-[var(--color-secondary-300)] transition-colors custom-cursor-area text-[length:var(--text-base-small)] font-[500]"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

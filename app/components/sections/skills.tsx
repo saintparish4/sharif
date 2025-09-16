@@ -51,8 +51,8 @@ export const Skills = () => {
   });
 
   return (
-    <section id="skills" ref={skillsRef} className="min-h-screen py-20 bg-gray-900 text-white">
-      <div className="container mx-auto px-4">
+    <section id="skills" ref={skillsRef} className="min-h-screen section-padding bg-[var(--color-secondary-400)]">
+      <div className="container mx-auto">
         <div className="max-w-7xl mx-auto">
           {/* Section Title */}
           <motion.div
@@ -60,17 +60,17 @@ export const Skills = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mb-20"
+            className="mb-[var(--space-2xl)]"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="section-heading text-[var(--color-secondary-50)] mb-[var(--space-xs)]">
               <TextReveal text="Skills & Technologies" delay={0.2} />
             </h2>
-            <div className="w-24 h-1 bg-white"></div>
+            <div className="w-[var(--space-lg)] h-[2px] bg-[var(--color-secondary-50)]"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="custom-grid gap-y-[var(--space-xl)]">
             {/* Skill Categories */}
-            <div className="space-y-12">
+            <div className="col-span-12 lg:col-span-6 space-y-[var(--space-lg)]">
               {skillCategories.map((category, categoryIndex) => (
                 <motion.div
                   key={category.title}
@@ -79,11 +79,11 @@ export const Skills = () => {
                   transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <h3 className="text-2xl font-semibold mb-6 text-gray-300">
+                  <h3 className="text-[length:var(--text-heading-3)] font-[600] mb-[var(--space-sm)] text-[var(--color-secondary-75)]">
                     {category.title}
                   </h3>
                   
-                  <div className="space-y-4">
+                  <div className="space-y-[var(--space-xs)]">
                     {category.skills.map((skill, skillIndex) => (
                       <motion.div
                         key={skill.name}
@@ -94,16 +94,21 @@ export const Skills = () => {
                           delay: categoryIndex * 0.2 + skillIndex * 0.1 
                         }}
                         viewport={{ once: true }}
-                        className="space-y-2"
+                        className="space-y-[var(--space-3xs)] skill-bar"
+                        data-progress={skill.level}
                       >
                         <div className="flex justify-between items-center">
-                          <span className="text-white font-medium">{skill.name}</span>
-                          <span className="text-gray-400 text-sm">{skill.level}%</span>
+                          <span className="text-[var(--color-secondary-50)] font-[500] text-[length:var(--text-base)]">
+                            {skill.name}
+                          </span>
+                          <span className="text-[var(--color-secondary-75)] text-[length:var(--text-mono)] font-montrealMono">
+                            {skill.level}%
+                          </span>
                         </div>
                         
-                        <div className="w-full bg-gray-700 rounded-full h-2">
+                        <div className="w-full bg-[var(--color-secondary-200)] rounded-full h-[3px]">
                           <motion.div
-                            className="bg-gradient-to-r from-blue-400 to-purple-500 h-2 rounded-full"
+                            className="bg-gradient-to-r from-[var(--color-accent-600)] to-[var(--color-accent-500)] h-[3px] rounded-full skill-fill"
                             initial={{ width: 0 }}
                             whileInView={{ width: `${skill.level}%` }}
                             transition={{ 
@@ -127,13 +132,13 @@ export const Skills = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="col-span-12 lg:col-span-6 space-y-[var(--space-md)]"
             >
-              <h3 className="text-2xl font-semibold text-gray-300">
+              <h3 className="text-[length:var(--text-heading-3)] font-[600] text-[var(--color-secondary-75)]">
                 Technology Stack
               </h3>
               
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-[var(--space-2xs)]">
                 {technologies.map((tech, index) => (
                   <motion.span
                     key={tech}
@@ -146,10 +151,10 @@ export const Skills = () => {
                     }}
                     whileHover={{ 
                       scale: 1.1,
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)'
+                      backgroundColor: 'var(--color-secondary-300)'
                     }}
                     viewport={{ once: true }}
-                    className="px-4 py-2 bg-gray-800 text-gray-300 rounded-full text-sm font-medium border border-gray-700 hover:border-gray-500 transition-all duration-300 cursor-default"
+                    className="px-[var(--space-xs)] py-[var(--space-3xs)] bg-[var(--color-secondary-300)] text-[var(--color-secondary-75)] rounded-full text-[length:var(--text-skill)] font-[500] border border-[var(--color-secondary-200)] hover:border-[var(--color-secondary-100)] transition-all duration-300 cursor-default font-montrealMono tracking-[var(--tracking-mono)]"
                   >
                     {tech}
                   </motion.span>
@@ -162,25 +167,27 @@ export const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1 }}
                 viewport={{ once: true }}
-                className="bg-gray-800 p-6 rounded-lg border border-gray-700"
+                className="bg-[var(--color-secondary-300)] p-[var(--space-sm)] rounded-xl border border-[var(--color-secondary-200)]"
               >
-                <h4 className="text-lg font-semibold mb-4">What I Bring</h4>
-                <ul className="space-y-2 text-gray-300">
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Full-stack development expertise</span>
+                <h4 className="text-[length:var(--text-heading-4)] font-[600] mb-[var(--space-xs)] text-[var(--color-secondary-50)]">
+                  What I Bring
+                </h4>
+                <ul className="space-y-[var(--space-3xs)] text-[var(--color-secondary-75)]">
+                  <li className="flex items-center gap-[var(--space-2xs)]">
+                    <div className="w-[6px] h-[6px] bg-[var(--color-accent-600)] rounded-full"></div>
+                    <span className="text-[length:var(--text-base-small)]">Full-stack development expertise</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-                    <span>Modern UI/UX design principles</span>
+                  <li className="flex items-center gap-[var(--space-2xs)]">
+                    <div className="w-[6px] h-[6px] bg-[var(--color-accent-500)] rounded-full"></div>
+                    <span className="text-[length:var(--text-base-small)]">Modern UI/UX design principles</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span>Performance optimization</span>
+                  <li className="flex items-center gap-[var(--space-2xs)]">
+                    <div className="w-[6px] h-[6px] bg-[var(--color-accent-400)] rounded-full"></div>
+                    <span className="text-[length:var(--text-base-small)]">Performance optimization</span>
                   </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                    <span>Scalable architecture design</span>
+                  <li className="flex items-center gap-[var(--space-2xs)]">
+                    <div className="w-[6px] h-[6px] bg-[var(--color-secondary-100)] rounded-full"></div>
+                    <span className="text-[length:var(--text-base-small)]">Scalable architecture design</span>
                   </li>
                 </ul>
               </motion.div>

@@ -178,3 +178,4 @@ export const useSkillBarAnimation = (progress: number) => {
 
   return ref;
 };
+

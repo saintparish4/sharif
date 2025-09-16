@@ -34,21 +34,21 @@ export default function Home() {
         {isLoading ? (
           <motion.div
             key="loader"
-            className="fixed inset-0 z-50 bg-black flex items-center justify-center"
+            className="fixed inset-0 z-[99999999] bg-[var(--color-secondary-400)] flex items-center justify-center"
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.8, ease: [0.4, 0.0, 0.2, 1] }}
           >
             <div className="text-center">
               <motion.div
-                className="text-white text-4xl font-bold mb-4"
+                className="text-[var(--color-secondary-50)] text-[length:var(--text-heading-4)] font-[700] mb-[var(--space-xs)] font-montrealMono tracking-[var(--tracking-mono)]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                SP
+                WELCOME TO MY MINDSPACE, ENJOY YOUR STAY!
               </motion.div>
               <motion.div
-                className="w-16 h-0.5 bg-white mx-auto"
+                className="w-20 h-[2px] bg-[var(--color-secondary-50)] mx-auto"
                 initial={{ width: 0 }}
                 animate={{ width: 64 }}
                 transition={{ duration: 1.5, delay: 0.5 }}
@@ -66,7 +66,7 @@ export default function Home() {
             <Navigation />
             
             {/* Portfolio Sections */}
-            <main className="bg-white text-black">
+            <main>
               <Hero />
               <About />
               <Projects />
