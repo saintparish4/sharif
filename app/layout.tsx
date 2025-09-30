@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -39,25 +39,38 @@ const montrealMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Sharif Parish | Full-Stack Developer",
-  description: "Full-stack developer crafting polished, intuitive digital experiences. Available for worldwide opportunities.",
-  keywords: ["Full-Stack Developer", "React", "Next.js", "TypeScript", "Node.js", "Web Development"],
+  title: "Sharif Parish - Software Engineer",
+  description: "Portfolio website of Zuned Aalim showcasing projects, skills, and contact information.",
+  keywords: ["Zuned Aalim", "Software Engineer", "Portfolio", "Web Developer", "React", "Next.js"],
   authors: [{ name: "Sharif Parish" }],
   creator: "Sharif Parish",
   openGraph: {
-    title: "Sharif Parish | Full-Stack Developer",
-    description: "Full-stack developer crafting polished, intuitive digital experiences.",
+      title: "Sharif Parish - Software Engineer",
+    description: "Explore the portfolio of Sharif Parish. Software projects, web apps, and more.",
+    url: "https://sharifparish.com",
+    siteName: "Sharif Parish Portfolio",
+    images: [{
+      url: "https://sharifparish.com/og-image.jpg",
+      width: 1200,
+      height: 630,
+      alt: "Sharif Parish Portfolio"
+    }],
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sharif Parish | Full-Stack Developer",
-    description: "Full-stack developer crafting polished, intuitive digital experiences.",
-    creator: "@saintparish4",
+    title: "Sharif Parish - Software Engineer",
+    description: "Software projects, personal work, and contact info.",
+    creator: "@SharifParish",
+    images: ["https://sharifparish.com/og-image.jpg"],
   },
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -67,10 +80,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="lenis">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <svg width="0" height="0" style={{ position: 'absolute' }}>
+      <body className={`${montreal.variable} ${montrealMono.variable} font-montreal antialiased`}>
+        <svg width="0" height="0" className="absolute">
           <defs>
             <filter id="grainy">
               <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
@@ -78,8 +89,6 @@ export default function RootLayout({
             </filter>
           </defs>
         </svg>
-      </head>
-      <body className={`${montreal.variable} ${montrealMono.variable} font-montreal antialiased`}>
         {children}
       </body>
     </html>

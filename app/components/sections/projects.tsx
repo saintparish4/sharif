@@ -1,209 +1,192 @@
 'use client';
-import { motion } from 'motion/react';
-import { useState } from 'react';
-import { useScrollTrigger } from '../../../hooks/useScrollTrigger';
-import { useProjectCardAnimation } from '../animations/ScrollAnimations';
+import { motion, useInView } from 'motion/react';
+import { useState, useRef, useEffect } from 'react';
 import { TextReveal } from '../animations/TextReveal';
-import Image from 'next/image';
 
 const projects = [
   {
     id: 1,
-    title: 'FinLink',
-    category: 'Web Application',
-    description: 'A comprehensive financial management platform built with Next.js and Node.js.',
-    image: '/projects/finlink.png',
-    technologies: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Stripe'],
-    link: 'https://github.com/saintparish4',
-    year: '2024'
+    title: 'NURA',
+    subtitle: 'Modern Marketing Website',
+    description: 'Development',
+    year: '2025',
+    link: 'https://nurabyzuned.netlify.app/',
+    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/6_jugckf?_a=BAVAZGE70',
+    video: 'QpLBMxnNQMQHXri9nqPfg1nZLyJn5kg01vXlmX1auvEc'
   },
   {
     id: 2,
-    title: 'AlphaCap',
-    category: 'Investment Platform',
-    description: 'Modern investment tracking and portfolio management application.',
-    image: '/projects/alphacap.png',
-    technologies: ['React', 'Express.js', 'MongoDB', 'Chart.js', 'JWT'],
-    link: 'https://github.com/saintparish4',
-    year: '2024'
+    title: 'Job Portal',
+    subtitle: 'Full-Stack Recruitment Platform',
+    description: 'Development',
+    year: '2025',
+    link: 'https://zunedjobs.netlify.app/',
+    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/3_nzf5vb?_a=BAVAZGE70',
+    video: 'ZV01irv5jPmaRLo6XEcm5o4QHrEd9g6Rr5GyqdMd1R6g'
   },
   {
     id: 3,
-    title: 'BridgeBank',
-    category: 'Banking Solution',
-    description: 'Digital banking interface with modern UX and secure transactions.',
-    image: '/projects/bridgebank.png',
-    technologies: ['Vue.js', 'Python', 'FastAPI', 'PostgreSQL', 'Redis'],
-    link: 'https://github.com/saintparish4',
-    year: '2023'
+    title: 'Productivity SAAS',
+    subtitle: 'SAAS Platform',
+    description: 'Development',
+    year: '2025',
+    link: 'https://productivity-saas-zuned.netlify.app/',
+    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/2_frjjt5?_a=BAVAZGE70',
+    video: 'viGHALwiNN7x4lw9K5ieeljgwL3z02KfplK56WNafF9k'
   },
   {
     id: 4,
-    title: 'Swipr',
-    category: 'Mobile App',
-    description: 'Social networking application with real-time messaging.',
-    image: '/projects/swipr.png',
-    technologies: ['React Native', 'Firebase', 'TypeScript', 'Socket.io'],
-    link: 'https://github.com/saintparish4',
-    year: '2023'
+    title: 'CineRec',
+    subtitle: 'ML Recommendation Engine',
+    description: 'Development',
+    year: '2025',
+    link: 'https://movierecommendation-sbjn.onrender.com/',
+    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/7_lfufd9?_a=BAVAZGE70',
+    video: '6XNHwd01zOc87HAEvIL44GrSDL5vNQv9WSo00o02aNEeRg'
   },
   {
     id: 5,
-    title: 'Kynd',
-    category: 'E-commerce',
-    description: 'Modern e-commerce platform with advanced product management.',
-    image: '/projects/kynd.png',
-    technologies: ['Next.js', 'Shopify API', 'TailwindCSS', 'Stripe'],
-    link: 'https://github.com/saintparish4',
-    year: '2023'
-  },
-  {
-    id: 6,
-    title: 'Flow',
-    category: 'Productivity',
-    description: 'Task management and workflow optimization tool.',
-    image: '/projects/flow.png',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'JWT'],
-    link: 'https://github.com/saintparish4',
-    year: '2022'
+    title: 'Code2Img',
+    subtitle: 'Code-to-Image Tool',
+    description: 'Development',
+    year: '2025',
+    link: 'https://code2img-zuned.netlify.app/',
+    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/1_phf5ng?_a=BAVAZGE70',
+    video: 'KgB1H01cuYG14gDffVE1MPflRm4vG7z2YgTcsZN6Bplg'
   }
 ];
 
 export const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
-  const projectsRef = useScrollTrigger('#projects', {
-    from: { opacity: 0, y: 100 },
-    to: { opacity: 1, y: 0, duration: 1.2 }
-  });
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="projects" ref={projectsRef} className="min-h-screen section-padding bg-[var(--color-accent-200)]">
-      <div className="container mx-auto">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Title */}
-          <motion.div
+    <section id="Works">
+      <div className="section-padding bg-[var(--color-secondary-400)]">
+        <div className="flex flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)]">
+          {/* Header */}
+          <motion.h1 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mb-[var(--space-2xl)]"
+            className="section-heading relative text-[var(--color-accent-400)]"
           >
-            <h2 className="section-heading text-[var(--color-secondary-400)] mb-[var(--space-xs)]">
-              <TextReveal text="Selected Works" delay={0.2} />
-            </h2>
-            <div className="w-[var(--space-lg)] h-[2px] bg-[var(--color-secondary-400)]"></div>
-          </motion.div>
+            <TextReveal text="SELECTED WORKS /" delay={0.1} />
+          </motion.h1>
 
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-md)] md:gap-[var(--space-lg)]">
+          {/* Description Section */}
+          <div className="grid-gap flex grid-cols-12 sm:justify-end lg:grid">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="col-span-7 col-start-1 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:col-start-6 sm:flex-row"
+            >
+              <span className="flex h-full font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
+                (PROJECTS)
+              </span>
+              <div className="w-full max-w-[25ch] text-balance font-medium leading-base text-[var(--color-secondary-50)] text-[length:var(--text-base-large)]">
+                <TextReveal 
+                  text="Thoughtfully crafted digital experiences that blend utility and aesthetics into something functional, memorable, and refined." 
+                  delay={0.3}
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid-gap grid grid-cols-12 pt-[var(--space-lg)]">
+          {/* Sticky Number Counter */}
+          <div className="sticky top-12 col-span-5 hidden h-fit w-full overflow-hidden text-[22vw] font-normal leading-[0.8] text-[var(--color-secondary-50)] md:flex">
+            <span className="relative">0</span>
+            <div className="relative">
+              <motion.div 
+                className="absolute flex h-full w-fit flex-col transition-all duration-1000 ease-in-out"
+                animate={{ 
+                  transform: `translateY(-${activeIndex * 100}%)` 
+                }}
+              >
+                {projects.map((_, index) => (
+                  <span key={index} className="inline-block">
+                    {index + 1}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Projects List */}
+          <aside className="relative col-span-12 flex flex-col gap-y-[var(--space-xl)] md:col-span-7 md:gap-y-[var(--space-2xl)]">
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer project-card"
-                onMouseEnter={() => setSelectedProject(project.id)}
-                onMouseLeave={() => setSelectedProject(null)}
+                viewport={{ once: true, margin: "-200px" }}
+                onViewportEnter={() => setActiveIndex(index)}
+                className="@container"
+                data-index={index}
               >
-                {/* Project Card */}
-                <div className="relative overflow-hidden bg-[var(--color-accent-400)] rounded-xl aspect-[4/3] mb-[var(--space-sm)]">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  
-                  {/* Overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-[var(--color-secondary-400)]/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    whileHover={{ opacity: 1 }}
-                  >
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-[var(--color-secondary-50)] text-[var(--color-secondary-400)] px-[var(--space-sm)] py-[var(--space-2xs)] rounded-full font-[600] hover:bg-[var(--color-accent-200)] transition-colors custom-cursor-area text-[length:var(--text-base-small)]"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      View Project
-                    </motion.a>
-                  </motion.div>
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  {/* Project Image/Video Container */}
+                  <div className="custom-cursor-area relative mt-5 flex aspect-square items-center justify-center overflow-clip rounded-md bg-[var(--color-secondary-300)] p-[var(--space-md)] sm:p-[var(--space-lg)] xl:p-[var(--space-2xl)]">
+                    {/* Background Image */}
+                    <div className="absolute inset-0">
+                      <img 
+                        alt="background" 
+                        loading="lazy" 
+                        decoding="async" 
+                        className="h-full w-full object-cover object-center transition-opacity duration-700 ease-in-out" 
+                        src={project.background}
+                      />
+                    </div>
 
-                  {/* Year Badge */}
-                  <div className="absolute top-[var(--space-xs)] right-[var(--space-xs)] bg-[var(--color-secondary-50)]/90 backdrop-blur-xl px-[var(--space-2xs)] py-[var(--space-3xs)] rounded-full text-[length:var(--text-mono)] font-montrealMono tracking-[var(--tracking-mono)] text-[var(--color-secondary-400)]">
-                    {project.year}
+                    {/* Video/Preview Container */}
+                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg">
+                      <div className="aspect-[4/3] w-full rounded-lg bg-gray-100 overflow-hidden">
+                        <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg">
+                          {/* Placeholder for video - you can replace with actual video component */}
+                          <div className="h-full w-full bg-[var(--color-secondary-300)] flex items-center justify-center">
+                            <img 
+                              src={project.background}
+                              alt={project.title}
+                              className="h-full w-full object-cover"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
 
-                {/* Project Info */}
-                <div className="space-y-[var(--space-2xs)]">
-                  <div className="flex justify-between items-start">
-                    <h3 className="text-[length:var(--text-heading-4)] font-[600] group-hover:text-[var(--color-secondary-100)] transition-colors text-[var(--color-secondary-400)]">
-                      {project.title}
-                    </h3>
-                    <span className="text-[length:var(--text-mono)] text-[var(--color-secondary-200)] font-montrealMono uppercase tracking-[var(--tracking-mono)]">
-                      {project.category}
-                    </span>
-                  </div>
-                  
-                  <p className="text-[var(--color-secondary-100)] text-[length:var(--text-base-small)] leading-base">
-                    {project.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-[var(--space-3xs)]">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="tag text-[var(--color-secondary-200)] border-[var(--color-secondary-200)]"
-                      >
-                        {tech}
+                  {/* Project Info */}
+                  <div className="flex flex-col justify-between gap-y-[var(--space-sm)] pt-[var(--space-xs)] lg:flex-row">
+                    <div className="flex flex-col gap-y-[var(--space-3xs)]">
+                      <span className="font-mono text-var(--text-base-small) font-medium text-[var(--color-secondary-50)]">
+                        <h1 className="font-mono cursor-default">{project.subtitle}</h1>
                       </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="text-[length:var(--text-mono)] text-[var(--color-secondary-200)] font-montrealMono">
-                        +{project.technologies.length - 3} more
+                      <div className="w-fit text-[length:var(--text-heading-3)] font-semibold text-[var(--color-accent-400)]">
+                        <h1 className="font-mono cursor-default">{project.title}</h1>
+                      </div>
+                    </div>
+                    <div className="flex items-end gap-x-[var(--space-3xs)] tracking-base text-[var(--color-secondary-50)]">
+                      <span className="tag">{project.description}</span>
+                      <span className="tag border-[var(--color-secondary-50)] bg-[var(--color-secondary-50)] text-[var(--color-secondary-400)]">
+                        {project.year}
                       </span>
-                    )}
+                    </div>
                   </div>
-                </div>
+                </a>
               </motion.div>
             ))}
-          </div>
-
-          {/* View All Projects Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mt-[var(--space-2xl)]"
-          >
-            <motion.a
-              href="https://github.com/saintparish4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-[var(--space-2xs)] px-[var(--space-md)] py-[var(--space-xs)] bg-[var(--color-secondary-400)] text-[var(--color-secondary-50)] rounded-full hover:bg-[var(--color-secondary-300)] transition-colors custom-cursor-area text-[length:var(--text-base-small)] font-[500]"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>View All Projects</span>
-              <svg
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M14 3h7v7m0-7L10 14" />
-              </svg>
-            </motion.a>
-          </motion.div>
+          </aside>
         </div>
       </div>
     </section>

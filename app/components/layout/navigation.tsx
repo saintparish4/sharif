@@ -3,11 +3,10 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { name: 'Home', href: '#hero' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Services', href: '/#Services' },
+  { name: 'Works', href: '/#Works' },
+  { name: 'About', href: '/#About' },
+  { name: 'Contact', href: '/#Contact' },
 ];
 
 export const Navigation = () => {
@@ -15,20 +14,20 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   
-  const backgroundColor = useTransform(
+  const opacity = useTransform(
     scrollY,
-    [0, 100],
-    ['rgba(232, 228, 227, 0)', 'rgba(232, 228, 227, 0.95)']
+    [0, 200],
+    [1, 0]
   );
-  const backdropBlur = useTransform(
+  const y = useTransform(
     scrollY,
-    [0, 100],
-    ['blur(0px)', 'blur(24px)']
+    [0, 200],
+    [0, -50]
   );
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'about', 'projects', 'skills', 'contact'];
+      const sections = ['hero', 'services', 'projects', 'about', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -57,83 +56,97 @@ export const Navigation = () => {
 
   return (
     <>
-      <motion.nav
-        className="fixed top-0 left-0 right-0 z-[999999] px-[var(--space-sm)] py-[var(--space-xs)] md:px-[var(--space-lg)] md:py-[var(--space-sm)]"
+      <motion.header
+        className="absolute top-0 z-40 w-full"
         style={{
-          backgroundColor,
-          backdropFilter: backdropBlur,
+          opacity,
+          y,
         }}
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-[700] text-[length:var(--text-heading-4)] font-montrealMono tracking-[var(--tracking-mono)] text-[var(--color-secondary-400)]"
-          >
-            SP
-          </motion.div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex gap-x-[var(--space-md)]">
-            {navItems.map((item, index) => (
-              <motion.button
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                onClick={() => handleNavClick(item.href)}
-                className={`relative px-[var(--space-2xs)] py-[var(--space-3xs)] text-[length:var(--text-base-small)] font-[500] transition-all duration-300 custom-cursor-area ${
-                  activeSection === item.href.slice(1)
-                    ? 'text-[var(--color-secondary-400)]'
-                    : 'text-[var(--color-secondary-100)] hover:text-[var(--color-secondary-300)]'
-                }`}
-              >
-                {item.name}
-                {activeSection === item.href.slice(1) && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[var(--color-secondary-400)]"
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </motion.button>
-            ))}
+        <div className="px-[var(--space-md)] mt-[var(--space-md)] flex flex-row items-start justify-between gap-x-[var(--gap-fluid)] lg:grid lg:grid-cols-12 lg:items-center">
+          {/* Left side - Brand text */}
+          <div className="col-span-8 flex flex-col items-start gap-x-[var(--space-2xl)] gap-y-[var(--space-3xs)] lg:flex-row lg:items-center">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="block w-fit max-w-[14ch] text-balance font-medium leading-snug text-[var(--color-secondary-100)] text-[length:var(--text-base)] sm:max-w-max md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)]"
+            >
+              <div className="transition-all duration-500 ease-in transform opacity-100">
+                Web Developer & Designer
+              </div>
+            </motion.span>
           </div>
 
-          {/* Mobile menu button */}
-          <motion.button
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="md:hidden p-[var(--space-3xs)] custom-cursor-area"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-              <motion.div 
-                className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-transform duration-300"
-                animate={{
-                  rotate: isMobileMenuOpen ? 45 : 0,
-                  y: isMobileMenuOpen ? 6 : 0
-                }}
-              />
-              <motion.div 
-                className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-opacity duration-300"
-                animate={{
-                  opacity: isMobileMenuOpen ? 0 : 1
-                }}
-              />
-              <motion.div 
-                className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-transform duration-300"
-                animate={{
-                  rotate: isMobileMenuOpen ? -45 : 0,
-                  y: isMobileMenuOpen ? -6 : 0
-                }}
-              />
-            </div>
-          </motion.button>
+          {/* Right side - Navigation */}
+          <nav className="col-span-4 flex justify-end text-[length:var(--text-base)] md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)]">
+            <ul className="m-0 flex flex-col items-start text-[var(--color-secondary-100)] gap-y-[var(--space-3xs)] md:flex-row md:items-center md:gap-x-[var(--space-2xs)] md:gap-y-0 font-medium">
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="transition-all duration-500 ease-in transform opacity-100"
+                >
+                  <li className="flex leading-normal md:leading-snug">
+                    <a
+                      className="group relative block h-fit overflow-hidden font-medium cursor-pointer select-none custom-cursor-area"
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(item.href);
+                      }}
+                    >
+                      <span className="block w-full transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-0 group-hover:-translate-y-full">
+                        {item.name}
+                      </span>
+                      <span 
+                        aria-hidden="true" 
+                        className="absolute top-0 left-0 w-full block transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0"
+                      >
+                        {item.name}
+                      </span>
+                    </a>
+                  </li>
+                </motion.div>
+              ))}
+            </ul>
+          </nav>
         </div>
-      </motion.nav>
+      </motion.header>
+
+      {/* Mobile menu button */}
+      <motion.button
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="fixed top-4 right-4 z-50 md:hidden p-[var(--space-3xs)] custom-cursor-area"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      >
+        <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+          <motion.div 
+            className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-transform duration-300"
+            animate={{
+              rotate: isMobileMenuOpen ? 45 : 0,
+              y: isMobileMenuOpen ? 6 : 0
+            }}
+          />
+          <motion.div 
+            className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-opacity duration-300"
+            animate={{
+              opacity: isMobileMenuOpen ? 0 : 1
+            }}
+          />
+          <motion.div 
+            className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-transform duration-300"
+            animate={{
+              rotate: isMobileMenuOpen ? -45 : 0,
+              y: isMobileMenuOpen ? -6 : 0
+            }}
+          />
+        </div>
+      </motion.button>
 
       {/* Mobile Menu */}
       <motion.div

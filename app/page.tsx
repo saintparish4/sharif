@@ -5,10 +5,9 @@ import { useLenis } from "../hooks/useLenis";
 import { CustomCursor } from "./components/animations/customCursor";
 import { useGSAPScrollAnimations } from "./components/animations/ScrollAnimations";
 import { Hero } from "./components/sections/hero";
+import { Services } from "./components/sections/services";
 import { About } from "./components/sections/about";
 import { Projects } from "./components/sections/projects";
-import { Skills } from "./components/sections/skills";
-import { Contact } from "./components/sections/contact";
 import { Navigation } from "./components/layout/navigation";
 
 
@@ -68,10 +67,9 @@ export default function Home() {
             {/* Portfolio Sections */}
             <main>
               <Hero />
-              <About />
+              <Services />
               <Projects />
-              <Skills />
-              <Contact />
+              <About />
             </main>
           </motion.div>
         )}
