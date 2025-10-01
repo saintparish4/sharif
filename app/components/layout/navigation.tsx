@@ -6,7 +6,7 @@ const navItems = [
   { name: 'Services', href: '/#Services' },
   { name: 'Works', href: '/#Works' },
   { name: 'About', href: '/#About' },
-  { name: 'Contact', href: '/#Contact' },
+  // { name: 'Contact', href: '/#Contact' },
 ];
 
 export const Navigation = () => {
@@ -47,7 +47,9 @@ export const Navigation = () => {
   }, []);
 
   const handleNavClick = (href: string) => {
-    const target = document.querySelector(href);
+    // Convert href like "/#Services" to CSS selector "#Services"
+    const selector = href.replace('/#', '#');
+    const target = document.querySelector(selector);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
       setIsMobileMenuOpen(false);
@@ -70,17 +72,17 @@ export const Navigation = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="block w-fit max-w-[14ch] text-balance font-medium leading-snug text-[var(--color-secondary-100)] text-[length:var(--text-base)] sm:max-w-max md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)]"
+              className="block w-fit max-w-[14ch] text-balance font-medium leading-snug text-[var(--color-secondary-100)] text-[length:var(--text-h4)] sm:max-w-max"
             >
               <div className="transition-all duration-500 ease-in transform opacity-100">
-                Web Developer & Designer
+                Founder + Software Engineer
               </div>
             </motion.span>
           </div>
 
           {/* Right side - Navigation */}
-          <nav className="col-span-4 flex justify-end text-[length:var(--text-base)] md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)]">
-            <ul className="m-0 flex flex-col items-start text-[var(--color-secondary-100)] gap-y-[var(--space-3xs)] md:flex-row md:items-center md:gap-x-[var(--space-2xs)] md:gap-y-0 font-medium">
+          <nav className="col-span-4 flex justify-end text-[length:var(--text-h4)]">
+            <ul className="m-0 flex flex-col items-start text-[var(--color-secondary-100)] gap-y-[var(--space-3xs)] md:flex-row md:items-center md:gap-x-[var(--space-sm)] md:gap-y-0 font-medium">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -170,7 +172,7 @@ export const Navigation = () => {
               }}
               transition={{ duration: 0.4, delay: isMobileMenuOpen ? index * 0.1 : 0 }}
               onClick={() => handleNavClick(item.href)}
-              className="text-[length:var(--text-menu)] font-[600] text-[var(--color-secondary-50)] hover:text-[var(--color-accent-200)] transition-colors custom-cursor-area"
+              className="text-[length:var(--text-h4)] font-[600] text-[var(--color-secondary-50)] hover:text-[var(--color-accent-200)] transition-colors custom-cursor-area"
             >
               {item.name}
             </motion.button>

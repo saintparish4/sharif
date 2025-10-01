@@ -2,7 +2,6 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import { useLenis } from "../hooks/useLenis";
-import { CustomCursor } from "./components/animations/customCursor";
 import { useGSAPScrollAnimations } from "./components/animations/ScrollAnimations";
 import { Hero } from "./components/sections/hero";
 import { Services } from "./components/sections/services";
@@ -61,7 +60,6 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <CustomCursor />
             <Navigation />
             
             {/* Portfolio Sections */}
