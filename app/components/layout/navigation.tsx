@@ -10,7 +10,6 @@ const navItems = [
 ];
 
 export const Navigation = () => {
-  const [activeSection, setActiveSection] = useState('hero');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   
@@ -24,27 +23,6 @@ export const Navigation = () => {
     [0, 200],
     [0, -50]
   );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['hero', 'services', 'projects', 'about', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleNavClick = (href: string) => {
     // Convert href like "/#Services" to CSS selector "#Services"

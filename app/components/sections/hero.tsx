@@ -288,7 +288,7 @@ export const Hero = () => {
                   animate={{ opacity: 1, transform: 'translateY(0px)' }}
                   transition={{ duration: 0.6, delay: 1.2 }}
                 >
-                  OCT'25
+                  OCT&apos;25
                 </motion.span>
               </div>
             </div>

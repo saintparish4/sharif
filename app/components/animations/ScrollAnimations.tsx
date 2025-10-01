@@ -8,7 +8,7 @@ export const useGSAPScrollAnimations = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     // Parallax effect for background elements
-    gsap.utils.toArray('.parallax-bg').forEach((element: any) => {
+    gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((element) => {
       gsap.to(element, {
         yPercent: -50,
         ease: "none",
@@ -22,7 +22,7 @@ export const useGSAPScrollAnimations = () => {
     });
 
     // Stagger animations for project cards
-    gsap.utils.toArray('.project-card').forEach((card: any, index) => {
+    gsap.utils.toArray<HTMLElement>('.project-card').forEach((card, index) => {
       gsap.fromTo(card, 
         {
           y: 100,
@@ -47,7 +47,7 @@ export const useGSAPScrollAnimations = () => {
     });
 
     // Skills progress bars animation
-    gsap.utils.toArray('.skill-bar').forEach((bar: any) => {
+    gsap.utils.toArray<HTMLElement>('.skill-bar').forEach((bar) => {
       const progress = bar.dataset.progress;
       gsap.fromTo(bar.querySelector('.skill-fill'), 
         { width: '0%' },
@@ -65,7 +65,7 @@ export const useGSAPScrollAnimations = () => {
     });
 
     // Text reveal animations
-    gsap.utils.toArray('.text-reveal').forEach((text: any) => {
+    gsap.utils.toArray<HTMLElement>('.text-reveal').forEach((text) => {
       gsap.fromTo(text, 
         {
           y: 100,
@@ -86,7 +86,7 @@ export const useGSAPScrollAnimations = () => {
     });
 
     // Section transitions with pinning
-    gsap.utils.toArray('.pin-section').forEach((section: any) => {
+    gsap.utils.toArray<HTMLElement>('.pin-section').forEach((section) => {
       ScrollTrigger.create({
         trigger: section,
         start: "top top",
