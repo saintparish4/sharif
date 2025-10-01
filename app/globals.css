@@ -431,6 +431,12 @@ textarea:focus {
   row-gap: var(--gap-fluid);
 }
 
+.custom-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap-fluid);
+}
+
 .leading-base {
   line-height: 132.5%;
 }
@@ -503,5 +509,62 @@ textarea:focus {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   SERVICE CARDS OPTIMIZATION
+   ============================================ */
+.service-card-sticky {
+  position: sticky;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* GPU acceleration hints */
+@media (hover: hover) and (pointer: fine) {
+  .service-card-sticky {
+    will-change: transform;
+  }
+}
+
+/* Reduce animations on mobile for better performance */
+@media (max-width: 768px) {
+  .service-card-sticky {
+    will-change: auto;
+  }
+}
+
+/* ============================================
+   PROJECT CARDS OPTIMIZATION
+   ============================================ */
+.project-card {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize image rendering */
+.project-card img {
+  transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* GPU acceleration on desktop only */
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  .project-card {
+    will-change: transform;
+  }
+}
+
+/* Reduce complexity on mobile */
+@media (max-width: 768px) {
+  .project-card {
+    will-change: auto;
+  }
+  
+  .project-card img {
+    image-rendering: auto;
   }
 }

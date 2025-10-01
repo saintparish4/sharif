@@ -1,9 +1,13 @@
 'use client';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { TextReveal } from '../animations/TextReveal';
+import { useMemo } from 'react';
 
 export const Services = () => {
-  const services = [
+  const prefersReducedMotion = useReducedMotion();
+  
+  // Memoize services data to prevent recreation on every render
+  const services = useMemo(() => [
     {
       id: 1,
       title: "Full-Stack Development",
@@ -34,7 +38,59 @@ export const Services = () => {
         "Data Pipelines, ETL, and Scalability"
       ]
     }
-  ];
+  ], []);
+
+  // Optimized animation variants for better performance
+  const cardVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.6,
+        ease: [0.25, 0.1, 0.25, 1] as const
+      }
+    }
+  };
+
+  const techVariants = {
+    hidden: { opacity: 0, x: prefersReducedMotion ? 0 : -15 },
+    visible: (index: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.4,
+        delay: prefersReducedMotion ? 0 : 0.6 + index * 0.08,
+        ease: [0.25, 0.1, 0.25, 1] as const
+      }
+    })
+  };
+
+  // Optimized header animation variants
+  const headerVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.7,
+        ease: [0.25, 0.1, 0.25, 1] as const
+      }
+    }
+  };
+
+  const descriptionVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 25 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.5,
+        delay: prefersReducedMotion ? 0 : 0.15,
+        ease: [0.25, 0.1, 0.25, 1] as const
+      }
+    }
+  };
 
   return (
     <section id="Services">
@@ -44,23 +100,25 @@ export const Services = () => {
             <div className="relative flex w-full flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)]">
               {/* Header */}
               <motion.h1 
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                initial="hidden"
+                whileInView="visible"
+                variants={headerVariants}
+                viewport={{ once: true, margin: "-50px" }}
                 className="cs2:text-[length:var(--text-h1)] section-heading col-span-6 max-w-[18ch] text-accent-400"
+                style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
               >
-                <TextReveal text="What I Do /" delay={0.1} />
+                <TextReveal text="What I Do /" delay={prefersReducedMotion ? 0 : 0.1} />
               </motion.h1>
 
               {/* Description Section */}
               <div className="flex grid-cols-12 gap-x-[var(--gap-fluid)] md:grid">
                 <motion.div 
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={descriptionVariants}
+                  viewport={{ once: true, margin: "-50px" }}
                   className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:flex-row md:col-start-6"
+                  style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
                 >
                   <span className="flex h-full text-[16px] font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
                     (Services)
@@ -68,7 +126,7 @@ export const Services = () => {
                   <div className="w-full max-w-[35ch] text-balance text-[length:var(--text-base-large)] font-medium leading-base text-[var(--color-secondary-50)]">
                     <TextReveal 
                       text="I specialize in building full-stack web applications that are fast, reliable, and user-friendly. With a solid foundation in both frontend and backend technologies, I help bring ideas to life whether it's for a business, a startup, or a product team." 
-                      delay={0.3}
+                      delay={prefersReducedMotion ? 0 : 0.3}
                     />
                   </div>
                 </motion.div>
@@ -81,20 +139,20 @@ export const Services = () => {
                 {services.map((service, index) => (
                   <motion.div
                     key={service.id}
-                    initial={{ opacity: 0, y: 100 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                    viewport={{ once: true }}
-                    className={`sticky border-t border-t-[var(--color-secondary-300)] bg-[var(--color-secondary-400)] ${
-                      index === 0 ? 'mb-[21.5em] c324:mb-[23em] c343:mb-[23.5em] c358:mb-[25em] c360:mb-[23em] c370:mb-[21em] cs3:mb-[19em] c387:mb-[19.2em] cs5:mb-[18.2em] cs4:mb-[18em] sm:mb-[19em] md:mb-[19em] cs1:mb-[18.5em] lg:mb-[20.1em]' :
-                       index === 1 ? 'mb-[15.5em] c343:mb-[17.5em] c358:mb-[16.5em] c360:mb-[15em] c370:mb-[16em] cs3:mb-[13.1em] c387:mb-[13em] cs5:mb-[13em] cs4:mb-[13em] cs2:mb-[13.2em] sm:mb-[13em] md:mb-[13.5em] cs1:mb-[13em] lg:mb-[14em]' :
-                       'mb-[7.5em] cs1:mb-[7em] lg:mb-[8em]'
-                    } ${
-                      index === 1 ? 'top-[calc(20vh+7em)] cs2:top-[calc(20vh+7em)] sm:top-[calc(20vh+6em)] md:top-[calc(20vh+8em)] cs1:top-[calc(20vh+6em)] lg:top-[calc(20vh+6em)]' :
-                      index === 2 ? 'top-[calc(20vh+16em)]' : ''
-                    }`}
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={cardVariants}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="service-card-sticky border-t border-t-[var(--color-secondary-300)] bg-[var(--color-secondary-400)]"
                     style={{ 
-                      top: index === 0 ? '20vh' : undefined
+                      top: index === 0 ? '20vh' : 
+                           index === 1 ? 'calc(20vh + 7em)' : 
+                           'calc(20vh + 16em)',
+                      marginBottom: index === 0 ? 'clamp(18em, 20vw, 23em)' :
+                                   index === 1 ? 'clamp(13em, 14vw, 16em)' :
+                                   'clamp(7em, 8vw, 8.5em)',
+                      willChange: 'transform, opacity',
+                      contain: 'layout style paint'
                     }}
                   >
                     <div className="flex grid-cols-12 items-center justify-start gap-x-[var(--space-xs)] text-left text-[length:var(--text-heading-2)] font-semibold text-[var(--color-accent-400)] md:grid md:justify-between md:gap-x-[var(--gap-fluid)]">
@@ -114,11 +172,17 @@ export const Services = () => {
                           {service.technologies.map((tech, techIndex) => (
                             <motion.span
                               key={techIndex}
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.5, delay: 0.8 + techIndex * 0.1 }}
-                              viewport={{ once: true }}
+                              initial="hidden"
+                              whileInView="visible"
+                              custom={techIndex}
+                              variants={techVariants}
+                              viewport={{ once: true, margin: "-50px" }}
                               className="flex items-start gap-x-[var(--space-sm)] py-[var(--space-3xs)] font-bold text-[var(--color-accent-500)] xl:gap-x-[var(--space-md)] xl:py-[var(--space-2xs)] text-[length:var(--text-heading-4)]"
+                              style={{ 
+                                willChange: prefersReducedMotion ? 'auto' : 'transform',
+                                backfaceVisibility: 'hidden',
+                                WebkitFontSmoothing: 'subpixel-antialiased'
+                              }}
                             >
                               <span className="font-mono text-[length:var(--text-base)] font-medium leading-[200%] text-[var(--color-secondary-75)]">
                                 {String(techIndex + 1).padStart(2, '0')}

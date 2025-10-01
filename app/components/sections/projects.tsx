@@ -1,8 +1,9 @@
 'use client';
-import { motion } from 'motion/react';
-import { useState } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
+import { useState, useMemo, useCallback } from 'react';
 import { TextReveal } from '../animations/TextReveal';
 
+// Move projects outside component to prevent recreation on every render
 const projects = [
   {
     id: 1,
@@ -54,10 +55,59 @@ const projects = [
     background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/1_phf5ng?_a=BAVAZGE70',
     video: 'KgB1H01cuYG14gDffVE1MPflRm4vG7z2YgTcsZN6Bplg'
   }
-];
+] as const;
 
 export const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Memoize viewport enter handler
+  const handleViewportEnter = useCallback((index: number) => {
+    setActiveIndex(index);
+  }, []);
+
+  // Optimized animation variants
+  const headerVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.7,
+        ease: [0.25, 0.1, 0.25, 1] as const
+      }
+    }
+  }), [prefersReducedMotion]);
+
+  const descriptionVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 25 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.5,
+        delay: prefersReducedMotion ? 0 : 0.15,
+        ease: [0.25, 0.1, 0.25, 1] as const
+      }
+    }
+  }), [prefersReducedMotion]);
+
+  const projectCardVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.5,
+        ease: [0.25, 0.1, 0.25, 1] as const
+      }
+    }
+  }), [prefersReducedMotion]);
+
+  const counterTransition = useMemo(() => ({
+    duration: prefersReducedMotion ? 0.01 : 0.8,
+    ease: [0.25, 0.1, 0.25, 1] as const
+  }), [prefersReducedMotion]);
 
   return (
     <section id="Works">
@@ -65,23 +115,25 @@ export const Projects = () => {
         <div className="flex flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)]">
           {/* Header */}
           <motion.h1 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            initial="hidden"
+            whileInView="visible"
+            variants={headerVariants}
+            viewport={{ once: true, margin: "-50px" }}
             className="section-heading relative text-[var(--color-accent-400)]"
+            style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
           >
-            <TextReveal text="SELECTED WORKS /" delay={0.1} />
+            <TextReveal text="SELECTED WORKS /" delay={prefersReducedMotion ? 0 : 0.1} />
           </motion.h1>
 
           {/* Description Section */}
           <div className="grid-gap flex grid-cols-12 sm:justify-end lg:grid">
             <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
+              initial="hidden"
+              whileInView="visible"
+              variants={descriptionVariants}
+              viewport={{ once: true, margin: "-50px" }}
               className="col-span-7 col-start-1 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:col-start-6 sm:flex-row"
+              style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
             >
               <span className="flex h-full font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
                 (PROJECTS)
@@ -89,7 +141,7 @@ export const Projects = () => {
               <div className="w-full max-w-[25ch] text-balance font-medium leading-base text-[var(--color-secondary-50)] text-[length:var(--text-base-large)]">
                 <TextReveal 
                   text="Thoughtfully crafted digital experiences that blend utility and aesthetics into something functional, memorable, and refined." 
-                  delay={0.3}
+                  delay={prefersReducedMotion ? 0 : 0.3}
                 />
               </div>
             </motion.div>
@@ -103,9 +155,14 @@ export const Projects = () => {
             <span className="relative">0</span>
             <div className="relative">
               <motion.div 
-                className="absolute flex h-full w-fit flex-col transition-all duration-1000 ease-in-out"
+                className="absolute flex h-full w-fit flex-col"
                 animate={{ 
                   transform: `translateY(-${activeIndex * 100}%)` 
+                }}
+                transition={counterTransition}
+                style={{
+                  willChange: prefersReducedMotion ? 'auto' : 'transform',
+                  backfaceVisibility: 'hidden'
                 }}
               >
                 {projects.map((_, index) => (
@@ -122,13 +179,17 @@ export const Projects = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-200px" }}
-                onViewportEnter={() => setActiveIndex(index)}
-                className="@container"
+                initial="hidden"
+                whileInView="visible"
+                variants={projectCardVariants}
+                viewport={{ once: true, margin: "-150px" }}
+                onViewportEnter={() => handleViewportEnter(index)}
+                className="@container project-card"
                 data-index={index}
+                style={{
+                  willChange: prefersReducedMotion ? 'auto' : 'transform',
+                  contain: 'layout style paint'
+                }}
               >
                 <a 
                   href={project.link} 
@@ -141,44 +202,36 @@ export const Projects = () => {
                     {/* Background Image */}
                     <div className="absolute inset-0">
                       <img 
-                        alt="background" 
+                        alt={`${project.title} background`}
                         loading="lazy" 
-                        decoding="async" 
+                        decoding="async"
+                        fetchPriority={index === 0 ? "high" : "low"}
                         className="h-full w-full absolute object-cover object-center transition-opacity duration-700 ease-in-out" 
                         src={project.background}
-                        style={{ position: 'absolute', height: '100%', width: '100%', inset: '0px', color: 'transparent' }}
+                        style={{ 
+                          position: 'absolute', 
+                          height: '100%', 
+                          width: '100%', 
+                          inset: '0px', 
+                          color: 'transparent',
+                          willChange: 'opacity'
+                        }}
                       />
                     </div>
 
-                    {/* Video/Preview Container */}
-                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg">
-                      <div className="aspect-[4/3] w-full rounded-lg bg-gray-100 overflow-hidden">
-                        <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg">
-                          {/* Placeholder for video - Replace with mux-player or video component when ready */}
-                          {project.video ? (
-                            <div 
-                              className="h-full w-full bg-[var(--color-secondary-300)] flex items-center justify-center"
-                              data-video-id={project.video}
-                            >
-                              {/* TODO: Replace with actual video player */}
-                              {/* <mux-player playback-id={project.video} autoplay="muted" loop preload="none" /> */}
-                              <img 
-                                src={project.background}
-                                alt={project.title}
-                                className="h-full w-full object-cover"
-                              />
-                            </div>
-                          ) : (
-                            <div className="h-full w-full bg-[var(--color-secondary-300)] flex items-center justify-center">
-                              <img 
-                                src={project.background}
-                                alt={project.title}
-                                className="h-full w-full object-cover"
-                              />
-                            </div>
-                          )}
-                        </div>
-                      </div>
+                    {/* Video/Preview Container - Simplified structure */}
+                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg bg-gray-100">
+                      {/* TODO: Replace with actual video player when ready */}
+                      {/* <mux-player playback-id={project.video} autoplay="muted" loop preload="none" /> */}
+                      <img 
+                        src={project.background}
+                        alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                        fetchPriority={index === 0 ? "high" : "low"}
+                        className="h-full w-full object-cover"
+                        style={{ willChange: 'opacity' }}
+                      />
                     </div>
                   </div>
 

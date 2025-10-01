@@ -21,7 +21,7 @@ export const TextReveal = ({
   const isInView = useInView(ref, { once: true });
   
   return (
-    <div ref={ref} className="overflow-hidden">
+    <span ref={ref} className="block overflow-hidden">
       <motion.span
         className={className}
         initial="hidden"
@@ -47,6 +47,6 @@ export const TextReveal = ({
           </motion.span>
         ))}
       </motion.span>
-    </div>
+    </span>
   );
 };
