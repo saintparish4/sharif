@@ -66,11 +66,21 @@ export const metadata: Metadata = {
     images: ["https://sharifparish.com/og-image.jpg"],
   },
   robots: "index, follow",
+  metadataBase: new URL("https://sharifparish.com"),
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#e8e8e3" },
+    { media: "(prefers-color-scheme: dark)", color: "#080807" },
+  ],
 };
 
 export default function RootLayout({

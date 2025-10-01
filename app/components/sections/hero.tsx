@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'motion/react';
-import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const WordReveal = ({ text }: { text: string }) => {
   const words = text.split(' ');
@@ -257,18 +257,20 @@ export const Hero = () => {
             <div className="col-span-4 flex flex-col items-start md:items-center">
               <div className="flex h-fit w-fit flex-col items-center justify-center gap-y-[var(--space-2xs)] overflow-hidden rounded-md">
                 <motion.div
-                  className="pointer-events-none h-[15vh] max-w-lg rounded-lg md:h-[50vh]"
+                  className="pointer-events-none h-[15vh] max-w-lg rounded-lg md:h-[50vh] relative overflow-hidden"
                   initial={{ clipPath: 'inset(100%)', opacity: 0, scale: 0.95 }}
                   animate={{ clipPath: 'inset(0%)', opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 1 }}
                 >
-                  <img
-                    alt="Just an Image."
-                    width="1536"
-                    height="2040"
-                    decoding="async"
-                    className="h-full w-full object-cover object-center grayscale"
+                  <Image
+                    alt="Sharif Parish - Software Engineer"
+                    width={1536}
+                    height={2040}
                     src="https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/1_phf5ng?_a=BAVAZGE70"
+                    className="h-full w-full object-cover object-center grayscale"
+                    priority
+                    quality={90}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </motion.div>
               </div>

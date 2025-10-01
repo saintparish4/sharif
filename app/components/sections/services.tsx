@@ -62,7 +62,7 @@ export const Services = () => {
                   viewport={{ once: true }}
                   className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:flex-row md:col-start-6"
                 >
-                  <span className="flex h-full font-medium uppercase text-nowrap text-[var(--color-secondary-75)] text-[16px]">
+                  <span className="flex h-full text-[16px] font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
                     (Services)
                   </span>
                   <div className="w-full max-w-[35ch] text-balance text-[length:var(--text-base-large)] font-medium leading-base text-[var(--color-secondary-50)]">
@@ -89,9 +89,12 @@ export const Services = () => {
                       index === 0 ? 'mb-[21.5em] c324:mb-[23em] c343:mb-[23.5em] c358:mb-[25em] c360:mb-[23em] c370:mb-[21em] cs3:mb-[19em] c387:mb-[19.2em] cs5:mb-[18.2em] cs4:mb-[18em] sm:mb-[19em] md:mb-[19em] cs1:mb-[18.5em] lg:mb-[20.1em]' :
                        index === 1 ? 'mb-[15.5em] c343:mb-[17.5em] c358:mb-[16.5em] c360:mb-[15em] c370:mb-[16em] cs3:mb-[13.1em] c387:mb-[13em] cs5:mb-[13em] cs4:mb-[13em] cs2:mb-[13.2em] sm:mb-[13em] md:mb-[13.5em] cs1:mb-[13em] lg:mb-[14em]' :
                        'mb-[7.5em] cs1:mb-[7em] lg:mb-[8em]'
+                    } ${
+                      index === 1 ? 'top-[calc(20vh+7em)] cs2:top-[calc(20vh+7em)] sm:top-[calc(20vh+6em)] md:top-[calc(20vh+8em)] cs1:top-[calc(20vh+6em)] lg:top-[calc(20vh+6em)]' :
+                      index === 2 ? 'top-[calc(20vh+16em)]' : ''
                     }`}
                     style={{ 
-                      top: index === 0 ? '20vh' : index === 1 ? 'calc(20vh + 7em)' : 'calc(20vh + 16em)'
+                      top: index === 0 ? '20vh' : undefined
                     }}
                   >
                     <div className="flex grid-cols-12 items-center justify-start gap-x-[var(--space-xs)] text-left text-[length:var(--text-heading-2)] font-semibold text-[var(--color-accent-400)] md:grid md:justify-between md:gap-x-[var(--gap-fluid)]">

@@ -1,13 +1,27 @@
 "use client";
 import { motion, AnimatePresence } from "motion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { useLenis } from "../hooks/useLenis";
 import { useGSAPScrollAnimations } from "./components/animations/ScrollAnimations";
 import { Hero } from "./components/sections/hero";
-import { Services } from "./components/sections/services";
-import { About } from "./components/sections/about";
-import { Projects } from "./components/sections/projects";
 import { Navigation } from "./components/layout/navigation";
+
+// Lazy load below-the-fold sections for better performance
+const Services = dynamic(() => import("./components/sections/services").then(mod => ({ default: mod.Services })), {
+  loading: () => <div className="min-h-screen" />,
+  ssr: true,
+});
+
+const Projects = dynamic(() => import("./components/sections/projects").then(mod => ({ default: mod.Projects })), {
+  loading: () => <div className="min-h-screen" />,
+  ssr: true,
+});
+
+const About = dynamic(() => import("./components/sections/about").then(mod => ({ default: mod.About })), {
+  loading: () => <div className="min-h-screen" />,
+  ssr: true,
+});
 
 
 export default function Home() {
@@ -18,7 +32,7 @@ export default function Home() {
   useGSAPScrollAnimations();
 
   useEffect(() => {
-    // Simulate loading time
+    // Loading screen animation timing
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 2000);
@@ -65,9 +79,15 @@ export default function Home() {
             {/* Portfolio Sections */}
             <main>
               <Hero />
-              <Services />
-              <Projects />
-              <About />
+              <Suspense fallback={<div className="min-h-screen" />}>
+                <Services />
+              </Suspense>
+              <Suspense fallback={<div className="min-h-screen" />}>
+                <Projects />
+              </Suspense>
+              <Suspense fallback={<div className="min-h-screen" />}>
+                <About />
+              </Suspense>
             </main>
           </motion.div>
         )}

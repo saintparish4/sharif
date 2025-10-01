@@ -6,7 +6,7 @@ const navItems = [
   { name: 'Services', href: '/#Services' },
   { name: 'Works', href: '/#Works' },
   { name: 'About', href: '/#About' },
-  // { name: 'Contact', href: '/#Contact' },
+  { name: 'Contact', href: '/#Contact' },
 ];
 
 export const Navigation = () => {
@@ -43,24 +43,24 @@ export const Navigation = () => {
           y,
         }}
       >
-        <div className="px-[var(--space-md)] mt-[var(--space-md)] flex flex-row items-start justify-between gap-x-[var(--gap-fluid)] lg:grid lg:grid-cols-12 lg:items-center">
+        <div className="section-padding-x mt-[var(--space-md)] flex flex-row items-start justify-between gap-x-[var(--gap-fluid)] lg:grid lg:grid-cols-12 lg:items-center">
           {/* Left side - Brand text */}
           <div className="col-span-8 flex flex-col items-start gap-x-[var(--space-2xl)] gap-y-[var(--space-3xs)] lg:flex-row lg:items-center">
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="block w-fit max-w-[14ch] text-balance font-medium leading-snug text-[var(--color-secondary-100)] text-[length:var(--text-h4)] sm:max-w-max"
+              className="block w-fit max-w-[14ch] text-balance font-medium leading-snug text-[var(--color-secondary-100)] text-[length:var(--text-base)] sm:max-w-max md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)]"
             >
               <div className="transition-all duration-500 ease-in transform opacity-100">
-                Founder + Software Engineer
+                Web Developer &amp; Designer
               </div>
             </motion.span>
           </div>
 
           {/* Right side - Navigation */}
-          <nav className="col-span-4 flex justify-end text-[length:var(--text-h4)]">
-            <ul className="m-0 flex flex-col items-start text-[var(--color-secondary-100)] gap-y-[var(--space-3xs)] md:flex-row md:items-center md:gap-x-[var(--space-sm)] md:gap-y-0 font-medium">
+          <nav className="col-span-4 flex justify-end text-[length:var(--text-base)] md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)]">
+            <ul className="m-0 flex flex-col items-start text-[var(--color-secondary-100)] gap-y-[var(--space-3xs)] md:flex-row md:items-center md:gap-x-[var(--space-2xs)] md:gap-y-0 font-medium">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -71,7 +71,7 @@ export const Navigation = () => {
                 >
                   <li className="flex leading-normal md:leading-snug">
                     <a
-                      className="group relative block h-fit overflow-hidden font-medium cursor-pointer select-none custom-cursor-area"
+                      className="group relative block h-fit overflow-hidden font-medium cursor-pointer select-none"
                       href={item.href}
                       onClick={(e) => {
                         e.preventDefault();
@@ -101,7 +101,7 @@ export const Navigation = () => {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
-        className="fixed top-4 right-4 z-50 md:hidden p-[var(--space-3xs)] custom-cursor-area"
+        className="fixed top-4 right-4 z-50 md:hidden p-[var(--space-3xs)]"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <div className="w-6 h-6 flex flex-col justify-center space-y-1">
@@ -150,7 +150,7 @@ export const Navigation = () => {
               }}
               transition={{ duration: 0.4, delay: isMobileMenuOpen ? index * 0.1 : 0 }}
               onClick={() => handleNavClick(item.href)}
-              className="text-[length:var(--text-h4)] font-[600] text-[var(--color-secondary-50)] hover:text-[var(--color-accent-200)] transition-colors custom-cursor-area"
+              className="text-[length:var(--text-base)] md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)] font-[600] text-[var(--color-secondary-50)] hover:text-[var(--color-accent-200)] transition-colors"
             >
               {item.name}
             </motion.button>

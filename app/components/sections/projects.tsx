@@ -1,6 +1,6 @@
 'use client';
-import { motion, useInView } from 'motion/react';
-import { useState, useRef, useEffect } from 'react';
+import { motion } from 'motion/react';
+import { useState } from 'react';
 import { TextReveal } from '../animations/TextReveal';
 
 const projects = [
@@ -144,8 +144,9 @@ export const Projects = () => {
                         alt="background" 
                         loading="lazy" 
                         decoding="async" 
-                        className="h-full w-full object-cover object-center transition-opacity duration-700 ease-in-out" 
+                        className="h-full w-full absolute object-cover object-center transition-opacity duration-700 ease-in-out" 
                         src={project.background}
+                        style={{ position: 'absolute', height: '100%', width: '100%', inset: '0px', color: 'transparent' }}
                       />
                     </div>
 
@@ -153,14 +154,29 @@ export const Projects = () => {
                     <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg">
                       <div className="aspect-[4/3] w-full rounded-lg bg-gray-100 overflow-hidden">
                         <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg">
-                          {/* Placeholder for video - you can replace with actual video component */}
-                          <div className="h-full w-full bg-[var(--color-secondary-300)] flex items-center justify-center">
-                            <img 
-                              src={project.background}
-                              alt={project.title}
-                              className="h-full w-full object-cover"
-                            />
-                          </div>
+                          {/* Placeholder for video - Replace with mux-player or video component when ready */}
+                          {project.video ? (
+                            <div 
+                              className="h-full w-full bg-[var(--color-secondary-300)] flex items-center justify-center"
+                              data-video-id={project.video}
+                            >
+                              {/* TODO: Replace with actual video player */}
+                              {/* <mux-player playback-id={project.video} autoplay="muted" loop preload="none" /> */}
+                              <img 
+                                src={project.background}
+                                alt={project.title}
+                                className="h-full w-full object-cover"
+                              />
+                            </div>
+                          ) : (
+                            <div className="h-full w-full bg-[var(--color-secondary-300)] flex items-center justify-center">
+                              <img 
+                                src={project.background}
+                                alt={project.title}
+                                className="h-full w-full object-cover"
+                              />
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -169,7 +185,7 @@ export const Projects = () => {
                   {/* Project Info */}
                   <div className="flex flex-col justify-between gap-y-[var(--space-sm)] pt-[var(--space-xs)] lg:flex-row">
                     <div className="flex flex-col gap-y-[var(--space-3xs)]">
-                      <span className="font-mono text-var(--text-base-small) font-medium text-[var(--color-secondary-50)]">
+                      <span className="font-mono text-[length:var(--text-base-small)] font-medium text-[var(--color-secondary-50)]">
                         <h1 className="font-mono cursor-default">{project.subtitle}</h1>
                       </span>
                       <div className="w-fit text-[length:var(--text-heading-3)] font-semibold text-[var(--color-accent-400)]">

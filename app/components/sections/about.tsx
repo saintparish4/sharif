@@ -1,21 +1,86 @@
 'use client';
 import { motion } from 'motion/react';
+import { useMemo } from 'react';
 import { TextReveal } from '../animations/TextReveal';
 
+// Reusable skill item component
+const SkillItem = ({ skill, delay }: { skill: string; delay: number }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay }}
+    viewport={{ once: true }}
+    className="flex relative items-start gap-2 text-[var(--color-secondary-50)] c343:text-[length:var(--text-base-large)] text-[length:var(--text-base)]"
+  >
+    <span className="group relative block h-fit overflow-hidden font-medium select-none">
+      <span className="block w-full transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-0 group-hover:-translate-y-full">
+        {skill}
+      </span>
+      <span aria-hidden="true" className="absolute top-0 left-0 w-full block transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0">
+        {skill}
+      </span>
+    </span>
+  </motion.div>
+);
+
+// Skills grid component
+const SkillsGrid = ({ skills }: { skills: typeof skillsData }) => (
+  <section className="self-start md:px-6 py-5 c370:px-3 px-0 bg-[var(--color-secondary-400)] text-[var(--color-accent-400)] w-full">
+    <div className="max-w-6xl mx-auto">
+      <h3 className="md:text-[length:var(--text-h1-alt)] text-[length:var(--text-menu)] font-bold mb-8 text-center">
+        Skills
+      </h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 c343:gap-1 gap-4 md:gap-5 md:p-5 c370:p-1 p-0">
+        {/* Languages & Tools */}
+        <div className="c370:p-2 p-0 rounded-2xl shadow-md hover:shadow-lg transition self-start">
+          <h4 className="hidden md:flex text-xl font-semibold mb-4">Languages &amp; Tools</h4>
+          <ul className="space-y-3 md:text-base">
+            {skills.languages.map((skill, index) => (
+              <SkillItem key={skill} skill={skill} delay={0.6 + index * 0.05} />
+            ))}
+          </ul>
+        </div>
+
+        {/* Frameworks & Libraries */}
+        <div className="c370:p-2 p-0 rounded-2xl shadow-md hover:shadow-lg transition self-start">
+          <h4 className="hidden md:flex text-xl font-semibold mb-4">Frameworks &amp; Libraries</h4>
+          <ul className="space-y-3 md:text-base">
+            {skills.frameworks.map((skill, index) => (
+              <SkillItem key={skill} skill={skill} delay={0.6 + index * 0.05} />
+            ))}
+          </ul>
+        </div>
+
+        {/* Core CS Concepts */}
+        <div className="c370:p-2 p-0 rounded-2xl shadow-md hover:shadow-lg transition self-start">
+          <h4 className="hidden md:flex text-xl font-semibold mb-4">Core CS Concepts</h4>
+          <ul className="space-y-3 md:text-base">
+            {skills.concepts.map((skill, index) => (
+              <SkillItem key={skill} skill={skill} delay={0.6 + index * 0.05} />
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const skillsData = {
+  languages: [
+    'Python', 'SQL', 'C++', 'Java', 'Typescript', 
+    'JavaScript', 'Git', 'Postman', 'Docker', 'Firebase'
+  ],
+  frameworks: [
+    'React', 'Node.js', 'Express.js', 'Flask', 'Bootstrap',
+    'jQuery', 'TailwindCSS', 'Framer Motion', 'GSAP'
+  ],
+  concepts: [
+    'DSA', 'DBMS', 'OOP', 'Operating Systems', 'System Design'
+  ]
+};
+
 export const About = () => {
-  const skills = {
-    languages: [
-      'Python', 'SQL', 'C++', 'Java', 'Typescript', 
-      'JavaScript', 'Git', 'Postman', 'Docker', 'Firebase'
-    ],
-    frameworks: [
-      'React', 'Node.js', 'Express.js', 'Flask', 'Bootstrap',
-      'jQuery', 'TailwindCSS', 'Framer Motion', 'GSAP'
-    ],
-    concepts: [
-      'DSA', 'DBMS', 'OOP', 'Operating Systems', 'System Design'
-    ]
-  };
+  const skills = useMemo(() => skillsData, []);
 
   return (
     <section id="About" className="mt-[-2vh]">
@@ -49,92 +114,7 @@ export const About = () => {
               viewport={{ once: true }}
               className="relative z-0 lg:col-span-6 col-span-full flex w-full items-center overflow-clip rounded-md md:items-end order-1 md:order-2"
             >
-              <section className="self-start md:px-6 py-5 c370:px-3 px-0 bg-[var(--color-secondary-400)] text-[var(--color-accent-400)] w-full">
-                <div className="max-w-6xl mx-auto">
-                  <h2 className="md:text-[length:var(--text-h1-alt)] text-[length:var(--text-menu)] font-bold mb-8 text-center">
-                    Skills
-                  </h2>
-                  <div className="grid grid-cols-3 md:grid-cols-3 c343:gap-1 gap-0 md:gap-5 md:p-5 c370:p-1 p-0">
-                    {/* Languages & Tools */}
-                    <div className="c370:p-2 p-0 rounded-2xl shadow-md hover:shadow-lg transition self-start">
-                      <h3 className="hidden md:flex text-xl font-semibold mb-4">Languages &amp; Tools</h3>
-                      <ul className="space-y-3 md:text-base">
-                        {skills.languages.map((skill, index) => (
-                          <motion.div 
-                            key={skill}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
-                            viewport={{ once: true }}
-                            className="flex relative items-start gap-2 text-[var(--color-secondary-50)] c343:text-[length:var(--text-base)] text-[length:var(--text-skill)]"
-                          >
-                            <span className="group relative block h-fit overflow-hidden font-medium select-none">
-                              <span className="block w-full transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-0 group-hover:-translate-y-full">
-                                <h1 className="font-mono cursor-default">{skill}</h1>
-                              </span>
-                              <span aria-hidden="true" className="absolute top-0 left-0 w-full block transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0">
-                                <h1 className="font-mono cursor-default">{skill}</h1>
-                              </span>
-                            </span>
-                          </motion.div>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Frameworks & Libraries */}
-                    <div className="c370:p-2 p-0 rounded-2xl shadow-md hover:shadow-lg transition self-start">
-                      <h3 className="hidden md:flex text-xl font-semibold mb-4">Frameworks &amp; Libraries</h3>
-                      <ul className="space-y-3 md:text-base">
-                        {skills.frameworks.map((skill, index) => (
-                          <motion.div 
-                            key={skill}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
-                            viewport={{ once: true }}
-                            className="flex relative items-start gap-2 text-[var(--color-secondary-50)] c343:text-[length:var(--text-base)] text-[length:var(--text-skill)]"
-                          >
-                            <span className="group relative block h-fit overflow-hidden font-medium select-none">
-                              <span className="block w-full transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-0 group-hover:-translate-y-full">
-                                <h1 className="font-mono cursor-default">{skill}</h1>
-                              </span>
-                              <span aria-hidden="true" className="absolute top-0 left-0 w-full block transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0">
-                                <h1 className="font-mono cursor-default">{skill}</h1>
-                              </span>
-                            </span>
-                          </motion.div>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Core CS Concepts */}
-                    <div className="c370:p-2 p-0 rounded-2xl shadow-md hover:shadow-lg transition self-start">
-                      <h3 className="hidden md:flex text-xl font-semibold mb-4">Core CS Concepts</h3>
-                      <ul className="space-y-3 md:text-base">
-                        {skills.concepts.map((skill, index) => (
-                          <motion.div 
-                            key={skill}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.6 + index * 0.05 }}
-                            viewport={{ once: true }}
-                            className="flex relative items-start gap-2 text-[var(--color-secondary-50)] c343:text-[length:var(--text-base)] text-[length:var(--text-skill)]"
-                          >
-                            <span className="group relative block h-fit overflow-hidden font-medium select-none">
-                              <span className="block w-full transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-0 group-hover:-translate-y-full">
-                                <h1 className="font-mono cursor-default">{skill}</h1>
-                              </span>
-                              <span aria-hidden="true" className="absolute top-0 left-0 w-full block transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0">
-                                <h1 className="font-mono cursor-default">{skill}</h1>
-                              </span>
-                            </span>
-                          </motion.div>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </section>
+              <SkillsGrid skills={skills} />
             </motion.div>
           </div>
 
@@ -149,7 +129,7 @@ export const About = () => {
               className="pointer-events-none max-h-[30rem] relative z-0 col-span-3 flex aspect-square w-full items-center overflow-clip rounded-md sm:aspect-auto md:items-end"
             >
               <img 
-                alt="Just an Image." 
+                alt="Portrait photo" 
                 width="1536" 
                 height="2040" 
                 decoding="async" 

@@ -12,6 +12,7 @@ export const useGSAPScrollAnimations = () => {
       gsap.to(element, {
         yPercent: -50,
         ease: "none",
+        force3D: true, // GPU acceleration
         scrollTrigger: {
           trigger: element,
           start: "top bottom",
@@ -35,6 +36,7 @@ export const useGSAPScrollAnimations = () => {
           scale: 1,
           duration: 1,
           ease: "power3.out",
+          force3D: true, // GPU acceleration
           scrollTrigger: {
             trigger: card,
             start: "top 80%",
@@ -76,6 +78,7 @@ export const useGSAPScrollAnimations = () => {
           opacity: 1,
           duration: 1.2,
           ease: "power3.out",
+          force3D: true, // GPU acceleration
           scrollTrigger: {
             trigger: text,
             start: "top 85%",
