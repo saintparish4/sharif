@@ -130,7 +130,7 @@ export const Services = () => {
                     viewport={{ once: true, margin: "-50px" }}
                     style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
                   >
-                    Code should flow like water—adapting to the container, finding the path of least resistance. I'm a software engineer and founder who brings startups from idea to production, working across React, Next.js, Python, Rust, Go, and more. My studio operates on a principle of 无为 (wu wei): the right action at the right time, without force. I focus on what's essential, remove what's not, and ship products that feel inevitable rather than complicated.
+                     Code should flow like water—adapting to the container, finding the path of least resistance. I&apos;m a software engineer and founder who brings startups from idea to production, working across React, Next.js, Python, Rust, Go, and more. My studio operates on a principle of 无为 (wu wei): the right action at the right time, without force. I focus on what&apos;s essential, remove what&apos;s not, and ship products that feel inevitable rather than complicated.
                   </motion.div>
                 </motion.div>
               </div>
