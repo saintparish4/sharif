@@ -1,6 +1,5 @@
 'use client';
 import { motion, useReducedMotion } from 'motion/react';
-import { TextReveal } from '../animations/TextReveal';
 import { useMemo } from 'react';
 
 export const Services = () => {
@@ -13,9 +12,9 @@ export const Services = () => {
       title: "Full-Stack Development",
       description: "From frontend interactions to backend APIs, I build complete web solutions. I work with modern stacks to deliver apps that are scalable, maintainable, and ready for real-world users.",
       technologies: [
-        "React, Node.js, Express.js",
-        "REST APIs, Firebase, Docker",
-        "Git, GitHub, Postman"
+        "React, Next.js, Typescript, TanStack Query",
+        "Node.js, Express, Python, Golang, Rust, C++, Solidity",
+        "PostgreSQL, MongoDB, Redis, Elasticsearch, AWS, Docker"
       ]
     },
     {
@@ -23,7 +22,7 @@ export const Services = () => {
       title: "UI/UX & Frontend",
       description: "Design is more than looks — it's about clarity and connection. I design and develop clean, responsive interfaces that feel intuitive across devices. My focus is on clarity, accessibility, and seamless user experiences.",
       technologies: [
-        "NextJs, TailwindCSS, GSAP",
+        "NextJs, TailwindCSS, GSAP, Framer Motion",
         "Figma to Code",
         "HTML, CSS, JavaScript"
       ]
@@ -33,9 +32,9 @@ export const Services = () => {
       title: "Optimization",
       description: "Beyond handling data, I'm driven by the challenge of turning complex raw inputs into reliable, usable systems. I enjoy designing pipelines that power insights and apply core CS principles to build for scale, speed, and stability.",
       technologies: [
-        "Data Structures & Algorithms",
-        "DBMS, OOP, OS Fundamentals",
-        "Data Pipelines, ETL, and Scalability"
+        "Auto-scaling Architecture, Caching Strategies (Redis), CDN Optimization",
+        "Microservices, CI/CD Pipelines, Infrastructure as Code (Terraform)",
+        "Data Structures & Algorithms, System Design, Database Optimization, Monitoring"
       ]
     }
   ], []);
@@ -104,10 +103,10 @@ export const Services = () => {
                 whileInView="visible"
                 variants={headerVariants}
                 viewport={{ once: true, margin: "-50px" }}
-                className="cs2:text-[length:var(--text-h1)] section-heading col-span-6 max-w-[18ch] text-accent-400"
+                className="cs2:text-[length:var(--text-display)] section-heading col-span-6 max-w-[18ch] text-accent-400"
                 style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
               >
-                <TextReveal text="What I Do /" delay={prefersReducedMotion ? 0 : 0.1} />
+                Philosophy /
               </motion.h1>
 
               {/* Description Section */}
@@ -120,15 +119,19 @@ export const Services = () => {
                   className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:flex-row md:col-start-6"
                   style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
                 >
-                  <span className="flex h-full text-[16px] font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
-                    (Services)
+                  <span className="flex h-full text-[24px] font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
+                    (Aozora Kōbō) 
                   </span>
-                  <div className="w-full max-w-[35ch] text-balance text-[length:var(--text-base-large)] font-medium leading-base text-[var(--color-secondary-50)]">
-                    <TextReveal 
-                      text="I specialize in building full-stack web applications that are fast, reliable, and user-friendly. With a solid foundation in both frontend and backend technologies, I help bring ideas to life whether it's for a business, a startup, or a product team." 
-                      delay={prefersReducedMotion ? 0 : 0.3}
-                    />
-                  </div>
+                  <motion.div 
+                    className="w-full max-w-[50ch] text-balance text-[length:var(--text-heading-4)] font-medium leading-base text-[var(--color-secondary-50)]"
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={descriptionVariants}
+                    viewport={{ once: true, margin: "-50px" }}
+                    style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
+                  >
+                    Code should flow like water—adapting to the container, finding the path of least resistance. I'm a software engineer and founder who brings startups from idea to production, working across React, Next.js, Python, Rust, Go, and more. My studio operates on a principle of 无为 (wu wei): the right action at the right time, without force. I focus on what's essential, remove what's not, and ship products that feel inevitable rather than complicated.
+                  </motion.div>
                 </motion.div>
               </div>
             </div>
@@ -164,7 +167,7 @@ export const Services = () => {
 
                     <div className="grid-gap relative flex min-h-[30vh] flex-col place-items-start pt-[var(--space-3xs)] md:grid md:min-h-[40vh] md:grid-cols-12">
                       <div className="col-span-7 col-start-6 flex w-full flex-col gap-y-[var(--space-sm)] pt-[var(--space-sm)] text-[length:var(--text-heading-4)]">
-                        <p className="max-w-[40ch] text-balance text-[length:var(--text-base)] font-medium text-[var(--color-secondary-50)]">
+                        <p className="max-w-[55ch] text-balance text-[length:var(--text-base)] font-medium text-[var(--color-secondary-50)]">
                           {service.description}
                         </p>
 
