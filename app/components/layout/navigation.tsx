@@ -1,6 +1,6 @@
 'use client';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const navItems = [
   { name: 'Services', href: '/#Services' },
@@ -52,7 +52,8 @@ export const Navigation = () => {
               transition={{ duration: 0.6 }}
               className="block w-fit max-w-[14ch] text-balance font-medium leading-snug text-[var(--color-secondary-100)] text-[length:var(--text-base)] sm:max-w-max md:text-[length:var(--text-base-small)] 2xl:text-[length:var(--text-base)]"
             >
-              <div className="transition-all duration-500 ease-in transform opacity-100">
+              {/* TODO: Add a logo here */}
+              <div className="transition-all duration-500 ease-in transform opacity-100"> 
                 Web Developer &amp; Designer
               </div>
             </motion.span>

@@ -197,7 +197,7 @@ export const About = () => {
               viewport={{ once: true }}
               className="relative w-full max-w-[50ch] text-balance text-[length:var(--text-heading-4)] font-medium leading-base text-[var(--color-accent-400)]"
             >
-              I'm a software engineer driven by a passion for turning ideas into clean, intuitive digital experiences.
+              I&apos;m a software engineer driven by a passion for turning ideas into clean, intuitive digital experiences.
             </motion.p>
 
             <address className="flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-sm)] lg:flex-row not-italic">
@@ -233,7 +233,7 @@ export const About = () => {
                   transition={{ duration: 0.6, delay: 0.7 }}
                   viewport={{ once: true }}
                 >
-                  Beyond coding, I thrive in collaborative environments and enjoy tackling challenging problems with creative solutions. I aim to contribute to impactful projects that make a difference in users' lives.
+                  Beyond coding, I thrive in collaborative environments and enjoy tackling challenging problems with creative solutions. I aim to contribute to impactful projects that make a difference in users&apos; lives.
                 </motion.p>
               </section>
             </address>

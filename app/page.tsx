@@ -93,24 +93,12 @@ function LoadingScreen({ progress }: { progress: number }) {
   );
 }
 
-// Resource loading states
-interface LoadingState {
-  fonts: boolean;
-  images: boolean;
-  critical: boolean;
-}
-
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingState, setLoadingState] = useState<LoadingState>({
-    fonts: false,
-    images: false,
-    critical: false,
-  });
 
   // Initialize smooth scrolling and GSAP animations only after loading
-  const lenis = useLenis();
+  useLenis();
   useGSAPScrollAnimations();
 
   useEffect(() => {
@@ -164,7 +152,6 @@ export default function Home() {
         if (document.fonts) {
           await document.fonts.ready;
           if (mounted) {
-            setLoadingState((prev) => ({ ...prev, fonts: true }));
             // Smooth transition to 50%
             await smoothProgress(50, 400);
           }
@@ -187,21 +174,18 @@ export default function Home() {
 
           await Promise.all(imagePromises);
           if (mounted) {
-            setLoadingState((prev) => ({ ...prev, images: true }));
             // Smooth transition to 80%
             await smoothProgress(80, 400);
           }
         } else {
           // No critical images, mark as complete
           if (mounted) {
-            setLoadingState((prev) => ({ ...prev, images: true }));
             await smoothProgress(80, 400);
           }
         }
 
         // Mark critical content as loaded
         if (mounted) {
-          setLoadingState((prev) => ({ ...prev, critical: true }));
           // Smooth transition to 95%
           await smoothProgress(95, 300);
         }
@@ -258,7 +242,7 @@ export default function Home() {
       clearTimeout(initTimeout);
       clearTimeout(fallbackTimeout);
     };
-  }, []); // Empty dependency array - only run once on mount
+  }, [isLoading]); // Include isLoading in dependency array
 
   // Disable scroll while loading
   useEffect(() => {
