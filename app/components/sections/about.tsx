@@ -1,7 +1,6 @@
 'use client';
 import { motion, type Variants } from 'motion/react';
 import Image from 'next/image';
-import { TextReveal } from '../animations/TextReveal';
 
 // Animation variants for reusability
 const fadeInUpVariants: Variants = {
@@ -124,15 +123,34 @@ export const About = () => {
             viewport={{ once: true }}
             className="section-heading text-[length:var(--text-menu)] xl:text-[length:var(--text-h1-display)] relative z-30 flex w-full flex-col col-span-full leading-none text-[var(--color-accent-400)] mix-blend-exclusion lg:col-span-6 mt-[1em] mb-[1em]"
           >
-            <span>
-              <TextReveal text="DEVELOPER" delay={0.1} />
-            </span>
-            <span>
-              <TextReveal text="DESIGNER" delay={0.2} />
-            </span>
-            <span>
-              <TextReveal text="CREATOR/" delay={0.3} />
-            </span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            >
+              FOUNDER
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
+              DEVELOPER
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            >
+              DESIGNER
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            >
+              CREATOR/
+            </motion.span>
           </motion.h2>
 
           {/* Skills Section on RIGHT - spans 6 columns starting from column 7 */}
@@ -157,13 +175,13 @@ export const About = () => {
             variants={fadeInScaleVariants}
             transition={{ duration: ANIMATION_DURATION }}
             viewport={{ once: true }}
-            className="pointer-events-none max-h-[30rem] relative z-0 col-span-full lg:col-span-3 flex aspect-square w-full items-center overflow-clip rounded-md sm:aspect-auto md:items-end"
+            className="pointer-events-none max-h-[50rem] relative z-0 col-span-full lg:col-span-4 flex aspect-square w-full items-center overflow-clip rounded-md sm:aspect-auto md:items-end"
           >
             <Image 
-              alt="Profile" 
+              alt="Growth Mindset" 
               width={1536}
               height={2040}
-              src="/test.jpg"
+              src="/photos/growth.jpg"
               className="h-full w-full object-cover object-center" 
               priority
             />
@@ -177,12 +195,9 @@ export const About = () => {
               variants={fadeInVariants}
               transition={{ duration: ANIMATION_DURATION, delay: 0.2 }}
               viewport={{ once: true }}
-              className="relative w-full max-w-[39ch] text-balance text-[length:var(--text-heading-4)] font-medium leading-snug text-[var(--color-accent-400)]"
+              className="relative w-full max-w-[50ch] text-balance text-[length:var(--text-heading-4)] font-medium leading-base text-[var(--color-accent-400)]"
             >
-              <TextReveal 
-                text="I'm a software engineer driven by a passion for turning ideas into clean, intuitive digital experiences." 
-                delay={0.2} 
-              />
+              I&apos;m a software engineer driven by a passion for turning ideas into clean, intuitive digital experiences.
             </motion.p>
 
             <address className="flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-sm)] lg:flex-row not-italic">
@@ -195,12 +210,12 @@ export const About = () => {
                 className="flex h-fit overflow-clip font-mono tracking-[var(--tracking-mono)]"
                 aria-label="About Me Section"
               >
-                <span className="flex h-full font-medium uppercase text-nowrap text-[var(--color-secondary-50)]">
-                  <TextReveal text="(About Me)" delay={0.4} />
+                <span className="flex h-full font-medium uppercase text-nowrap text-[var(--color-secondary-50)] text-[24px]">
+                  (About Me)
                 </span>
               </motion.span>
 
-              <section className="flex w-full gap-y-4 max-w-[38ch] flex-col text-balance text-[length:var(--text-base)] font-medium leading-base text-[var(--color-secondary-50)]">
+              <section className="flex w-full gap-y-4 max-w-[50ch] flex-col text-balance text-[length:var(--text-heading-5)] font-medium leading-base text-[var(--color-secondary-50)]">
                 <motion.p
                   initial="hidden"
                   whileInView="visible"
@@ -208,10 +223,7 @@ export const About = () => {
                   transition={{ duration: 0.6, delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <TextReveal 
-                    text="I am a passionate Software Engineer with a knack for building full-stack web applications using modern technologies like Next.js and Tailwind CSS. My journey in tech began with a curiosity for solving real-world problems through innovative solutions, which evolved into a love for crafting user-centric digital experiences." 
-                    delay={0.5}
-                  />
+                  I am a passionate Software Engineer with a knack for building full-stack web applications using modern technologies like Next.js and Tailwind CSS. My journey in tech began with a curiosity for solving real-world problems through innovative solutions, which evolved into a love for crafting user-centric digital experiences.
                 </motion.p>
                 
                 <motion.p
@@ -221,10 +233,7 @@ export const About = () => {
                   transition={{ duration: 0.6, delay: 0.7 }}
                   viewport={{ once: true }}
                 >
-                  <TextReveal 
-                    text="Beyond coding, I thrive in collaborative environments and enjoy tackling challenging problems with creative solutions. I aim to contribute to impactful projects that make a difference in users' lives." 
-                    delay={0.7}
-                  />
+                  Beyond coding, I thrive in collaborative environments and enjoy tackling challenging problems with creative solutions. I aim to contribute to impactful projects that make a difference in users&apos; lives.
                 </motion.p>
               </section>
             </address>

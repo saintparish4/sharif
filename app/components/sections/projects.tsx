@@ -1,7 +1,6 @@
 'use client';
 import { motion, useReducedMotion } from 'motion/react';
 import { useState, useMemo, useCallback } from 'react';
-import { TextReveal } from '../animations/TextReveal';
 
 // Move projects outside component to prevent recreation on every render
 const projects = [
@@ -122,28 +121,42 @@ export const Projects = () => {
             className="section-heading relative text-[var(--color-accent-400)]"
             style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
           >
-            <TextReveal text="SELECTED WORKS /" delay={prefersReducedMotion ? 0 : 0.1} />
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: prefersReducedMotion ? 0 : 0.1,
+                ease: "easeOut"
+              }}
+            >
+              SELECTED WORKS /
+            </motion.span>
           </motion.h1>
 
           {/* Description Section */}
-          <div className="grid-gap flex grid-cols-12 sm:justify-end lg:grid">
+          <div className="flex grid-cols-12 gap-x-[var(--gap-fluid)] md:grid">
             <motion.div 
               initial="hidden"
               whileInView="visible"
               variants={descriptionVariants}
               viewport={{ once: true, margin: "-50px" }}
-              className="col-span-7 col-start-1 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:col-start-6 sm:flex-row"
+              className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:flex-row md:col-start-6"
               style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
             >
-              <span className="flex h-full font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
+              <span className="flex h-full text-[24px] font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
                 (PROJECTS)
               </span>
-              <div className="w-full max-w-[25ch] text-balance font-medium leading-base text-[var(--color-secondary-50)] text-[length:var(--text-base-large)]">
-                <TextReveal 
-                  text="Thoughtfully crafted digital experiences that blend utility and aesthetics into something functional, memorable, and refined." 
-                  delay={prefersReducedMotion ? 0 : 0.3}
-                />
-              </div>
+              <motion.div 
+                className="w-full max-w-[50ch] text-balance text-[length:var(--text-heading-4)] font-medium leading-base text-[var(--color-secondary-50)]"
+                initial="hidden"
+                whileInView="visible"
+                variants={descriptionVariants}
+                viewport={{ once: true, margin: "-50px" }}
+                style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
+              >
+                Thoughtfully crafted digital experiences that blend utility and aesthetics into something functional, memorable, and refined.
+              </motion.div>
             </motion.div>
           </div>
         </div>

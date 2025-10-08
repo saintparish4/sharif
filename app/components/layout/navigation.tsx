@@ -1,6 +1,6 @@
 'use client';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const navItems = [
   { name: 'PHILOSOPHY', href: '/#Philosophy' },
@@ -52,8 +52,14 @@ export const Navigation = () => {
               transition={{ duration: 0.6 }}
               className="block w-fit leading-snug text-[var(--color-secondary-100)] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl chathura-extrabold whitespace-nowrap"
             >
+<<<<<<< HEAD
               <div className="transition-all duration-500 ease-in transform opacity-100">
                 SOFTWARE ENGINEER &amp; DESIGNER
+=======
+              {/* TODO: Add a logo here */}
+              <div className="transition-all duration-500 ease-in transform opacity-100"> 
+                Web Developer &amp; Designer
+>>>>>>> 1b18c1dc3b99bf9ce650650a315d45dedb768197
               </div>
             </motion.span>
           </div>

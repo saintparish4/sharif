@@ -15,9 +15,12 @@ const nextConfig: NextConfig = {
     ],
   },
 
+<<<<<<< HEAD
   // Enable compression
   compress: true,
 
+=======
+>>>>>>> 1b18c1dc3b99bf9ce650650a315d45dedb768197
   // Enable React strict mode for better development experience
   reactStrictMode: true,
 
