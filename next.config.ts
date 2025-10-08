@@ -18,14 +18,8 @@ const nextConfig: NextConfig = {
   // Enable compression
   compress: true,
 
-  // Optimize production builds
-  swcMinify: true,
-
   // Enable React strict mode for better development experience
   reactStrictMode: true,
-
-  // Optimize fonts
-  optimizeFonts: true,
 
   // Enable experimental features for better performance
   experimental: {

@@ -56,12 +56,12 @@ function LoadingScreen({ progress }: { progress: number }) {
       <div className="text-center max-w-md px-4">
         {/* Main text */}
         <motion.div
-          className="text-[var(--color-secondary-50)] text-[length:var(--text-heading-4)] font-[700] mb-[var(--space-md)] font-montrealMono tracking-[var(--tracking-mono)]"
+          className="text-[var(--color-secondary-50)] text-[length:var(--text-heading-3)] font-[700] mb-[var(--space-md)] rubik-glitch-regular tracking-[var(--tracking-mono)]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          WELCOME TO MY MINDSPACE
+          WELCOME TO MY SOUL SOCIETY
         </motion.div>
 
         {/* Progress bar */}
