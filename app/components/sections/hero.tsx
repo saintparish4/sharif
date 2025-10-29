@@ -82,7 +82,18 @@ export const Hero = () => {
 
             <div className="flex flex-col gap-4 pt-4 items-center">
               <div className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-green-500" />
+                <motion.div 
+                  className="h-2 w-2 rounded-full bg-green-500"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [1, 0.8, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
                 <span className="font-mono text-[1rem] font-semibold" style={{ color: '#1a1a1a' }}>
                   Available for opportunities
                 </span>
@@ -103,15 +114,25 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator - Simplified */}
-        <div className="mt-20 flex justify-center opacity-70">
+        {/* Scroll Indicator with Bounce */}
+        <motion.div 
+          className="mt-20 flex justify-center opacity-70"
+          animate={{
+            y: [0, 10, 0]
+          }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
           <div className="flex flex-col items-center gap-2 text-neutral-500">
             <span className="font-mono text-xs uppercase tracking-wider">Scroll</span>
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
