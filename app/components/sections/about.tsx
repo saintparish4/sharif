@@ -39,17 +39,17 @@ const SkillItem = ({ skill, isMobile }: { skill: string; isMobile: boolean }) =>
       </span>
     ) : (
       // Full hover animation for desktop
-      <span className="group relative block h-fit overflow-hidden font-medium select-none text-[0.7rem] sm:text-[length:var(--text-skill)] md:text-[length:var(--text-base)]" style={{ willChange: 'transform' }}>
+      <span className="group relative block h-fit overflow-hidden font-medium select-none text-[0.7rem] sm:text-[length:var(--text-skill)] md:text-[length:var(--text-base)]">
         <span 
           className="block w-full transition-transform duration-[400ms] translate-y-0 group-hover:-translate-y-full"
-          style={{ transitionTimingFunction: `cubic-bezier(${TRANSITION_EASE.join(',')})`, willChange: 'transform' }}
+          style={{ transitionTimingFunction: `cubic-bezier(${TRANSITION_EASE.join(',')})` }}
         >
           <span className="font-mono cursor-default">{skill}</span>
         </span>
         <span 
           aria-hidden="true" 
           className="absolute top-0 left-0 w-full block transition-transform duration-[400ms] translate-y-full group-hover:translate-y-0"
-          style={{ transitionTimingFunction: `cubic-bezier(${TRANSITION_EASE.join(',')})`, willChange: 'transform' }}
+          style={{ transitionTimingFunction: `cubic-bezier(${TRANSITION_EASE.join(',')})` }}
         >
           <span className="font-mono cursor-default">{skill}</span>
         </span>
@@ -134,7 +134,6 @@ export const About = () => {
             transition={{ duration: animDuration }}
             viewport={{ once: true }}
             className="section-heading text-[2rem] sm:text-[2.5rem] md:text-[length:var(--text-menu)] xl:text-[length:var(--text-h1-display)] relative z-30 flex w-full flex-col col-span-full leading-none text-[var(--color-accent-400)] mix-blend-exclusion lg:col-span-6 mt-[0.5em] md:mt-[1em] mb-[0.5em] md:mb-[1em]"
-            style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
           >
             <motion.span
               initial={{ opacity: 0 }}
@@ -153,7 +152,6 @@ export const About = () => {
             transition={{ duration: animDuration, delay: isMobile ? 0.1 : 0.3 }}
             viewport={{ once: true }}
             className="relative z-0 col-span-full lg:col-span-6 lg:col-start-7 flex w-full items-center overflow-clip rounded-xl md:items-end"
-            style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
           >
             <SkillsGrid skills={skillsData} isMobile={isMobile} />
           </motion.aside>
@@ -169,7 +167,6 @@ export const About = () => {
             transition={{ duration: animDuration }}
             viewport={{ once: true }}
             className="relative z-0 col-span-full lg:col-span-4 w-full overflow-hidden rounded-xl"
-            style={{ willChange: isMobile ? 'auto' : 'transform, opacity' }}
           >
             <Image 
               alt="Growth Mindset" 

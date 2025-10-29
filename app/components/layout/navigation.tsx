@@ -50,7 +50,6 @@ export const Navigation = () => {
         style={{
           opacity,
           y,
-          willChange: isMobile ? 'auto' : 'opacity, transform',
         }}
       >
         <div className="section-padding-x mt-[var(--space-sm)] flex flex-row items-center justify-end">
@@ -90,7 +89,6 @@ export const Navigation = () => {
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         whileTap={{ scale: 0.9 }}
-        style={{ willChange: 'transform' }}
       >
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ willChange: 'transform' }}>
           {/* Top Left */}

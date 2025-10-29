@@ -139,13 +139,11 @@ export const Services = () => {
                   initial="hidden"
                   whileInView="visible"
                   variants={cardVariants}
-                  viewport={{ once: false, margin: "-20px" }}
+                  viewport={{ once: true, margin: "-20px" }}
                   className="md:service-card-sticky border-t border-t-[rgba(168,164,160,0.2)] bg-[var(--color-secondary-400)] rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-0"
                   style={{ 
                     top: `calc(20vh + ${index * 80}px)`,
                     zIndex: services.length - index,
-                    willChange: 'transform, opacity',
-                    transform: 'translate3d(0, 0, 0)',
                   }}
                 >
                   {/* Card Header */}

@@ -194,7 +194,7 @@ export const Projects = () => {
                   className="block group"
                 >
                   {/* Project Image/Video Container */}
-                  <div className="custom-cursor-area relative mt-3 sm:mt-5 flex aspect-square items-center justify-center overflow-clip rounded-lg sm:rounded-xl bg-[var(--color-secondary-300)] p-[var(--space-sm)] sm:p-[var(--space-lg)] xl:p-[var(--space-2xl)] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.01] group-hover:shadow-2xl active:scale-[0.99]" style={{ willChange: 'transform' }}>
+                  <div className="custom-cursor-area relative mt-3 sm:mt-5 flex aspect-square items-center justify-center overflow-clip rounded-lg sm:rounded-xl bg-[var(--color-secondary-300)] p-[var(--space-sm)] sm:p-[var(--space-lg)] xl:p-[var(--space-2xl)] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.01] group-hover:shadow-2xl active:scale-[0.99]">
                     {/* Background Image */}
                     <div className="absolute inset-0">
                       <img 
@@ -209,14 +209,13 @@ export const Projects = () => {
                           height: '100%', 
                           width: '100%', 
                           inset: '0px', 
-                          color: 'transparent',
-                          willChange: 'transform'
+                          color: 'transparent'
                         }}
                       />
                     </div>
 
                     {/* Video/Preview Container - Simplified structure */}
-                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg bg-gray-100 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[0.98]" style={{ willChange: 'transform' }}>
+                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg bg-gray-100 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[0.98]">
                       {/* TODO: Replace with actual video player when ready */}
                       {/* <mux-player playback-id={project.video} autoplay="muted" loop preload="none" /> */}
                       <img 
