@@ -46,8 +46,8 @@ export const Services = () => {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.6,
-        ease: [0.25, 0.1, 0.25, 1] as const
+        duration: prefersReducedMotion ? 0.01 : 0.5,
+        ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
@@ -58,9 +58,9 @@ export const Services = () => {
       opacity: 1,
       x: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.4,
-        delay: prefersReducedMotion ? 0 : 0.6 + index * 0.08,
-        ease: [0.25, 0.1, 0.25, 1] as const
+        duration: prefersReducedMotion ? 0.01 : 0.35,
+        delay: prefersReducedMotion ? 0 : 0.5 + index * 0.06,
+        ease: [0.4, 0, 0.2, 1] as const
       }
     })
   };
@@ -72,8 +72,8 @@ export const Services = () => {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.7,
-        ease: [0.25, 0.1, 0.25, 1] as const
+        duration: prefersReducedMotion ? 0.01 : 0.6,
+        ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
@@ -84,29 +84,29 @@ export const Services = () => {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.5,
-        delay: prefersReducedMotion ? 0 : 0.15,
-        ease: [0.25, 0.1, 0.25, 1] as const
+        duration: prefersReducedMotion ? 0.01 : 0.4,
+        delay: prefersReducedMotion ? 0 : 0.1,
+        ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
 
   return (
-    <section id="Services">
-      <div className="relative">
-        <div className="relative z-20 min-h-screen w-full overflow-x-clip">
-          <section className="section-padding rounded-t-3xl bg-[var(--color-secondary-400)] text-[var(--color-text-bg)]">
-            <div className="relative flex w-full flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)]">
+    <section id="Philosophy" className="relative">
+      <div className="relative min-h-[300vh]">
+        {/* Sticky container that holds all cards */}
+        <div className="sticky top-0 min-h-screen w-full overflow-hidden">
+          <section className="section-padding rounded-t-3xl bg-[var(--color-secondary-400)] text-[var(--color-text-bg)] min-h-screen flex flex-col">
+            <div className="relative flex w-full flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)] pb-12 md:pb-20">
               {/* Header */}
               <motion.h1 
                 initial="hidden"
                 whileInView="visible"
                 variants={headerVariants}
                 viewport={{ once: true, margin: "-50px" }}
-                className="cs2:text-[length:var(--text-display)] section-heading col-span-6 max-w-[18ch] text-accent-400"
-                style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
+                className="section-heading col-span-6 max-w-[18ch] text-accent-400 text-[2.5rem] sm:text-[length:var(--text-h1-alt)]"
               >
-                Philosophy /
+                Approach
               </motion.h1>
 
               {/* Description Section */}
@@ -116,89 +116,76 @@ export const Services = () => {
                   whileInView="visible"
                   variants={descriptionVariants}
                   viewport={{ once: true, margin: "-50px" }}
-                  className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-2xs)] sm:flex-row md:col-start-6"
-                  style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
+                  className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-xs)] sm:flex-row md:col-start-6"
                 >
-                  <span className="flex h-full text-[24px] font-medium uppercase text-nowrap text-[var(--color-secondary-75)]">
-                    (Aozora Kōbō) 
-                  </span>
                   <motion.div 
-                    className="w-full max-w-[50ch] text-balance text-[length:var(--text-heading-4)] font-medium leading-base text-[var(--color-secondary-50)]"
+                    className="w-full max-w-[50ch] text-balance text-[1rem] sm:text-[length:var(--text-heading-4)] font-medium leading-[1.5] text-[var(--color-secondary-50)]"
                     initial="hidden"
                     whileInView="visible"
                     variants={descriptionVariants}
                     viewport={{ once: true, margin: "-50px" }}
-                    style={{ willChange: prefersReducedMotion ? 'auto' : 'transform' }}
                   >
-                     Code should flow like water—adapting to the container, finding the path of least resistance. I&apos;m a software engineer and founder who brings startups from idea to production, working across React, Next.js, Python, Rust, Go, and more. My studio operates on a principle of 无为 (wu wei): the right action at the right time, without force. I focus on what&apos;s essential, remove what&apos;s not, and ship products that feel inevitable rather than complicated.
+                    I build products from concept to deployment across React, Next.js, Python, and Go. My focus is on essential functionality over complexity—ship what matters, remove what doesn&apos;t.
                   </motion.div>
                 </motion.div>
               </div>
             </div>
 
-            {/* Sticky Services Cards */}
-            <div className="w-full pt-[var(--space-lg)]">
-              <div className="mt-12 gap-y-16 flex flex-col justify-between bg-[var(--color-secondary-400)]">
-                {services.map((service, index) => (
-                  <motion.div
-                    key={service.id}
-                    initial="hidden"
-                    whileInView="visible"
-                    variants={cardVariants}
-                    viewport={{ once: true, margin: "-100px" }}
-                    className="service-card-sticky border-t border-t-[var(--color-secondary-300)] bg-[var(--color-secondary-400)]"
-                    style={{ 
-                      top: index === 0 ? '20vh' : 
-                           index === 1 ? 'calc(20vh + 7em)' : 
-                           'calc(20vh + 16em)',
-                      marginBottom: index === 0 ? 'clamp(18em, 20vw, 23em)' :
-                                   index === 1 ? 'clamp(13em, 14vw, 16em)' :
-                                   'clamp(7em, 8vw, 8.5em)',
-                      willChange: 'transform, opacity',
-                      contain: 'layout style paint'
-                    }}
-                  >
-                    <div className="flex grid-cols-12 items-center justify-start gap-x-[var(--space-xs)] text-left text-[length:var(--text-heading-2)] font-semibold text-[var(--color-accent-400)] md:grid md:justify-between md:gap-x-[var(--gap-fluid)]">
-                      <span className="col-span-2">({String(service.id).padStart(2, '0')})</span>
-                      <h3 className="col-span-8 col-start-6 py-[var(--space-md)] 2xl:py-[var(--space-sm)]">
-                        {service.title}
-                      </h3>
-                    </div>
+            {/* Sticky Scrolling Cards */}
+            <div className="flex-1 relative">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.id}
+                  initial="hidden"
+                  whileInView="visible"
+                  variants={cardVariants}
+                  viewport={{ once: false, margin: "-20px" }}
+                  className="md:service-card-sticky border-t border-t-[rgba(168,164,160,0.2)] bg-[var(--color-secondary-400)] rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-0"
+                  style={{ 
+                    top: `calc(20vh + ${index * 80}px)`,
+                    zIndex: services.length - index,
+                  }}
+                >
+                  {/* Card Header */}
+                  <div className="flex items-start gap-6 md:gap-8 mb-6 md:mb-8">
+                    <span className="text-2xl md:text-4xl font-bold text-[var(--color-secondary-50)]">
+                      ({String(service.id).padStart(2, '0')})
+                    </span>
+                    <h3 className="text-2xl md:text-5xl font-bold text-[var(--color-accent-400)] leading-tight">
+                      {service.title}
+                    </h3>
+                  </div>
 
-                    <div className="grid-gap relative flex min-h-[30vh] flex-col place-items-start pt-[var(--space-3xs)] md:grid md:min-h-[40vh] md:grid-cols-12">
-                      <div className="col-span-7 col-start-6 flex w-full flex-col gap-y-[var(--space-sm)] pt-[var(--space-sm)] text-[length:var(--text-heading-4)]">
-                        <p className="max-w-[55ch] text-balance text-[length:var(--text-base)] font-medium text-[var(--color-secondary-50)]">
-                          {service.description}
-                        </p>
+                  {/* Card Content */}
+                  <div className="md:pl-[calc(2.5rem+2rem)] space-y-6">
+                    <p className="max-w-[60ch] text-base md:text-xl leading-relaxed text-[var(--color-secondary-50)]">
+                      {service.description}
+                    </p>
 
-                        <div className="flex flex-col divide-y divide-[var(--color-secondary-200)]">
-                          {service.technologies.map((tech, techIndex) => (
-                            <motion.span
-                              key={techIndex}
-                              initial="hidden"
-                              whileInView="visible"
-                              custom={techIndex}
-                              variants={techVariants}
-                              viewport={{ once: true, margin: "-50px" }}
-                              className="flex items-start gap-x-[var(--space-sm)] py-[var(--space-3xs)] font-bold text-[var(--color-accent-500)] xl:gap-x-[var(--space-md)] xl:py-[var(--space-2xs)] text-[length:var(--text-heading-4)]"
-                              style={{ 
-                                willChange: prefersReducedMotion ? 'auto' : 'transform',
-                                backfaceVisibility: 'hidden',
-                                WebkitFontSmoothing: 'subpixel-antialiased'
-                              }}
-                            >
-                              <span className="font-mono text-[length:var(--text-base)] font-medium leading-[200%] text-[var(--color-secondary-75)]">
-                                {String(techIndex + 1).padStart(2, '0')}
-                              </span>
-                              {tech}
-                            </motion.span>
-                          ))}
-                        </div>
-                      </div>
+                    {/* Technologies List */}
+                    <div className="space-y-4 pt-4">
+                      {service.technologies.map((tech, techIndex) => (
+                        <motion.div
+                          key={techIndex}
+                          initial="hidden"
+                          whileInView="visible"
+                          custom={techIndex}
+                          variants={techVariants}
+                          viewport={{ once: true, margin: "-50px" }}
+                          className="flex items-start gap-4 border-t border-t-[rgba(168,164,160,0.15)] pt-3"
+                        >
+                          <span className="font-mono text-xs md:text-sm text-[var(--color-secondary-75)] mt-1">
+                            {String(techIndex + 1).padStart(2, '0')}
+                          </span>
+                          <span className="text-sm md:text-lg font-semibold text-[var(--color-accent-500)] leading-snug">
+                            {tech}
+                          </span>
+                        </motion.div>
+                      ))}
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </section>
         </div>

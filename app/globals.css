@@ -1,11 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Gemunu+Libre:wght@200..800&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Chathura:wght@100;300;400;700;800&display=swap');
-
 @import "tailwindcss";
 /* ============================================
    CSS CUSTOM PROPERTIES
@@ -17,16 +9,16 @@
   --color-secondary-200: #524d47;
   --color-secondary-300: #393632;
   --color-secondary-400: #080807;
-  --color-secondary-50: #a29e9a;
-  --color-secondary-75: #7e766c;
-  --color-accent-200: #e8e8e3;
+  --color-secondary-50: #a8a4a0;
+  --color-secondary-75: #8a847a;
+  --color-accent-200: #e8e8e8;
   --color-text-bg: rgb(209, 209, 199);
   --color-accent-400: #d1d1c7;
   --color-accent-500: #bfbfb1;
   --color-accent-600: #8c8c73;
   --color-error: #9e1f1f;
   --color-ad1a1a: #ad1a1a;
-  
+
   --text-mono: clamp(0.6rem, 0.51rem + 0.36vi, 0.9rem);
   --text-skill: clamp(0.8rem, 0.51rem + 0.36vi, 0.9rem);
   --text-base-small: 1.3rem;
@@ -51,7 +43,7 @@
   --text-heading-5: clamp(1.13rem, 1rem + 0.63vw, 1.57rem);
   --text-heading-display: clamp(4rem, 1.2rem + 10.07vw, 10.25rem);
   --text-heading-body: clamp(1rem, 0.61rem + 1.01vi, 2.25rem);
-  
+
   --padding-horizontal--main: clamp(1rem, 0.43rem + 2.86vw, 3rem);
   --padding-v: clamp(0.89rem, 0.86rem + 0.14vw, 0.99rem);
   --padding-button: clamp(0.89rem, 0.7rem + 0.14vw, 0.88rem);
@@ -260,106 +252,10 @@
   --font-inter: "Inter", "Inter Fallback";
 }
 
-.rubik-glitch-regular {
-  font-family: "Rubik Glitch", system-ui;
+/* Preserve only used font utilities */
+.cutive-mono-regular {
+  font-family: var(--font-montreal-mono), ui-monospace, monospace;
   font-weight: 400;
-  font-style: normal;
-}
-
-.chakra-petch-light {
-  font-family: "Chakra Petch", system-ui, sans-serif !important;
-  font-weight: 700 !important;
-  font-style: italic !important;
-}
-
-.chakra-petch-regular {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.chakra-petch-medium {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.chakra-petch-semibold {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.chakra-petch-bold {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.chakra-petch-light-italic {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.chakra-petch-regular-italic {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.chakra-petch-medium-italic {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.chakra-petch-semibold-italic {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.chakra-petch-bold-italic {
-  font-family: "Chakra Petch", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.gemunu-libre {
-  font-family: "Gemunu Libre", system-ui, sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.chathura-thin {
-  font-family: "Chathura", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.chathura-light {
-  font-family: "Chathura", sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.chathura-regular {
-  font-family: "Chathura", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.chathura-bold {
-  font-family: "Chathura", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.chathura-extrabold {
-  font-family: "Chathura", sans-serif;
-  font-weight: 800;
   font-style: normal;
 }
 
@@ -402,9 +298,12 @@ body {
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
+  /* Prevent layout shift on mobile */
+  overflow-x: hidden;
+  width: 100%;
 }
 
-/* Grain texture overlay - optimized with static image recommended */
+/* Grain texture overlay - concrete feel */
 body::after {
   position: fixed;
   left: 0;
@@ -414,7 +313,24 @@ body::after {
   height: 100%;
   z-index: 30;
   pointer-events: none;
-  opacity: 0.2;
+  opacity: 0.15;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.02) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.02) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.02) 3px
+    );
+  filter: url(#grainy);
+  mix-blend-mode: multiply;
 }
 
 /* Typography defaults */
@@ -427,7 +343,7 @@ p {
 h1, h2, h3, h4, h5 {
   text-wrap: balance;
   line-height: 1;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.035em;
 }
 
 code, kbd, pre, samp {
@@ -439,7 +355,7 @@ code, kbd, pre, samp {
 
 /* Form elements */
 input, textarea {
-  border-radius: 0.75rem;
+  border-radius: 12px;
   border: 1px solid transparent;
   background-color: transparent;
   font-size: var(--text-base);
@@ -449,7 +365,8 @@ input, textarea {
   outline: 2px solid transparent;
   outline-offset: 2px;
   transition-property: all;
-  transition-duration: 0.3s;
+  transition-duration: 0.25s;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input::placeholder,
@@ -494,7 +411,7 @@ textarea:focus {
   justify-content: center;
   border-radius: 9999px;
   border-width: 1px;
-  border-color: var(--color-secondary-50);
+  border-color: rgba(162, 158, 154, 0.3);
   padding: var(--space-3xs) var(--space-2xs);
   font-size: var(--text-mono);
   font-weight: 500;
@@ -632,17 +549,18 @@ textarea:focus {
   perspective: 1000px;
 }
 
-/* GPU acceleration hints */
-@media (hover: hover) and (pointer: fine) {
+/* GPU acceleration hints - only on desktop */
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
   .service-card-sticky {
     will-change: transform;
   }
 }
 
-/* Reduce animations on mobile for better performance */
-@media (max-width: 768px) {
+/* Disable sticky on mobile for better performance */
+@media (max-width: 767px) {
   .service-card-sticky {
-    will-change: auto;
+    position: relative !important;
+    top: auto !important;
   }
 }
 
@@ -668,13 +586,36 @@ textarea:focus {
   }
 }
 
-/* Reduce complexity on mobile */
-@media (max-width: 768px) {
+/* Optimize for mobile touch */
+@media (max-width: 767px) {
   .project-card {
     will-change: auto;
   }
   
   .project-card img {
     image-rendering: auto;
+  }
+  
+  /* Ensure smooth scrolling on mobile */
+  .project-card {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Touch-friendly tap targets */
+@media (max-width: 767px) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent text size adjustment on orientation change */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  /* Improve tap highlight */
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
   }
 }

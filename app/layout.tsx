@@ -204,13 +204,14 @@ export default function RootLayout({
             <filter id="grainy" x="0%" y="0%" width="100%" height="100%">
               <feTurbulence
                 type="fractalNoise"
-                baseFrequency="0.9"
-                numOctaves="4"
+                baseFrequency="0.65"
+                numOctaves="3"
+                seed="2"
                 stitchTiles="stitch"
               />
               <feColorMatrix type="saturate" values="0" />
               <feComponentTransfer>
-                <feFuncA type="discrete" tableValues="0 0 0 1" />
+                <feFuncA type="discrete" tableValues="0 0 0 0.5 1" />
               </feComponentTransfer>
             </filter>
           </defs>

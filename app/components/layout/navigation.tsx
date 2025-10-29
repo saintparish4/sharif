@@ -3,10 +3,9 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useState } from 'react';
 
 const navItems = [
-  { name: 'PHILOSOPHY', href: '/#Philosophy' },
-  { name: 'WORKS', href: '/#Works' },
-  { name: 'ABOUT', href: '/#About' },
-  { name: 'CONTACT', href: '/#Contact' },
+  { name: 'Approach', href: '/#Philosophy' },
+  { name: 'Work', href: '/#Works' },
+  { name: 'Background', href: '/#About' },
 ];
 
 export const Navigation = () => {
@@ -15,17 +14,17 @@ export const Navigation = () => {
   
   const opacity = useTransform(
     scrollY,
-    [0, 200],
+    [0, 100],
     [1, 0]
   );
   const y = useTransform(
     scrollY,
-    [0, 200],
-    [0, -50]
+    [0, 100],
+    [0, -30]
   );
 
   const handleNavClick = (href: string) => {
-    // Convert href like "/#Services" to CSS selector "#Services"
+    // Convert href like "/#Philosophy" to CSS selector "#Philosophy"
     const selector = href.replace('/#', '#');
     const target = document.querySelector(selector);
     if (target) {
@@ -43,53 +42,28 @@ export const Navigation = () => {
           y,
         }}
       >
-        <div className="section-padding-x mt-[var(--space-md)] flex flex-row items-start justify-between gap-x-[var(--gap-fluid)] lg:grid lg:grid-cols-12 lg:items-center">
-          {/* Left side - Brand text */}
-          <div className="col-span-8 flex flex-col items-start gap-x-[var(--space-2xl)] gap-y-[var(--space-3xs)] lg:flex-row lg:items-center">
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="block w-fit leading-snug text-[var(--color-secondary-100)] text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl chathura-extrabold whitespace-nowrap"
-            >
-              <div className="transition-all duration-500 ease-in transform opacity-100">
-                SOFTWARE ENGINEER &amp; DESIGNER
-              </div>
-            </motion.span>
-          </div>
-
-          {/* Right side - Navigation */}
-          <nav className="col-span-4 flex justify-end text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
-            <ul className="m-0 flex flex-col items-start text-[var(--color-secondary-100)] gap-y-[var(--space-3xs)] md:flex-row md:items-center md:gap-x-[var(--space-2xs)] md:gap-y-0">
+        <div className="section-padding-x mt-[var(--space-sm)] flex flex-row items-center justify-end">
+          {/* Navigation - Right aligned, subtle */}
+          <nav className="hidden md:flex">
+            <ul className="m-0 flex flex-row items-center gap-x-[var(--space-md)] text-[var(--color-secondary-100)]">
               {navItems.map((item, index) => (
-                <motion.div
+                <motion.li
                   key={item.name}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="transition-all duration-500 ease-in transform opacity-100"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: index * 0.05, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <li className="flex leading-normal md:leading-snug">
-                    <a
-                      className="group relative block h-fit overflow-hidden cursor-pointer select-none chathura-extrabold"
-                      href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleNavClick(item.href);
-                      }}
-                    >
-                      <span className="block w-full transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-0 group-hover:-translate-y-full">
-                        {item.name}
-                      </span>
-                      <span 
-                        aria-hidden="true" 
-                        className="absolute top-0 left-0 w-full block transition-transform duration-[0.4s] ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0"
-                      >
-                        {item.name}
-                      </span>
-                    </a>
-                  </li>
-                </motion.div>
+                  <a
+                    className="text-[1.125rem] lg:text-[1.25rem] font-medium hover:text-[var(--color-secondary-300)] transition-colors duration-200 cursor-pointer"
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(item.href);
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                </motion.li>
               ))}
             </ul>
           </nav>
@@ -98,32 +72,36 @@ export const Navigation = () => {
 
       {/* Mobile menu button */}
       <motion.button
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="fixed top-4 right-4 z-50 md:hidden p-[var(--space-3xs)]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        className="fixed top-[var(--space-md)] right-[var(--space-md)] z-[100000] md:hidden p-2 active:scale-95 transition-transform duration-200"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
       >
-        <div className="w-6 h-6 flex flex-col justify-center space-y-1">
+        <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
           <motion.div 
-            className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-transform duration-300"
+            className="w-full h-[1.5px] bg-[var(--color-secondary-400)]"
             animate={{
               rotate: isMobileMenuOpen ? 45 : 0,
-              y: isMobileMenuOpen ? 6 : 0
+              y: isMobileMenuOpen ? 5 : 0
             }}
+            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
           />
           <motion.div 
-            className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-opacity duration-300"
+            className="w-full h-[1.5px] bg-[var(--color-secondary-400)]"
             animate={{
               opacity: isMobileMenuOpen ? 0 : 1
             }}
+            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
           />
           <motion.div 
-            className="w-full h-[2px] bg-[var(--color-secondary-400)] transition-transform duration-300"
+            className="w-full h-[1.5px] bg-[var(--color-secondary-400)]"
             animate={{
               rotate: isMobileMenuOpen ? -45 : 0,
-              y: isMobileMenuOpen ? -6 : 0
+              y: isMobileMenuOpen ? -5 : 0
             }}
+            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
           />
         </div>
       </motion.button>
@@ -136,21 +114,25 @@ export const Navigation = () => {
           opacity: isMobileMenuOpen ? 1 : 0,
           pointerEvents: isMobileMenuOpen ? 'auto' : 'none'
         }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+        onClick={() => setIsMobileMenuOpen(false)}
       >
-        <div className="absolute inset-0 bg-[var(--color-secondary-400)]/90 backdrop-blur-xl" />
-        <div className="relative h-full flex flex-col justify-center items-center space-y-[var(--space-lg)]">
+        <div className="absolute inset-0 bg-[var(--color-accent-200)]" />
+        <div 
+          className="relative h-full flex flex-col justify-center items-center space-y-[var(--space-xl)]"
+          onClick={(e) => e.stopPropagation()}
+        >
           {navItems.map((item, index) => (
             <motion.button
               key={item.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ 
                 opacity: isMobileMenuOpen ? 1 : 0, 
-                y: isMobileMenuOpen ? 0 : 20 
+                y: isMobileMenuOpen ? 0 : 10 
               }}
-              transition={{ duration: 0.4, delay: isMobileMenuOpen ? index * 0.1 : 0 }}
+              transition={{ duration: 0.25, delay: isMobileMenuOpen ? index * 0.05 : 0, ease: [0.4, 0, 0.2, 1] }}
               onClick={() => handleNavClick(item.href)}
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[var(--color-secondary-50)] hover:text-[var(--color-accent-200)] transition-colors chathura-extrabold"
+              className="text-xl text-[var(--color-secondary-300)] active:text-[var(--color-secondary-400)] transition-colors duration-200 font-medium min-h-[48px] flex items-center justify-center"
             >
               {item.name}
             </motion.button>
