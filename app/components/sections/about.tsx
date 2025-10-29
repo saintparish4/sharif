@@ -69,7 +69,7 @@ const SkillCategory = ({
   isMobile: boolean;
 }) => (
   <div className="p-0 sm:p-2 rounded-lg sm:rounded-2xl shadow-sm sm:shadow-md hover:shadow-lg transition-shadow self-start">
-    <h3 className="hidden md:flex text-base lg:text-xl font-semibold mb-2 md:mb-4">{title}</h3>
+    <h4 className="hidden md:flex text-base lg:text-xl font-semibold mb-2 md:mb-4">{title}</h4>
     <ul className="space-y-2 sm:space-y-3 md:text-base">
       {skills.map((skill) => (
         <SkillItem key={skill} skill={skill} isMobile={isMobile} />
@@ -85,12 +85,12 @@ const SkillsGrid = ({ skills, isMobile }: { skills: SkillsData; isMobile: boolea
     className="self-start px-0 py-3 sm:py-5 sm:px-3 md:px-6 bg-[var(--color-secondary-400)] text-[var(--color-accent-400)] w-full"
   >
     <div className="max-w-6xl mx-auto">
-      <h2 
+      <h3 
         id="skills-heading"
         className="text-[1.5rem] sm:text-[2rem] md:text-[length:var(--text-menu)] lg:text-[length:var(--text-h1-alt)] font-bold mb-4 sm:mb-6 md:mb-8 text-center"
       >
         Skills
-      </h2>
+      </h3>
       <div className="grid grid-cols-3 gap-0 p-0 sm:gap-1 sm:p-1 md:gap-3 lg:gap-5 md:p-5">
         <SkillCategory title="Languages & Tools" skills={skills.languages} isMobile={isMobile} />
         <SkillCategory title="Frameworks & Libraries" skills={skills.frameworks} isMobile={isMobile} />
@@ -174,10 +174,12 @@ export const About = () => {
             <Image 
               alt="Growth Mindset" 
               src="/photos/growth.jpg"
-              width={1536}
-              height={2040}
+              width={736}
+              height={1104}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="w-full h-auto object-cover object-center" 
               priority
+              quality={85}
             />
           </motion.figure>
         </main>

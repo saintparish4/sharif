@@ -153,9 +153,9 @@ export const Services = () => {
                     <span className="text-2xl md:text-4xl font-bold text-[var(--color-secondary-50)]">
                       ({String(service.id).padStart(2, '0')})
                     </span>
-                    <h3 className="text-2xl md:text-5xl font-bold text-[var(--color-accent-400)] leading-tight">
+                    <h2 className="text-2xl md:text-5xl font-bold text-[var(--color-accent-400)] leading-tight">
                       {service.title}
-                    </h3>
+                    </h2>
                   </div>
 
                   {/* Card Content */}
