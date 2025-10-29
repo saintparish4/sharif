@@ -1,8 +1,6 @@
 "use client";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
-import { useLenis } from "../hooks/useLenis";
-import { useGSAPScrollAnimations } from "./components/animations/ScrollAnimations";
 import { Hero } from "./components/sections/hero";
 import { Navigation } from "./components/layout/navigation";
 
@@ -41,12 +39,6 @@ function SectionLoader() {
 }
 
 export default function Home() {
-  // Initialize smooth scrolling (already mobile-optimized in useLenis)
-  useLenis();
-  
-  // GSAP animations are already mobile-optimized in useGSAPScrollAnimations
-  useGSAPScrollAnimations();
-
   return (
     <>
       <Navigation />

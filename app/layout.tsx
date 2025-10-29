@@ -175,7 +175,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className="lenis">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* JSON-LD Structured Data for rich search results */}
         <script
