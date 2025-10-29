@@ -70,75 +70,210 @@ export const Navigation = () => {
         </div>
       </motion.header>
 
-      {/* Mobile menu button */}
+      {/* Ultra Unique Mobile menu button - Morphing Circle Grid */}
       <motion.button
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-        className="fixed top-[var(--space-md)] right-[var(--space-md)] z-[100000] md:hidden p-2 active:scale-95 transition-transform duration-200"
+        className="fixed top-[var(--space-md)] right-[var(--space-md)] z-[9999999] md:hidden p-3"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+        whileTap={{ scale: 0.9 }}
       >
-        <div className="w-5 h-5 flex flex-col justify-center items-center gap-1">
-          <motion.div 
-            className="w-full h-[1.5px] bg-[var(--color-secondary-400)]"
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+          {/* Top Left */}
+          <motion.circle
+            cx="8"
+            cy="8"
+            r="2.5"
+            fill="#080807"
             animate={{
-              rotate: isMobileMenuOpen ? 45 : 0,
-              y: isMobileMenuOpen ? 5 : 0
+              cx: isMobileMenuOpen ? 8 : 8,
+              cy: isMobileMenuOpen ? 8 : 8,
+              r: isMobileMenuOpen ? 1.5 : 2.5,
+              opacity: isMobileMenuOpen ? 0.3 : 1,
             }}
-            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
           />
-          <motion.div 
-            className="w-full h-[1.5px] bg-[var(--color-secondary-400)]"
+          
+          {/* Top Center */}
+          <motion.circle
+            cx="16"
+            cy="8"
+            r="2.5"
+            fill="#080807"
             animate={{
-              opacity: isMobileMenuOpen ? 0 : 1
+              cx: isMobileMenuOpen ? 16 : 16,
+              cy: isMobileMenuOpen ? 6 : 8,
+              r: isMobileMenuOpen ? 2 : 2.5,
+              opacity: isMobileMenuOpen ? 1 : 1,
             }}
-            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
           />
-          <motion.div 
-            className="w-full h-[1.5px] bg-[var(--color-secondary-400)]"
+          
+          {/* Top Right */}
+          <motion.circle
+            cx="24"
+            cy="8"
+            r="2.5"
+            fill="#080807"
             animate={{
-              rotate: isMobileMenuOpen ? -45 : 0,
-              y: isMobileMenuOpen ? -5 : 0
+              cx: isMobileMenuOpen ? 24 : 24,
+              cy: isMobileMenuOpen ? 8 : 8,
+              r: isMobileMenuOpen ? 1.5 : 2.5,
+              opacity: isMobileMenuOpen ? 0.3 : 1,
             }}
-            transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
           />
-        </div>
+          
+          {/* Middle Left */}
+          <motion.circle
+            cx="8"
+            cy="16"
+            r="2.5"
+            fill="#080807"
+            animate={{
+              cx: isMobileMenuOpen ? 6 : 8,
+              cy: isMobileMenuOpen ? 16 : 16,
+              r: isMobileMenuOpen ? 2 : 2.5,
+              opacity: isMobileMenuOpen ? 1 : 1,
+            }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+          />
+          
+          {/* Center - Transforms dramatically */}
+          <motion.circle
+            cx="16"
+            cy="16"
+            r="2.5"
+            fill="#080807"
+            animate={{
+              r: isMobileMenuOpen ? 3.5 : 2.5,
+              opacity: isMobileMenuOpen ? 1 : 0.5,
+              scale: isMobileMenuOpen ? 1.2 : 1,
+            }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+          />
+          
+          {/* Middle Right */}
+          <motion.circle
+            cx="24"
+            cy="16"
+            r="2.5"
+            fill="#080807"
+            animate={{
+              cx: isMobileMenuOpen ? 26 : 24,
+              cy: isMobileMenuOpen ? 16 : 16,
+              r: isMobileMenuOpen ? 2 : 2.5,
+              opacity: isMobileMenuOpen ? 1 : 1,
+            }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+          />
+          
+          {/* Bottom Left */}
+          <motion.circle
+            cx="8"
+            cy="24"
+            r="2.5"
+            fill="#080807"
+            animate={{
+              cx: isMobileMenuOpen ? 8 : 8,
+              cy: isMobileMenuOpen ? 24 : 24,
+              r: isMobileMenuOpen ? 1.5 : 2.5,
+              opacity: isMobileMenuOpen ? 0.3 : 1,
+            }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+          />
+          
+          {/* Bottom Center */}
+          <motion.circle
+            cx="16"
+            cy="24"
+            r="2.5"
+            fill="#080807"
+            animate={{
+              cx: isMobileMenuOpen ? 16 : 16,
+              cy: isMobileMenuOpen ? 26 : 24,
+              r: isMobileMenuOpen ? 2 : 2.5,
+              opacity: isMobileMenuOpen ? 1 : 1,
+            }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+          />
+          
+          {/* Bottom Right */}
+          <motion.circle
+            cx="24"
+            cy="24"
+            r="2.5"
+            fill="#080807"
+            animate={{
+              cx: isMobileMenuOpen ? 24 : 24,
+              cy: isMobileMenuOpen ? 24 : 24,
+              r: isMobileMenuOpen ? 1.5 : 2.5,
+              opacity: isMobileMenuOpen ? 0.3 : 1,
+            }}
+            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+          />
+        </svg>
       </motion.button>
 
       {/* Mobile Menu */}
-      <motion.div
-        className="fixed inset-0 z-[99999] md:hidden"
-        initial={{ opacity: 0 }}
-        animate={{ 
-          opacity: isMobileMenuOpen ? 1 : 0,
-          pointerEvents: isMobileMenuOpen ? 'auto' : 'none'
-        }}
-        transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-        onClick={() => setIsMobileMenuOpen(false)}
-      >
-        <div className="absolute inset-0 bg-[var(--color-accent-200)]" />
-        <div 
-          className="relative h-full flex flex-col justify-center items-center space-y-[var(--space-xl)]"
-          onClick={(e) => e.stopPropagation()}
+      {isMobileMenuOpen && (
+        <div
+          className="md:hidden"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: 999999,
+            backgroundColor: '#e8e8e8',
+          }}
+          onClick={() => setIsMobileMenuOpen(false)}
         >
-          {navItems.map((item, index) => (
-            <motion.button
-              key={item.name}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ 
-                opacity: isMobileMenuOpen ? 1 : 0, 
-                y: isMobileMenuOpen ? 0 : 10 
-              }}
-              transition={{ duration: 0.25, delay: isMobileMenuOpen ? index * 0.05 : 0, ease: [0.4, 0, 0.2, 1] }}
-              onClick={() => handleNavClick(item.href)}
-              className="text-xl text-[var(--color-secondary-300)] active:text-[var(--color-secondary-400)] transition-colors duration-200 font-medium min-h-[48px] flex items-center justify-center"
-            >
-              {item.name}
-            </motion.button>
-          ))}
+          <div style={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '2.5rem',
+          }}>
+            {navItems.map((item) => (
+              <div
+                key={item.name}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNavClick(item.href);
+                }}
+                style={{
+                  fontSize: '2rem',
+                  fontWeight: 700,
+                  color: '#080807',
+                  textTransform: 'uppercase',
+                  padding: '1rem 2rem',
+                  cursor: 'pointer',
+                  textAlign: 'center',
+                  transition: 'opacity 0.2s',
+                }}
+                onMouseDown={(e) => {
+                  e.currentTarget.style.opacity = '0.6';
+                }}
+                onMouseUp={(e) => {
+                  e.currentTarget.style.opacity = '1';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.opacity = '1';
+                }}
+              >
+                {item.name}
+              </div>
+            ))}
+          </div>
         </div>
-      </motion.div>
+      )}
     </>
   );
 };

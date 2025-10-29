@@ -7,55 +7,76 @@ export const useGSAPScrollAnimations = () => {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Parallax effect for background elements
-    gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((element) => {
-      gsap.to(element, {
-        yPercent: -50,
-        ease: "none",
-        force3D: true, // GPU acceleration
-        scrollTrigger: {
-          trigger: element,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
-      });
-    });
-
-    // Stagger animations for project cards
-    gsap.utils.toArray<HTMLElement>('.project-card').forEach((card, index) => {
-      gsap.fromTo(card, 
-        {
-          y: 100,
-          opacity: 0,
-          scale: 0.8
-        },
-        {
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          force3D: true, // GPU acceleration
+    // Check if mobile for performance optimization
+    const isMobile = window.innerWidth < 768;
+    
+    // Disable parallax on mobile - too expensive
+    if (!isMobile) {
+      gsap.utils.toArray<HTMLElement>('.parallax-bg').forEach((element) => {
+        gsap.to(element, {
+          yPercent: -50,
+          ease: "none",
+          force3D: true,
           scrollTrigger: {
-            trigger: card,
-            start: "top 80%",
-            end: "top 20%",
-            toggleActions: "play none none reverse"
-          },
-          delay: index * 0.1
-        }
-      );
+            trigger: element,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      });
+    }
+
+    // Simplified animations for project cards on mobile
+    gsap.utils.toArray<HTMLElement>('.project-card').forEach((card, index) => {
+      if (isMobile) {
+        // Simple fade-in on mobile
+        gsap.fromTo(card, 
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none none",
+              once: true // Only animate once on mobile
+            }
+          }
+        );
+      } else {
+        // Full animation on desktop
+        gsap.fromTo(card, 
+          { y: 100, opacity: 0, scale: 0.8 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            force3D: true,
+            scrollTrigger: {
+              trigger: card,
+              start: "top 80%",
+              end: "top 20%",
+              toggleActions: "play none none reverse"
+            },
+            delay: index * 0.1
+          }
+        );
+      }
     });
 
-    // Skills progress bars animation
+    // Simplified skill bars on mobile
     gsap.utils.toArray<HTMLElement>('.skill-bar').forEach((bar) => {
       const progress = bar.dataset.progress;
       gsap.fromTo(bar.querySelector('.skill-fill'), 
         { width: '0%' },
         {
           width: `${progress}%`,
-          duration: 2,
+          duration: isMobile ? 1 : 2,
           ease: "power2.out",
           scrollTrigger: {
             trigger: bar,
@@ -66,39 +87,56 @@ export const useGSAPScrollAnimations = () => {
       );
     });
 
-    // Text reveal animations
+    // Simplified text reveals on mobile
     gsap.utils.toArray<HTMLElement>('.text-reveal').forEach((text) => {
-      gsap.fromTo(text, 
-        {
-          y: 100,
-          opacity: 0
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.out",
-          force3D: true, // GPU acceleration
-          scrollTrigger: {
-            trigger: text,
-            start: "top 85%",
-            toggleActions: "play none none reverse"
+      if (isMobile) {
+        gsap.fromTo(text, 
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: text,
+              start: "top 90%",
+              toggleActions: "play none none none",
+              once: true
+            }
           }
-        }
-      );
+        );
+      } else {
+        gsap.fromTo(text, 
+          { y: 100, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            force3D: true,
+            scrollTrigger: {
+              trigger: text,
+              start: "top 85%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      }
     });
 
-    // Section transitions with pinning
-    gsap.utils.toArray<HTMLElement>('.pin-section').forEach((section) => {
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        pin: true,
-        pinSpacing: false,
-        scrub: 1
+    // Disable pinning on mobile - causes scroll jank
+    if (!isMobile) {
+      gsap.utils.toArray<HTMLElement>('.pin-section').forEach((section) => {
+        ScrollTrigger.create({
+          trigger: section,
+          start: "top top",
+          end: "bottom top",
+          pin: true,
+          pinSpacing: false,
+          scrub: 1
+        });
       });
-    });
+    }
 
     // Cleanup function
     return () => {

@@ -618,4 +618,49 @@ textarea:focus {
   * {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
   }
+  
+  /* Reduce layout complexity on mobile */
+  body {
+    contain: layout style paint;
+  }
+  
+  /* Optimize animations on mobile */
+  * {
+    animation-timing-function: ease-out !important;
+  }
+  
+  /* Disable hover effects on mobile */
+  .group:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   SCROLL PERFORMANCE OPTIMIZATION
+   ============================================ */
+/* Passive event listeners hint */
+* {
+  touch-action: pan-y;
+}
+
+/* Contain layout shifts */
+section {
+  contain: layout;
+}
+
+/* Optimize for composite layers */
+@media (min-width: 768px) {
+  .section-heading,
+  .project-card,
+  .service-card-sticky {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+/* Mobile: reduce will-change usage */
+@media (max-width: 767px) {
+  *:not(.mobile-menu-exception) {
+    will-change: auto !important;
+  }
 }

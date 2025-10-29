@@ -93,9 +93,9 @@ export const Services = () => {
 
   return (
     <section id="Philosophy" className="relative">
-      <div className="relative min-h-[300vh]">
+      <div className="relative md:min-h-[300vh]">
         {/* Sticky container that holds all cards */}
-        <div className="sticky top-0 min-h-screen w-full overflow-hidden">
+        <div className="md:sticky top-0 min-h-screen w-full overflow-hidden">
           <section className="section-padding rounded-t-3xl bg-[var(--color-secondary-400)] text-[var(--color-text-bg)] min-h-screen flex flex-col">
             <div className="relative flex w-full flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)] pb-12 md:pb-20">
               {/* Header */}
