@@ -66,9 +66,10 @@ export const Hero = () => {
         <div className="flex justify-center">
           <motion.div 
             className="max-w-3xl flex flex-col gap-8 text-center"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: isMobile ? 0.4 : 0.6, delay: isMobile ? 0.2 : 0.3 }}
+            style={{ willChange: 'transform, opacity' }}
           >
             <div className="space-y-6">
               <h2 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
@@ -84,15 +85,16 @@ export const Hero = () => {
               <div className="flex items-center gap-3">
                 <motion.div 
                   className="h-2 w-2 rounded-full bg-green-500"
-                  animate={{ 
+                  animate={isMobile ? {} : { 
                     scale: [1, 1.2, 1],
                     opacity: [1, 0.8, 1]
                   }}
-                  transition={{ 
+                  transition={isMobile ? {} : { 
                     duration: 2, 
                     repeat: Infinity, 
                     ease: "easeInOut" 
                   }}
+                  style={{ willChange: isMobile ? 'auto' : 'transform' }}
                 />
                 <span className="font-mono text-[1rem] font-semibold" style={{ color: '#1a1a1a' }}>
                   Available for opportunities
@@ -104,8 +106,9 @@ export const Hero = () => {
               <motion.a
                 href="#Works"
                 className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-8 py-4 text-sm font-medium text-white transition-all hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
-                whileHover={{ scale: 1.02 }}
+                whileHover={isMobile ? {} : { scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                style={{ willChange: 'transform' }}
               >
                 View Work
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -134,12 +137,13 @@ export const Hero = () => {
         >
           <motion.div
             className="flex flex-col items-center gap-2 text-neutral-500"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ 
+            animate={isMobile ? {} : { y: [0, 8, 0] }}
+            transition={isMobile ? {} : { 
               duration: 2, 
               repeat: Infinity, 
               ease: "easeInOut" 
             }}
+            style={{ willChange: isMobile ? 'auto' : 'transform' }}
           >
             <span className="font-mono text-xs uppercase tracking-wider">Scroll</span>
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

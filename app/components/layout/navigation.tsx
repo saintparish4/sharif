@@ -1,6 +1,6 @@
 'use client';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const navItems = [
   { name: 'Approach', href: '/#Philosophy' },
@@ -10,17 +10,27 @@ const navItems = [
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { scrollY } = useScroll();
   
+  // Check if mobile on mount
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Disable scroll animations on mobile for performance
   const opacity = useTransform(
     scrollY,
     [0, 100],
-    [1, 0]
+    isMobile ? [1, 1] : [1, 0]
   );
   const y = useTransform(
     scrollY,
     [0, 100],
-    [0, -30]
+    isMobile ? [0, 0] : [0, -30]
   );
 
   const handleNavClick = (href: string) => {
@@ -40,6 +50,7 @@ export const Navigation = () => {
         style={{
           opacity,
           y,
+          willChange: isMobile ? 'auto' : 'opacity, transform',
         }}
       >
         <div className="section-padding-x mt-[var(--space-sm)] flex flex-row items-center justify-end">
@@ -79,8 +90,9 @@ export const Navigation = () => {
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         whileTap={{ scale: 0.9 }}
+        style={{ willChange: 'transform' }}
       >
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ willChange: 'transform' }}>
           {/* Top Left */}
           <motion.circle
             cx="8"
@@ -93,7 +105,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 1.5 : 2.5,
               opacity: isMobileMenuOpen ? 0.3 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Top Center */}
@@ -108,7 +121,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 2 : 2.5,
               opacity: isMobileMenuOpen ? 1 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Top Right */}
@@ -123,7 +137,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 1.5 : 2.5,
               opacity: isMobileMenuOpen ? 0.3 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Middle Left */}
@@ -138,7 +153,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 2 : 2.5,
               opacity: isMobileMenuOpen ? 1 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Center - Transforms dramatically */}
@@ -152,7 +168,8 @@ export const Navigation = () => {
               opacity: isMobileMenuOpen ? 1 : 0.5,
               scale: isMobileMenuOpen ? 1.2 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Middle Right */}
@@ -167,7 +184,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 2 : 2.5,
               opacity: isMobileMenuOpen ? 1 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Bottom Left */}
@@ -182,7 +200,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 1.5 : 2.5,
               opacity: isMobileMenuOpen ? 0.3 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Bottom Center */}
@@ -197,7 +216,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 2 : 2.5,
               opacity: isMobileMenuOpen ? 1 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
           
           {/* Bottom Right */}
@@ -212,7 +232,8 @@ export const Navigation = () => {
               r: isMobileMenuOpen ? 1.5 : 2.5,
               opacity: isMobileMenuOpen ? 0.3 : 1,
             }}
-            transition={{ duration: 0.4, ease: [0.34, 1.56, 0.64, 1] }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            style={{ willChange: 'transform' }}
           />
         </svg>
       </motion.button>

@@ -144,6 +144,8 @@ export const Services = () => {
                   style={{ 
                     top: `calc(20vh + ${index * 80}px)`,
                     zIndex: services.length - index,
+                    willChange: 'transform, opacity',
+                    transform: 'translate3d(0, 0, 0)',
                   }}
                 >
                   {/* Card Header */}

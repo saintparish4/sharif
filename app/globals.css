@@ -297,6 +297,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1;
+  /* GPU acceleration for smoother performance */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
   font-kerning: normal;
   /* Prevent layout shift on mobile */
   overflow-x: hidden;
@@ -648,19 +655,72 @@ section {
   contain: layout;
 }
 
-/* Optimize for composite layers */
+/* Optimize for composite layers - GPU acceleration */
 @media (min-width: 768px) {
   .section-heading,
   .project-card,
   .service-card-sticky {
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
   }
 }
 
-/* Mobile: reduce will-change usage */
+/* Global performance optimizations */
+img,
+video,
+canvas {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+/* Smooth animations */
+*[style*="transform"],
+*[style*="opacity"] {
+  will-change: transform, opacity;
+}
+
+/* Remove will-change after animation completes */
+@media (hover: hover) and (pointer: fine) {
+  *:not(:hover):not(:focus):not(:active) {
+    will-change: auto;
+  }
+}
+
+/* Mobile optimizations for smooth performance */
 @media (max-width: 767px) {
-  *:not(.mobile-menu-exception) {
-    will-change: auto !important;
+  /* Enable GPU acceleration for interactive elements */
+  button,
+  a,
+  [role="button"],
+  .mobile-animated {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  /* Optimize touch scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+  
+  /* Prevent text size adjustment on orientation change */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Reduce motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

@@ -41,8 +41,10 @@ function SectionLoader() {
 }
 
 export default function Home() {
-  // Initialize smooth scrolling and GSAP animations
+  // Initialize smooth scrolling (already mobile-optimized in useLenis)
   useLenis();
+  
+  // GSAP animations are already mobile-optimized in useGSAPScrollAnimations
   useGSAPScrollAnimations();
 
   return (
