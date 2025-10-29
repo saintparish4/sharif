@@ -6,44 +6,44 @@ import { useState, useMemo, useCallback, useEffect } from 'react';
 const projects = [
   {
     id: 1,
-    title: 'Harmony Health',
-    subtitle: 'Appointment booking application',
+    title: 'Nora Health',
+    subtitle: 'Medical AI Booking Platform',
     description: 'Full-stack',
     year: '2025',
-    link: 'https://nurabyzuned.netlify.app/',
+    link: 'https://mai-omega.vercel.app/',
     background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/6_jugckf?_a=BAVAZGE70',
     video: 'QpLBMxnNQMQHXri9nqPfg1nZLyJn5kg01vXlmX1auvEc'
   },
   {
     id: 2,
-    title: 'Job Portal',
-    subtitle: 'Recruitment platform',
-    description: 'Full-stack',
+    title: 'Pantera ',
+    subtitle: 'Dynamic Pricing Engine',
+    description: 'API',
     year: '2025',
-    link: 'https://zunedjobs.netlify.app/',
+    link: 'https://pantera-phi.vercel.app/',
     background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/3_nzf5vb?_a=BAVAZGE70',
     video: 'ZV01irv5jPmaRLo6XEcm5o4QHrEd9g6Rr5GyqdMd1R6g'
   },
   {
     id: 3,
-    title: 'Productivity SaaS',
-    subtitle: 'Task management platform',
-    description: 'Full-stack',
+    title: 'Antler',
+    subtitle: 'Memory Infra for AI Agents',
+    description: 'Full-stack + AI',
     year: '2025',
-    link: 'https://productivity-saas-zuned.netlify.app/',
+    link: 'https://antler-ecru.vercel.app/',
     background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/2_frjjt5?_a=BAVAZGE70',
     video: 'viGHALwiNN7x4lw9K5ieeljgwL3z02KfplK56WNafF9k'
   },
-  {
-    id: 4,
-    title: 'CineRec',
-    subtitle: 'ML recommendation engine',
-    description: 'Python + ML',
-    year: '2025',
-    link: 'https://movierecommendation-sbjn.onrender.com/',
-    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/7_lfufd9?_a=BAVAZGE70',
-    video: '6XNHwd01zOc87HAEvIL44GrSDL5vNQv9WSo00o02aNEeRg'
-  }
+  // {
+  //   id: 4,
+  //   title: 'CineRec',
+  //   subtitle: 'ML recommendation engine',
+  //   description: 'Python + ML',
+  //   year: '2025',
+  //   link: 'https://movierecommendation-sbjn.onrender.com/',
+  //   background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/7_lfufd9?_a=BAVAZGE70',
+  //   video: '6XNHwd01zOc87HAEvIL44GrSDL5vNQv9WSo00o02aNEeRg'
+  // }
 ] as const;
 
 export const Projects = () => {

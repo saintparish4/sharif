@@ -17,15 +17,13 @@ interface SkillsData {
 
 const skillsData: SkillsData = {
   languages: [
-    'Python', 'SQL', 'C++', 'Java', 'Typescript', 
-    'JavaScript', 'Git', 'Postman', 'Docker', 'Firebase'
+    'JavaScript', 'TypeScript', 'Golang', 'Python', 'Swift', 'Ruby'
   ],
   frameworks: [
-    'React', 'Node.js', 'Express.js', 'Flask', 'Bootstrap',
-    'jQuery', 'TailwindCSS', 'Framer Motion', 'GSAP'
+    'Next.js', 'React', 'Node/Express', 'TailwindCSS', 'PostgreSQL', 'Redis', 'Ruby on Rails'
   ],
   concepts: [
-    'DSA', 'DBMS', 'OOP', 'Operating Systems', 'System Design'
+    'AWS', 'GCP', 'Docker', 'Terraform', 'Datadog'
   ]
 } as const;
 
@@ -94,7 +92,7 @@ const SkillsGrid = ({ skills, isMobile }: { skills: SkillsData; isMobile: boolea
       <div className="grid grid-cols-3 gap-0 p-0 sm:gap-1 sm:p-1 md:gap-3 lg:gap-5 md:p-5">
         <SkillCategory title="Languages & Tools" skills={skills.languages} isMobile={isMobile} />
         <SkillCategory title="Frameworks & Libraries" skills={skills.frameworks} isMobile={isMobile} />
-        <SkillCategory title="Core CS Concepts" skills={skills.concepts} isMobile={isMobile} />
+        <SkillCategory title="Cloud & Infrastructure" skills={skills.concepts} isMobile={isMobile} />
       </div>
     </div>
   </section>
