@@ -104,23 +104,23 @@ export const About = () => {
   const isMobile = useIsMobile();
   const prefersReducedMotion = useReducedMotion();
   
-  // Simplified animation variants for mobile
+  // Simplified animation variants - opacity only for better performance
   const fadeInUpVariants: Variants = {
-    hidden: { opacity: 0, y: isMobile || prefersReducedMotion ? 20 : 50 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   };
 
   const fadeInRightVariants: Variants = {
-    hidden: { opacity: 0, x: isMobile || prefersReducedMotion ? 0 : 50 },
-    visible: { opacity: 1, x: 0 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   };
 
   const fadeInScaleVariants: Variants = {
-    hidden: { opacity: 0, scale: isMobile || prefersReducedMotion ? 1 : 0.95 },
-    visible: { opacity: 1, scale: 1 }
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   };
 
-  const animDuration = isMobile || prefersReducedMotion ? ANIMATION_DURATION_MOBILE : ANIMATION_DURATION;
+  const animDuration = isMobile || prefersReducedMotion ? 0.2 : 0.3;
 
   return (
     <section id="About" className="mt-[-2vh] z-10 relative">
@@ -131,17 +131,13 @@ export const About = () => {
             initial="hidden"
             whileInView="visible"
             variants={fadeInUpVariants}
-            transition={{ duration: animDuration }}
+            transition={{ duration: animDuration, ease: [0.4, 0, 0.2, 1] }}
             viewport={{ once: true }}
             className="section-heading text-[2rem] sm:text-[2.5rem] md:text-[length:var(--text-menu)] xl:text-[length:var(--text-h1-display)] relative z-30 flex w-full flex-col col-span-full leading-none text-[var(--color-accent-400)] mix-blend-exclusion lg:col-span-6 mt-[0.5em] md:mt-[1em] mb-[0.5em] md:mb-[1em]"
           >
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: animDuration, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-            >
+            <span>
               Background
-            </motion.span>
+            </span>
           </motion.h2>
 
           {/* Skills Section on RIGHT - spans 6 columns starting from column 7 */}
@@ -149,7 +145,7 @@ export const About = () => {
             initial="hidden"
             whileInView="visible"
             variants={fadeInRightVariants}
-            transition={{ duration: animDuration, delay: isMobile ? 0.1 : 0.3 }}
+            transition={{ duration: animDuration, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
             viewport={{ once: true }}
             className="relative z-0 col-span-full lg:col-span-6 lg:col-start-7 flex w-full items-center overflow-clip rounded-xl md:items-end"
           >
@@ -164,7 +160,7 @@ export const About = () => {
             initial="hidden"
             whileInView="visible"
             variants={fadeInScaleVariants}
-            transition={{ duration: animDuration }}
+            transition={{ duration: animDuration, ease: [0.4, 0, 0.2, 1] }}
             viewport={{ once: true }}
             className="relative z-0 col-span-full lg:col-span-4 w-full overflow-hidden rounded-xl"
           >
@@ -175,8 +171,8 @@ export const About = () => {
               height={1104}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="w-full h-auto object-cover object-center" 
-              priority
-              quality={85}
+              loading="lazy"
+              quality={75}
             />
           </motion.figure>
         </main>

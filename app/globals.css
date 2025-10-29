@@ -1,10 +1,37 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 /* ============================================
-   SMOOTH SCROLLING
+   SMOOTH SCROLLING - Enhanced with Lenis
    ============================================ */
-html {
-  scroll-behavior: smooth;
+/* Disable native smooth scroll when Lenis is active */
+html.lenis {
+  scroll-behavior: auto;
+}
+
+/* Fallback smooth scroll for browsers without JS */
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.lenis) {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Improved scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-accent-200);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary-300);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary-200);
 }
 
 /* ============================================
@@ -274,27 +301,28 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ============================================
+   LENIS SMOOTH SCROLL SETUP
+   ============================================ */
 html.lenis,
 html.lenis body {
   height: auto;
 }
 
-.lenis:not(.lenis-autoToggle).lenis-stopped {
-  overflow: clip;
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
 
-.lenis.lenis-smooth iframe {
-  pointer-events: none;
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
-.lenis.lenis-autoToggle {
-  transition-property: overflow;
-  transition-duration: 1ms;
-  transition-behavior: allow-discrete;
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
@@ -303,23 +331,22 @@ body {
   min-height: 100svh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizeSpeed;
   font-feature-settings: "kern" 1;
-  /* GPU acceleration for smoother performance */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  perspective: 1000px;
-  -webkit-perspective: 1000px;
   font-kerning: normal;
   /* Prevent layout shift on mobile */
   overflow-x: hidden;
   width: 100%;
+  /* Enhanced smooth scrolling */
+  overscroll-behavior-y: contain;
+  scroll-padding-top: 80px; /* Account for fixed header */
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
 }
 
-/* Grain texture overlay - concrete feel */
-body::after {
+/* Grain texture overlay - DISABLED for performance
+ * This was causing significant paint/repaint overhead
+ */
+/* body::after {
   position: fixed;
   left: 0;
   top: 0;
@@ -328,25 +355,16 @@ body::after {
   height: 100%;
   z-index: 30;
   pointer-events: none;
-  opacity: 0.15;
+  opacity: 0.05;
   background-image: 
     repeating-linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.02) 0px,
-      transparent 1px,
-      transparent 2px,
-      rgba(0, 0, 0, 0.02) 3px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.02) 0px,
-      transparent 1px,
-      transparent 2px,
-      rgba(0, 0, 0, 0.02) 3px
+      rgba(0, 0, 0, 0.01) 0px,
+      transparent 2px
     );
-  filter: url(#grainy);
-  mix-blend-mode: multiply;
-}
+  will-change: contents;
+  contain: strict;
+} */
 
 /* Typography defaults */
 p {
@@ -539,12 +557,6 @@ textarea:focus {
 /* ============================================
    PERFORMANCE & ACCESSIBILITY
    ============================================ */
-@media (prefers-reduced-motion: no-preference) {
-  * {
-    scroll-behavior: smooth;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -557,26 +569,10 @@ textarea:focus {
 /* ============================================
    SERVICE CARDS OPTIMIZATION
    ============================================ */
-.service-card-sticky {
-  position: sticky;
+/* Sticky positioning removed for better scroll performance */
+.service-card {
   transform: translateZ(0);
   backface-visibility: hidden;
-  perspective: 1000px;
-}
-
-/* GPU acceleration hints - only on desktop */
-@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
-  .service-card-sticky {
-    will-change: transform;
-  }
-}
-
-/* Disable sticky on mobile for better performance */
-@media (max-width: 767px) {
-  .service-card-sticky {
-    position: relative !important;
-    top: auto !important;
-  }
 }
 
 /* ============================================
@@ -654,75 +650,47 @@ textarea:focus {
   touch-action: pan-y;
 }
 
-/* Contain layout shifts - only on desktop */
+/* Contain layout shifts - SIMPLIFIED */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Optimize for composite layers - ONLY for animated elements */
 @media (min-width: 768px) {
-  section {
-    contain: layout;
+  .project-card {
+    will-change: transform;
   }
 }
 
-/* Optimize for composite layers - GPU acceleration */
-@media (min-width: 768px) {
-  .section-heading,
-  .project-card,
-  .service-card-sticky {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
+/* Remove will-change when not needed - CRITICAL for performance */
+* {
+  will-change: auto;
 }
 
-/* Global performance optimizations - desktop only */
-@media (min-width: 768px) {
-  img,
-  video,
-  canvas {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Remove will-change after animation completes */
-@media (hover: hover) and (pointer: fine) {
-  *:not(:hover):not(:focus):not(:active) {
-    will-change: auto;
-  }
+*:hover,
+*:focus,
+*:active,
+.animating {
+  will-change: transform, opacity;
 }
 
 /* Mobile optimizations for smooth performance */
 @media (max-width: 767px) {
-  /* Enable GPU acceleration for interactive elements */
-  button,
-  a,
-  [role="button"],
-  .mobile-animated {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  
-  /* Optimize touch scrolling */
-  body {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: none;
-  }
-  
-  /* Prevent text size adjustment on orientation change */
+  /* Enhanced smooth touch scrolling */
   html {
+    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
   
-  /* Reduce motion preference */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+  
+  /* Simplify animations on mobile */
+  * {
+    animation-duration: 0.3s !important;
   }
 }

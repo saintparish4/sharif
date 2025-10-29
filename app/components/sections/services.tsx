@@ -39,52 +39,48 @@ export const Services = () => {
     }
   ], []);
 
-  // Optimized animation variants for better performance
+  // Simplified animation variants for maximum performance
   const cardVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 60 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0,
+      opacity: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.5,
+        duration: prefersReducedMotion ? 0.01 : 0.3,
         ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
 
   const techVariants = {
-    hidden: { opacity: 0, x: prefersReducedMotion ? 0 : -15 },
+    hidden: { opacity: 0 },
     visible: (index: number) => ({
       opacity: 1,
-      x: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.35,
-        delay: prefersReducedMotion ? 0 : 0.5 + index * 0.06,
+        duration: prefersReducedMotion ? 0.01 : 0.2,
+        delay: prefersReducedMotion ? 0 : 0.3 + index * 0.03,
         ease: [0.4, 0, 0.2, 1] as const
       }
     })
   };
 
-  // Optimized header animation variants
+  // Simplified header animation variants
   const headerVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 40 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0,
+      opacity: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.6,
+        duration: prefersReducedMotion ? 0.01 : 0.4,
         ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
 
   const descriptionVariants = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 25 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0,
+      opacity: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.4,
+        duration: prefersReducedMotion ? 0.01 : 0.3,
         delay: prefersReducedMotion ? 0 : 0.1,
         ease: [0.4, 0, 0.2, 1] as const
       }
@@ -93,59 +89,49 @@ export const Services = () => {
 
   return (
     <section id="Philosophy" className="relative">
-      <div className="relative md:min-h-[300vh]">
-        {/* Sticky container that holds all cards */}
-        <div className="md:sticky top-0 min-h-screen w-full overflow-hidden">
-          <section className="section-padding rounded-t-3xl bg-[var(--color-secondary-400)] text-[var(--color-text-bg)] min-h-screen flex flex-col">
-            <div className="relative flex w-full flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)] pb-12 md:pb-20">
-              {/* Header */}
-              <motion.h1 
+      <div className="relative">
+        <section className="section-padding rounded-t-3xl bg-[var(--color-secondary-400)] text-[var(--color-text-bg)] flex flex-col">
+          <div className="relative flex w-full flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)] pb-12 md:pb-20">
+            {/* Header */}
+            <motion.h1 
+              initial="hidden"
+              whileInView="visible"
+              variants={headerVariants}
+              viewport={{ once: true, amount: 0.3 }}
+              className="section-heading col-span-6 max-w-[18ch] text-accent-400 text-[2.5rem] sm:text-[length:var(--text-h1-alt)]"
+            >
+              Approach
+            </motion.h1>
+
+            {/* Description Section */}
+            <div className="flex grid-cols-12 gap-x-[var(--gap-fluid)] md:grid">
+              <motion.div 
                 initial="hidden"
                 whileInView="visible"
-                variants={headerVariants}
-                viewport={{ once: true, margin: "-50px" }}
-                className="section-heading col-span-6 max-w-[18ch] text-accent-400 text-[2.5rem] sm:text-[length:var(--text-h1-alt)]"
+                variants={descriptionVariants}
+                viewport={{ once: true, amount: 0.3 }}
+                className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-xs)] sm:flex-row md:col-start-6"
               >
-                Approach
-              </motion.h1>
-
-              {/* Description Section */}
-              <div className="flex grid-cols-12 gap-x-[var(--gap-fluid)] md:grid">
-                <motion.div 
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={descriptionVariants}
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-xs)] sm:flex-row md:col-start-6"
+                <div 
+                  className="w-full max-w-[50ch] text-balance text-[1rem] sm:text-[length:var(--text-heading-4)] font-medium leading-[1.5] text-[var(--color-secondary-50)]"
                 >
-                  <motion.div 
-                    className="w-full max-w-[50ch] text-balance text-[1rem] sm:text-[length:var(--text-heading-4)] font-medium leading-[1.5] text-[var(--color-secondary-50)]"
-                    initial="hidden"
-                    whileInView="visible"
-                    variants={descriptionVariants}
-                    viewport={{ once: true, margin: "-50px" }}
-                  >
-                    I build products from concept to deployment across React, Next.js, Python, and Go. My focus is on essential functionality over complexity—ship what matters, remove what doesn&apos;t.
-                  </motion.div>
-                </motion.div>
-              </div>
+                  I build products from concept to deployment across React, Next.js, Python, and Go. My focus is on essential functionality over complexity—ship what matters, remove what doesn&apos;t.
+                </div>
+              </motion.div>
             </div>
+          </div>
 
-            {/* Sticky Scrolling Cards */}
-            <div className="flex-1 relative">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.id}
-                  initial="hidden"
-                  whileInView="visible"
-                  variants={cardVariants}
-                  viewport={{ once: true, margin: "-20px" }}
-                  className="md:service-card-sticky border-t border-t-[rgba(168,164,160,0.2)] bg-[var(--color-secondary-400)] rounded-2xl md:rounded-3xl p-6 md:p-8 mb-6 md:mb-0"
-                  style={{ 
-                    top: `calc(20vh + ${index * 80}px)`,
-                    zIndex: services.length - index,
-                  }}
-                >
+          {/* Service Cards - Simple Stacked Layout */}
+          <div className="flex flex-col gap-6 md:gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={service.id}
+                initial="hidden"
+                whileInView="visible"
+                variants={cardVariants}
+                viewport={{ once: true, amount: 0.2 }}
+                className={`bg-[var(--color-secondary-400)] rounded-2xl md:rounded-3xl p-6 md:p-8 ${index > 0 ? 'border-t border-t-[rgba(168,164,160,0.2)]' : ''}`}
+              >
                   {/* Card Header */}
                   <div className="flex items-start gap-6 md:gap-8 mb-6 md:mb-8">
                     <span className="text-2xl md:text-4xl font-bold text-[var(--color-secondary-50)]">
@@ -171,7 +157,7 @@ export const Services = () => {
                           whileInView="visible"
                           custom={techIndex}
                           variants={techVariants}
-                          viewport={{ once: true, margin: "-50px" }}
+                          viewport={{ once: true, amount: 0.5 }}
                           className="flex items-start gap-4 border-t border-t-[rgba(168,164,160,0.15)] pt-3"
                         >
                           <span className="font-mono text-xs md:text-sm text-[var(--color-secondary-75)] mt-1">
@@ -184,11 +170,10 @@ export const Services = () => {
                       ))}
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
-          </section>
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
       </div>
     </section>
   );

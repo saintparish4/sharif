@@ -64,26 +64,25 @@ export const Projects = () => {
     setActiveIndex(index);
   }, []);
 
-  // Optimized animation variants
+  // Simplified animation variants for better performance
   const headerVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 40 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.6,
+        duration: prefersReducedMotion ? 0.01 : 0.4,
         ease: [0.4, 0, 0.2, 1] as const
       }
     }
   }), [prefersReducedMotion]);
 
   const descriptionVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 25 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0,
+      opacity: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.4,
+        duration: prefersReducedMotion ? 0.01 : 0.3,
         delay: prefersReducedMotion ? 0 : 0.1,
         ease: [0.4, 0, 0.2, 1] as const
       }
@@ -91,32 +90,31 @@ export const Projects = () => {
   }), [prefersReducedMotion]);
 
   const projectCardVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 40 },
+    hidden: { opacity: 0 },
     visible: { 
-      opacity: 1, 
-      y: 0,
+      opacity: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.4,
+        duration: prefersReducedMotion ? 0.01 : 0.3,
         ease: [0.4, 0, 0.2, 1] as const
       }
     }
   }), [prefersReducedMotion]);
 
   const counterTransition = useMemo(() => ({
-    duration: prefersReducedMotion ? 0.01 : 0.6,
+    duration: prefersReducedMotion ? 0.01 : 0.4,
     ease: [0.4, 0, 0.2, 1] as const
   }), [prefersReducedMotion]);
 
   return (
-    <section id="Works">
-      <div className="section-padding bg-[var(--color-secondary-400)]">
+    <section id="Works" className="bg-[var(--color-secondary-400)] border-t border-t-[rgba(168,164,160,0.2)]">
+      <div className="section-padding">
         <div className="flex flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)]">
           {/* Header */}
           <motion.h1 
             initial="hidden"
             whileInView="visible"
             variants={headerVariants}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.3 }}
             className="section-heading relative text-[var(--color-accent-400)] text-[2.5rem] sm:text-[length:var(--text-h1-alt)]"
             suppressHydrationWarning
           >
@@ -131,7 +129,7 @@ export const Projects = () => {
               initial="hidden"
               whileInView="visible"
               variants={descriptionVariants}
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, amount: 0.3 }}
               className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-xs)] sm:flex-row md:col-start-6"
               suppressHydrationWarning
             >
@@ -178,12 +176,13 @@ export const Projects = () => {
                 initial="hidden"
                 whileInView="visible"
                 variants={projectCardVariants}
-                viewport={{ once: true, margin: "-150px" }}
+                viewport={{ once: true, amount: 0.2 }}
                 onViewportEnter={() => handleViewportEnter(index)}
                 className="@container project-card"
                 data-index={index}
                 style={{
-                  contain: 'layout style paint'
+                  contain: 'layout style paint',
+                  contentVisibility: 'auto'
                 }}
                 suppressHydrationWarning
               >
@@ -193,38 +192,44 @@ export const Projects = () => {
                   rel="noopener noreferrer"
                   className="block group"
                 >
-                  {/* Project Image/Video Container */}
-                  <div className="custom-cursor-area relative mt-3 sm:mt-5 flex aspect-square items-center justify-center overflow-clip rounded-lg sm:rounded-xl bg-[var(--color-secondary-300)] p-[var(--space-sm)] sm:p-[var(--space-lg)] xl:p-[var(--space-2xl)] transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.01] group-hover:shadow-2xl active:scale-[0.99]">
+                  {/* Project Image/Video Container - Optimized */}
+                  <div className="custom-cursor-area relative mt-3 sm:mt-5 flex aspect-square items-center justify-center overflow-clip rounded-lg sm:rounded-xl bg-[var(--color-secondary-300)] p-[var(--space-sm)] sm:p-[var(--space-lg)] xl:p-[var(--space-2xl)] transition-transform duration-200 ease-out md:group-hover:scale-[1.01] active:scale-[0.99]">
                     {/* Background Image */}
                     <div className="absolute inset-0">
                       <img 
-                        alt={`${project.title} background`}
-                        loading="lazy" 
+                        alt=""
+                        loading={index === 0 ? "eager" : "lazy"}
                         decoding="async"
                         fetchPriority={index === 0 ? "high" : "low"}
-                        className="h-full w-full absolute object-cover object-center transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-105" 
+                        width={800}
+                        height={800}
+                        className="h-full w-full absolute object-cover object-center transition-transform duration-300 ease-out md:group-hover:scale-105" 
                         src={project.background}
                         style={{ 
                           position: 'absolute', 
                           height: '100%', 
                           width: '100%', 
                           inset: '0px', 
-                          color: 'transparent'
+                          color: 'transparent',
+                          contentVisibility: 'auto'
                         }}
                       />
                     </div>
 
                     {/* Video/Preview Container - Simplified structure */}
-                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg bg-gray-100 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[0.98]">
+                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg bg-gray-100 transition-transform duration-300 ease-out md:group-hover:scale-[0.98]">
                       {/* TODO: Replace with actual video player when ready */}
                       {/* <mux-player playback-id={project.video} autoplay="muted" loop preload="none" /> */}
                       <img 
                         src={project.background}
                         alt={project.title}
-                        loading="lazy"
+                        loading={index === 0 ? "eager" : "lazy"}
                         decoding="async"
                         fetchPriority={index === 0 ? "high" : "low"}
-                        className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                        width={800}
+                        height={600}
+                        className="h-full w-full object-cover"
+                        style={{ contentVisibility: 'auto' }}
                       />
                     </div>
                   </div>
