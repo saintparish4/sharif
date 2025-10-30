@@ -13,28 +13,28 @@ export const Services = () => {
       description: "From frontend interactions to backend APIs, I build complete web solutions. I work with modern stacks to deliver apps that are scalable, maintainable, and ready for real-world users.",
       technologies: [
         "React, Next.js, Typescript, TanStack Query",
-        "Node.js, Express, Python, Golang, Rust, C++, Solidity",
-        "PostgreSQL, MongoDB, Redis, Elasticsearch, AWS, Docker"
+        "Node.js, Express, Python, Go, Ruby on Rails, Rust",
+        "PostgreSQL, Redis, AWS, Docker"
       ]
     },
     {
       id: 2,
       title: "UI/UX & Frontend",
-      description: "Design is more than looks — it's about clarity and connection. I design and develop clean, responsive interfaces that feel intuitive across devices. My focus is on clarity, accessibility, and seamless user experiences.",
+      description: "Design meets function. I create interfaces that are intuitivem accessible, and responsive - where clarity drives every interaction.",
       technologies: [
-        "NextJs, TailwindCSS, GSAP, Framer Motion",
-        "Figma to Code",
+        "Next.js, TailwindCSS, GSAP, Framer Motion",
+        "Figma to Code, Responsive Design",
         "HTML, CSS, JavaScript"
       ]
     },
     {
       id: 3,
-      title: "Optimization",
-      description: "Beyond handling data, I'm driven by the challenge of turning complex raw inputs into reliable, usable systems. I enjoy designing pipelines that power insights and apply core CS principles to build for scale, speed, and stability.",
+      title: "Performance & Infrastructure",
+      description: "I design systems built for scale. From caching strategies to cloud architecture, I optimize for performance, reliability, and maintainability.",
       technologies: [
-        "Auto-scaling Architecture, Caching Strategies (Redis), CDN Optimization",
-        "Microservices, CI/CD Pipelines, Infrastructure as Code (Terraform)",
-        "Data Structures & Algorithms, System Design, Database Optimization, Monitoring"
+        "Auto-scaling, Caching (Redis), CDN optimization",
+        "AWS, GCP, Docker, Terraform, CI/CD pipelines",
+        "System Design, DSA, Database Optimization, Monitoring (Datadog)"
       ]
     }
   ], []);
@@ -173,7 +173,7 @@ export const Services = () => {
                 <div 
                   className="w-full max-w-[50ch] text-balance text-[1rem] sm:text-[length:var(--text-heading-4)] font-medium leading-[1.5] text-[var(--color-secondary-50)]"
                 >
-                  I build products from concept to deployment across React, Next.js, Python, and Go. My focus is on essential functionality over complexity—ship what matters, remove what doesn&apos;t.
+                 I work from constraints, not possibilities. What&apos;s the actual problem? What&apos;s the fastest way to validate the solution? Build what matters, ship it, and prove it works before building more.
                 </div>
               </motion.div>
             </div>
