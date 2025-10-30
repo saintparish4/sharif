@@ -6,8 +6,8 @@ export const Hero = () => {
   const isMobile = useIsMobile();
   
   return (
-    <section className="relative min-h-screen">
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 py-20 md:py-32">
+    <section className="relative min-h-screen flex flex-col">
+      <div className="container mx-auto px-6 md:px-12 lg:px-16 py-20 md:py-32 flex-1 flex flex-col justify-center">
         {/* Logo Header */}
         <div className="mb-12 md:mb-20 flex justify-center">
           <h1 className="overflow-hidden w-full flex justify-center">
@@ -43,7 +43,7 @@ export const Hero = () => {
             </svg>
 
             {/* Mobile Text Logo - Simplified animation */}
-            <div className="flex flex-col text-7xl font-bold uppercase leading-tight tracking-tight md:hidden items-center text-center">
+            <div className="flex flex-col text-7xl font-bold uppercase leading-tight tracking-tight md:hidden items-center text-center mobile-playfair-bold">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -114,9 +114,12 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator with Bounce */}
+      </div>
+
+      {/* Scroll Indicator with Bounce - Positioned at bottom */}
+      <div className="flex justify-center opacity-70 pb-8">
         <motion.div 
-          className="mt-20 flex justify-center opacity-70"
+          className="flex flex-col items-center gap-2 text-neutral-500"
           animate={{
             y: [0, 10, 0]
           }}
@@ -126,12 +129,10 @@ export const Hero = () => {
             ease: "easeInOut"
           }}
         >
-          <div className="flex flex-col items-center gap-2 text-neutral-500">
-            <span className="font-mono text-xs uppercase tracking-wider">Scroll</span>
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
+          <span className="font-mono text-base uppercase tracking-wider">Scroll</span>
+          <svg className="h-[26px] w-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
         </motion.div>
       </div>
     </section>

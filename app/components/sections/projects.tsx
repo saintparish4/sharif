@@ -11,7 +11,7 @@ const projects = [
     description: 'Full-stack',
     year: '2025',
     link: 'https://mai-omega.vercel.app/',
-    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/6_jugckf?_a=BAVAZGE70',
+    background: '/projects/nora.jpg',
     video: 'QpLBMxnNQMQHXri9nqPfg1nZLyJn5kg01vXlmX1auvEc'
   },
   {
@@ -21,7 +21,7 @@ const projects = [
     description: 'API',
     year: '2025',
     link: 'https://pantera-phi.vercel.app/',
-    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/3_nzf5vb?_a=BAVAZGE70',
+    background: '/projects/dpe.jpg',
     video: 'ZV01irv5jPmaRLo6XEcm5o4QHrEd9g6Rr5GyqdMd1R6g'
   },
   {
@@ -31,7 +31,7 @@ const projects = [
     description: 'Full-stack + AI',
     year: '2025',
     link: 'https://antler-ecru.vercel.app/',
-    background: 'https://res.cloudinary.com/dnocsf5bq/image/upload/g_auto/v1/2_frjjt5?_a=BAVAZGE70',
+    background: '/projects/antler.jpg',
     video: 'viGHALwiNN7x4lw9K5ieeljgwL3z02KfplK56WNafF9k'
   },
   // {
@@ -203,7 +203,7 @@ export const Projects = () => {
                         fetchPriority={index === 0 ? "high" : "low"}
                         width={800}
                         height={800}
-                        className="h-full w-full absolute object-cover object-center transition-transform duration-300 ease-out md:group-hover:scale-105" 
+                        className="h-full w-full absolute object-cover object-bottom transition-transform duration-300 ease-out md:group-hover:scale-105" 
                         src={project.background}
                         style={{ 
                           position: 'absolute', 
@@ -228,7 +228,7 @@ export const Projects = () => {
                         fetchPriority={index === 0 ? "high" : "low"}
                         width={800}
                         height={600}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-cover object-bottom"
                         style={{ contentVisibility: 'auto' }}
                       />
                     </div>

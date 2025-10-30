@@ -39,49 +39,107 @@ export const Services = () => {
     }
   ], []);
 
-  // Simplified animation variants for maximum performance
+  // Enhanced animation variants with smoother transitions
   const cardVariants = {
-    hidden: { opacity: 0 },
+    hidden: { 
+      opacity: 0,
+      y: 30,
+      scale: 0.95
+    },
     visible: { 
       opacity: 1,
+      y: 0,
+      scale: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.3,
-        ease: [0.4, 0, 0.2, 1] as const
+        duration: prefersReducedMotion ? 0.01 : 0.6,
+        ease: [0.4, 0, 0.2, 1] as const,
+        staggerChildren: 0.1
       }
     }
   };
 
   const techVariants = {
-    hidden: { opacity: 0 },
+    hidden: { 
+      opacity: 0,
+      x: -20,
+      scale: 0.9
+    },
     visible: (index: number) => ({
       opacity: 1,
+      x: 0,
+      scale: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.2,
-        delay: prefersReducedMotion ? 0 : 0.3 + index * 0.03,
+        duration: prefersReducedMotion ? 0.01 : 0.4,
+        delay: prefersReducedMotion ? 0 : 0.2 + index * 0.05,
         ease: [0.4, 0, 0.2, 1] as const
       }
     })
   };
 
-  // Simplified header animation variants
+  // Enhanced header animation with slide effect
   const headerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { 
+      opacity: 0,
+      y: -20,
+      scale: 0.95
+    },
     visible: { 
       opacity: 1,
+      y: 0,
+      scale: 1,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.4,
+        duration: prefersReducedMotion ? 0.01 : 0.7,
         ease: [0.4, 0, 0.2, 1] as const
       }
     }
   };
 
   const descriptionVariants = {
-    hidden: { opacity: 0 },
+    hidden: { 
+      opacity: 0,
+      y: 20,
+      x: -10
+    },
     visible: { 
       opacity: 1,
+      y: 0,
+      x: 0,
       transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.3,
+        duration: prefersReducedMotion ? 0.01 : 0.5,
+        delay: prefersReducedMotion ? 0 : 0.2,
+        ease: [0.4, 0, 0.2, 1] as const
+      }
+    }
+  };
+
+  // New variants for card elements
+  const cardHeaderVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 15
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.4,
         delay: prefersReducedMotion ? 0 : 0.1,
+        ease: [0.4, 0, 0.2, 1] as const
+      }
+    }
+  };
+
+  const cardContentVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 10
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0.01 : 0.4,
+        delay: prefersReducedMotion ? 0 : 0.2,
         ease: [0.4, 0, 0.2, 1] as const
       }
     }
@@ -133,20 +191,34 @@ export const Services = () => {
                 className={`bg-[var(--color-secondary-400)] rounded-2xl md:rounded-3xl p-6 md:p-8 ${index > 0 ? 'border-t border-t-[rgba(168,164,160,0.2)]' : ''}`}
               >
                   {/* Card Header */}
-                  <div className="flex items-start gap-6 md:gap-8 mb-6 md:mb-8">
-                    <span className="text-2xl md:text-4xl font-bold text-[var(--color-secondary-50)]">
+                  <motion.div 
+                    variants={cardHeaderVariants}
+                    className="flex items-start gap-6 md:gap-8 mb-6 md:mb-8"
+                  >
+                    <motion.span 
+                      className="text-2xl md:text-4xl font-bold text-[var(--color-secondary-50)]"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                    >
                       ({String(service.id).padStart(2, '0')})
-                    </span>
+                    </motion.span>
                     <h2 className="text-2xl md:text-5xl font-bold text-[var(--color-accent-400)] leading-tight">
                       {service.title}
                     </h2>
-                  </div>
+                  </motion.div>
 
                   {/* Card Content */}
-                  <div className="md:pl-[calc(2.5rem+2rem)] space-y-6">
-                    <p className="max-w-[60ch] text-base md:text-xl leading-relaxed text-[var(--color-secondary-50)]">
+                  <motion.div 
+                    variants={cardContentVariants}
+                    className="md:pl-[calc(2.5rem+2rem)] space-y-6"
+                  >
+                    <motion.p 
+                      className="max-w-[60ch] text-base md:text-xl leading-relaxed text-[var(--color-secondary-50)]"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
                       {service.description}
-                    </p>
+                    </motion.p>
 
                     {/* Technologies List */}
                     <div className="space-y-4 pt-4">
@@ -159,17 +231,26 @@ export const Services = () => {
                           variants={techVariants}
                           viewport={{ once: true, amount: 0.5 }}
                           className="flex items-start gap-4 border-t border-t-[rgba(168,164,160,0.15)] pt-3"
+                          whileHover={{ 
+                            x: 8,
+                            scale: 1.02,
+                            transition: { duration: 0.2 }
+                          }}
                         >
-                          <span className="font-mono text-xs md:text-sm text-[var(--color-secondary-75)] mt-1">
+                          <motion.span 
+                            className="font-mono text-xs md:text-sm text-[var(--color-secondary-75)] mt-1"
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.2 }}
+                          >
                             {String(techIndex + 1).padStart(2, '0')}
-                          </span>
+                          </motion.span>
                           <span className="text-sm md:text-lg font-semibold text-[var(--color-accent-500)] leading-snug">
                             {tech}
                           </span>
                         </motion.div>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
               </motion.div>
             ))}
           </div>
