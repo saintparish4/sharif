@@ -30,6 +30,21 @@ const About = dynamic(
   }
 );
 
+const Contact = dynamic(
+  () => import("./components/sections/contact").then((mod) => ({ default: mod.Contact })),
+  {
+    loading: () => <SectionLoader />,
+    ssr: true,
+  }
+);
+
+const Footer = dynamic(
+  () => import("./components/layout/footer").then((mod) => ({ default: mod.Footer })),
+  {
+    ssr: true,
+  }
+);
+
 // Minimal loading skeleton component
 function SectionLoader() {
   return (
@@ -62,7 +77,13 @@ export default function Home() {
         <Suspense fallback={<SectionLoader />}>
           <About />
         </Suspense>
+
+        <Suspense fallback={<SectionLoader />}>
+          <Contact />
+        </Suspense>
       </main>
+
+      <Footer />
     </>
   );
 }

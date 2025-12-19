@@ -1,11 +1,8 @@
 'use client';
 import { motion } from 'motion/react';
-import { useIsMobile } from '../../../hooks/useIsMobile';
 import Iridescence from '../animations/iridescence';
 
 export const Hero = () => {
-  const isMobile = useIsMobile();
-  
   return (
     <section className="relative min-h-screen flex flex-col">
       {/* Background Iridescence Effect */}
@@ -82,12 +79,8 @@ export const Hero = () => {
             transition={{ duration: 0.3, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className="space-y-6">
-              <h2 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl">
-                Software Engineer
-              </h2>
-              
-              <p className="text-lg leading-relaxed md:text-xl font-semibold" style={{ color: '#1a1a1a' }}>
-                I focus on writing maintainable code and designing interfaces that people actually want to use. My work ranges from early-stage prototypes to production systems serving real users.
+              <p className="text-lg leading-[1.6] md:text-xl font-medium text-[var(--color-secondary-200)] max-w-[52ch] mx-auto">
+                Software engineer with a healthcare operations background; building low-latency infrastructure, security tooling, and full-stack applications. Experienced in operational optimization, process improvement, and technical problem-solving across the stack.
               </p>
             </div>
 
@@ -105,7 +98,7 @@ export const Hero = () => {
                     ease: "easeInOut"
                   }}
                 />
-                <span className="font-mono text-[1rem] font-semibold" style={{ color: '#1a1a1a' }}>
+                <span className="font-mono text-[1rem] font-semibold text-[var(--color-secondary-300)]">
                   Available for opportunities
                 </span>
               </div>
@@ -114,10 +107,19 @@ export const Hero = () => {
             <div className="flex flex-wrap gap-4 pt-6 justify-center">
               <a
                 href="#Works"
-                className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-8 py-4 text-sm font-medium text-white transition-colors duration-200 hover:bg-neutral-800 dark:bg-neutral-100 dark:text-neutral-900 dark:hover:bg-neutral-200"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-secondary-400)] px-8 py-4 text-sm font-medium text-[var(--color-accent-200)] transition-all duration-300 hover:bg-[var(--color-secondary-300)] hover:scale-[1.02] active:scale-[0.98]"
               >
                 View Work
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a
+                href="#Contact"
+                className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-secondary-200)] bg-transparent px-8 py-4 text-sm font-medium text-[var(--color-secondary-400)] transition-all duration-300 hover:bg-[var(--color-secondary-400)] hover:text-[var(--color-accent-200)] hover:border-[var(--color-secondary-400)]"
+              >
+                Get in Touch
+                <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
@@ -128,21 +130,21 @@ export const Hero = () => {
       </div>
 
       {/* Scroll Indicator with Bounce - Positioned at bottom */}
-      <div className="flex justify-center opacity-70 pb-8">
+      <div className="flex justify-center pb-8">
         <motion.div 
-          className="flex flex-col items-center gap-2 text-neutral-500"
+          className="flex flex-col items-center gap-2 text-[var(--color-secondary-100)]"
           animate={{
-            y: [0, 10, 0]
+            y: [0, 8, 0]
           }}
           transition={{
-            duration: 1.5,
+            duration: 2,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         >
-          <span className="font-mono text-base uppercase tracking-wider">Scroll</span>
-          <svg className="h-[26px] w-[26px]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          <span className="font-mono text-sm uppercase tracking-widest">Scroll</span>
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>
       </div>

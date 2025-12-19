@@ -6,6 +6,7 @@ const navItems = [
   { name: 'Approach', href: '/#Philosophy' },
   { name: 'Work', href: '/#Works' },
   { name: 'Background', href: '/#About' },
+  { name: 'Contact', href: '/#Contact' },
 ];
 
 export const Navigation = () => {

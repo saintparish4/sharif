@@ -150,9 +150,8 @@ const jsonLd = {
     "Full-stack Software Engineer specializing in modern web development",
   image: "https://sharifparish.com/og-image.jpg",
   sameAs: [
-    "https://twitter.com/SharifParish",
-    "https://github.com/sharifparish",
-    "https://linkedin.com/in/sharifparish",
+    "https://github.com/saintparish4",
+    "https://www.linkedin.com/in/sharifparish/",
   ],
   worksFor: {
     "@type": "Organization",
