@@ -11,6 +11,7 @@ const quickLinks = [
 const socialLinks = [
   { name: 'GitHub', href: 'https://github.com/saintparish4' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/sharifparish/' },
+  { name: 'X', href: 'https://x.com/yksatoshi' },
 ];
 
 export const Footer = () => {
@@ -29,11 +30,11 @@ export const Footer = () => {
       <div className="section-padding py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-[rgba(168,164,160,0.15)]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-dashed border-[rgba(168,164,160,0.3)]">
             {/* Brand Column */}
             <div className="md:col-span-5">
               <motion.div 
-                className="space-y-4"
+                className="space-y-4 border border-dashed border-[rgba(168,164,160,0.2)] rounded-lg p-6 md:p-8"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -68,24 +69,25 @@ export const Footer = () => {
             {/* Quick Links */}
             <div className="md:col-span-3 md:col-start-7">
               <motion.div
+                className="border border-dashed border-[rgba(168,164,160,0.2)] rounded-lg p-6 md:p-8"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
               >
-                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4">
+                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4 pb-3 border-b border-dashed border-[rgba(168,164,160,0.2)]">
                   Navigation
                 </h4>
-                <ul className="space-y-3">
-                  {quickLinks.map((link) => (
-                    <li key={link.name}>
+                <ul className="space-y-0">
+                  {quickLinks.map((link, index) => (
+                    <li key={link.name} className={index > 0 ? "pt-3 mt-3 border-t border-dashed border-[rgba(168,164,160,0.2)]" : ""}>
                       <a
                         href={link.href}
                         onClick={(e) => {
                           e.preventDefault();
                           handleNavClick(link.href);
                         }}
-                        className="text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200 cursor-pointer"
+                        className="text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200 cursor-pointer block"
                       >
                         {link.name}
                       </a>
@@ -98,22 +100,23 @@ export const Footer = () => {
             {/* Social Links */}
             <div className="md:col-span-3">
               <motion.div
+                className="border border-dashed border-[rgba(168,164,160,0.2)] rounded-lg p-6 md:p-8"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
               >
-                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4">
+                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4 pb-3 border-b border-dashed border-[rgba(168,164,160,0.2)]">
                   Connect
                 </h4>
-                <ul className="space-y-3">
-                  {socialLinks.map((link) => (
-                    <li key={link.name}>
+                <ul className="space-y-0">
+                  {socialLinks.map((link, index) => (
+                    <li key={link.name} className={index > 0 ? "pt-3 mt-3 border-t border-dashed border-[rgba(168,164,160,0.2)]" : ""}>
                       <a
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200"
+                        className="inline-flex items-center gap-2 text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200 block"
                       >
                         <span>{link.name}</span>
                         <svg 
@@ -167,4 +170,3 @@ export const Footer = () => {
     </footer>
   );
 };
-

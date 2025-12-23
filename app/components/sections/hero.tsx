@@ -8,7 +8,7 @@ export const Hero = () => {
       {/* Background Iridescence Effect */}
       <div className="absolute inset-0 opacity-30">
         <Iridescence
-          color={[1, 1, 1]}
+          color={[0.95, 0.81, 0.88]}
           mouseReact={false}
           amplitude={0.1}
           speed={1.0}

@@ -22,6 +22,15 @@ const socialLinks = [
       </svg>
     ),
   },
+  {
+    name: 'X',
+    href: 'https://x.com/yksatoshi',
+    icon: (
+      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    ),
+  },
 ];
 
 export const Contact = () => {
@@ -82,7 +91,7 @@ export const Contact = () => {
   return (
     <section id="Contact" className="relative bg-[var(--color-accent-200)]">
       <div className="section-padding py-[var(--space-3xl)]">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto border border-dashed border-[var(--color-secondary-50)] rounded-lg p-8 md:p-12">
           {/* Header */}
           <motion.div
             initial="hidden"
@@ -147,11 +156,14 @@ export const Contact = () => {
                     onChange={handleChange}
                     required
                     autoComplete="name"
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b border-[var(--color-secondary-50)] focus:border-[var(--color-secondary-400)] text-[var(--color-secondary-400)] text-lg font-medium transition-colors duration-300 outline-none"
+                    className="w-full px-4 py-4 bg-transparent border border-dashed border-[var(--color-secondary-50)] focus:border-[var(--color-secondary-400)] rounded-lg text-[var(--color-secondary-400)] text-lg font-medium transition-colors duration-300 outline-none"
                     placeholder="Your name"
                     suppressHydrationWarning
                   />
                 </div>
+
+                {/* Divider */}
+                <div className="border-t border-dashed border-[var(--color-secondary-50)] opacity-40"></div>
 
                 {/* Email Field */}
                 <div className="space-y-2">
@@ -169,11 +181,14 @@ export const Contact = () => {
                     onChange={handleChange}
                     required
                     autoComplete="email"
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b border-[var(--color-secondary-50)] focus:border-[var(--color-secondary-400)] text-[var(--color-secondary-400)] text-lg font-medium transition-colors duration-300 outline-none"
+                    className="w-full px-4 py-4 bg-transparent border border-dashed border-[var(--color-secondary-50)] focus:border-[var(--color-secondary-400)] rounded-lg text-[var(--color-secondary-400)] text-lg font-medium transition-colors duration-300 outline-none"
                     placeholder="your@email.com"
                     suppressHydrationWarning
                   />
                 </div>
+
+                {/* Divider */}
+                <div className="border-t border-dashed border-[var(--color-secondary-50)] opacity-40"></div>
 
                 {/* Message Field */}
                 <div className="space-y-2">
@@ -191,7 +206,7 @@ export const Contact = () => {
                     required
                     rows={5}
                     autoComplete="off"
-                    className="w-full px-0 py-4 bg-transparent border-0 border-b border-[var(--color-secondary-50)] focus:border-[var(--color-secondary-400)] text-[var(--color-secondary-400)] text-lg font-medium transition-colors duration-300 outline-none resize-none"
+                    className="w-full px-4 py-4 bg-transparent border border-dashed border-[var(--color-secondary-50)] focus:border-[var(--color-secondary-400)] rounded-lg text-[var(--color-secondary-400)] text-lg font-medium transition-colors duration-300 outline-none resize-none"
                     placeholder="Tell me about your project..."
                     suppressHydrationWarning
                   />
@@ -248,7 +263,7 @@ export const Contact = () => {
               className="flex flex-col justify-between"
             >
               {/* Social Links */}
-              <div className="space-y-8">
+              <div className="space-y-8 border border-dashed border-[var(--color-secondary-50)] rounded-lg p-6 md:p-8">
                 <motion.h3 
                   variants={fadeInVariants}
                   className="font-mono text-sm font-medium text-[var(--color-secondary-200)] uppercase tracking-wider"
@@ -291,7 +306,7 @@ export const Contact = () => {
               {/* Direct Email CTA */}
               <motion.div 
                 variants={fadeInVariants}
-                className="mt-12 lg:mt-0 pt-8 border-t border-[var(--color-accent-500)]"
+                className="mt-12 lg:mt-0 pt-8 border-t border-dashed border-[var(--color-secondary-50)]"
               >
                 <p className="font-mono text-sm font-medium text-[var(--color-secondary-200)] uppercase tracking-wider mb-4">
                   Or reach out directly
@@ -318,4 +333,3 @@ export const Contact = () => {
     </section>
   );
 };
-
