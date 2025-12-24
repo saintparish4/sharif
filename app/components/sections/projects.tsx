@@ -20,9 +20,9 @@ const projects = [
     subtitle: 'Smart Contract Security Scanner',
     description: 'WEB3 Smart Contracts',
     year: '2025',
-    link: 'https://github.com/saintparish4/stealth',
+    link: 'https://stealth-plum-beta.vercel.app/',
     background: '/projects/dpe.jpg',
-    video: 'ZV01irv5jPmaRLo6XEcm5o4QHrEd9g6Rr5GyqdMd1R6g'
+    video: '/videos/stealth.mp4'
   },
   {
     id: 3,
@@ -193,7 +193,7 @@ export const Projects = () => {
                   className="block group"
                 >
                   {/* Project Image/Video Container - Optimized */}
-                  <div className="custom-cursor-area relative mt-3 sm:mt-5 flex aspect-square items-center justify-center overflow-clip rounded-lg sm:rounded-xl bg-[var(--color-secondary-300)] p-[var(--space-sm)] sm:p-[var(--space-lg)] xl:p-[var(--space-2xl)] transition-transform duration-200 ease-out md:group-hover:scale-[1.01] active:scale-[0.99]">
+                  <div className={`custom-cursor-area relative mt-3 sm:mt-5 flex aspect-square items-center justify-center overflow-clip rounded-lg sm:rounded-xl bg-[var(--color-secondary-300)] transition-transform duration-200 ease-out md:group-hover:scale-[1.01] active:scale-[0.99] ${project.video && project.video.endsWith('.mp4') ? 'p-1 sm:p-2' : 'p-[var(--space-sm)] sm:p-[var(--space-lg)] xl:p-[var(--space-2xl)]'}`}>
                     {/* Background Image */}
                     <div className="absolute inset-0">
                       <img 
@@ -217,20 +217,31 @@ export const Projects = () => {
                     </div>
 
                     {/* Video/Preview Container - Simplified structure */}
-                    <div className="z-10 aspect-[4/3] w-full overflow-clip rounded-lg bg-gray-100 transition-transform duration-300 ease-out md:group-hover:scale-[0.98]">
-                      {/* TODO: Replace with actual video player when ready */}
-                      {/* <mux-player playback-id={project.video} autoplay="muted" loop preload="none" /> */}
-                      <img 
-                        src={project.background}
-                        alt={project.title}
-                        loading={index === 0 ? "eager" : "lazy"}
-                        decoding="async"
-                        fetchPriority={index === 0 ? "high" : "low"}
-                        width={800}
-                        height={600}
-                        className="h-full w-full object-cover object-bottom"
-                        style={{ contentVisibility: 'auto' }}
-                      />
+                    <div className={`z-10 overflow-clip rounded-lg transition-transform duration-300 ease-out md:group-hover:scale-[0.98] ${project.video && project.video.endsWith('.mp4') ? 'aspect-[9/16] w-full h-full bg-transparent' : 'aspect-[4/3] w-full bg-gray-100'}`}>
+                      {project.video && project.video.endsWith('.mp4') ? (
+                        <video
+                          src={project.video}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          preload={index === 0 ? "auto" : "none"}
+                          className="h-full w-full object-contain rounded-lg"
+                          style={{ contentVisibility: 'auto' }}
+                        />
+                      ) : (
+                        <img 
+                          src={project.background}
+                          alt={project.title}
+                          loading={index === 0 ? "eager" : "lazy"}
+                          decoding="async"
+                          fetchPriority={index === 0 ? "high" : "low"}
+                          width={800}
+                          height={600}
+                          className="h-full w-full object-cover object-bottom"
+                          style={{ contentVisibility: 'auto' }}
+                        />
+                      )}
                     </div>
                   </div>
 
