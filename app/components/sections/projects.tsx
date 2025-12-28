@@ -42,7 +42,7 @@ const projects = [
     year: '2025',
     link: 'https://github.com/saintparish4/apx',
     background: '/projects/apx.jpg',
-    video: ''
+    video: '/videos/apx.mp4'
   },
 ] as const;
 
