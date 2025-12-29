@@ -10,9 +10,9 @@ const projects = [
     subtitle: 'Medical AI Booking Platform',
     description: 'Full-stack',
     year: '2025',
-    link: 'https://mai-omega.vercel.app/',
+    link: 'https://mai-omega.vercel.app/get-care',
     background: '/projects/nora.jpg',
-    video: 'QpLBMxnNQMQHXri9nqPfg1nZLyJn5kg01vXlmX1auvEc'
+    video: '/videos/nora.mp4'
   },
   {
     id: 2,
