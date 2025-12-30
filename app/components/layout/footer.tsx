@@ -11,7 +11,8 @@ const quickLinks = [
 const socialLinks = [
   { name: 'GitHub', href: 'https://github.com/saintparish4' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/sharifparish/' },
-  { name: 'X', href: 'https://x.com/yksatoshi' },
+  { name: 'X', href: 'https://x.com/senpaiisaint' },
+  { name: 'Threads', href: 'https://www.threads.com/@senpaiisaint' },
 ];
 
 export const Footer = () => {
