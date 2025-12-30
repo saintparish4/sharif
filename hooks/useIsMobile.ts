@@ -15,7 +15,7 @@ export const useIsMobile = (breakpoint: number = 768) => {
 
     checkMobile();
     
-    // More aggressive debounce for better performance
+    // 1 More aggressive debounce for better performance
     let timeoutId: NodeJS.Timeout;
     const handleResize = () => {
       clearTimeout(timeoutId);
