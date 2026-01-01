@@ -9,32 +9,42 @@ export const Services = () => {
   const services = useMemo(() => [
     {
       id: 1,
-      title: "Full-Stack Development",
-      description: "From frontend interactions to backend APIs, I build complete web solutions. I work with modern stacks to deliver apps that are scalable, maintainable, and ready for real-world users.",
+      title: "Development",
+      description: "End-to-end application development from concept to deployment. I architect and build complete web and mobile applications—frontend interfaces, backend APIs, and everything in between—using modern, production-ready stacks.",
       technologies: [
-        "React, Next.js, Typescript, TanStack Query",
-        "Node.js, Express, Python, Go, Ruby on Rails, Rust",
-        "PostgreSQL, Redis, AWS, Docker"
+        "React, React Native, Next.js, TypeScript",
+        "Node.js, Python, Ruby, Go, Rust, GraphQL",
+        "PostgreSQL, MongoDB, Redis, Prisma"
       ]
     },
     {
       id: 2,
-      title: "UI/UX & Frontend",
-      description: "Design meets function. I create interfaces that are intuitivem accessible, and responsive - where clarity drives every interaction.",
+      title: "Design",
+      description: "User-centered design that bridges aesthetics and usability. I craft intuitive interfaces through research, prototyping, and design systems—ensuring every pixel serves a purpose.",
       technologies: [
-        "Next.js, TailwindCSS, GSAP, Framer Motion",
-        "Figma to Code, Responsive Design",
-        "HTML, CSS, JavaScript"
+        "Figma, Framer, Adobe Creative Suite",
+        "Design Systems, Component Libraries, Prototyping",
+        "User Research, Accessibility (WCAG), Motion Design"
       ]
     },
     {
       id: 3,
-      title: "Performance & Infrastructure",
-      description: "I design systems built for scale. From caching strategies to cloud architecture, I optimize for performance, reliability, and maintainability.",
+      title: "Infrastructure",
+      description: "Scalable systems engineered for reliability. From cloud architecture to CI/CD pipelines, I build the foundation that keeps applications fast, secure, and always available.",
       technologies: [
-        "Auto-scaling, Caching (Redis), CDN optimization",
-        "AWS, GCP, Docker, Terraform, CI/CD pipelines",
-        "System Design, DSA, Database Optimization, Monitoring (Datadog)"
+        "AWS, GCP, Docker, Kubernetes",
+        "Terraform, GitHub Actions, CI/CD Pipelines",
+        "Monitoring (Datadog), CDN, Auto-scaling, Caching"
+      ]
+    },
+    {
+      id: 4,
+      title: "Web3 & Blockchain",
+      description: "Decentralized applications and smart contract development with security-first principles. From token standards to DeFi protocols, I build on-chain solutions that are auditable, gas-efficient, and battle-tested.",
+      technologies: [
+        "Solidity, Rust, EVM Chains (Ethereum, Base)",
+        "Smart Contract Security, Static Analysis, Auditing",
+        "Ethers.js, Foundry, The Graph"
       ]
     }
   ], []);
@@ -76,7 +86,7 @@ export const Services = () => {
     })
   };
 
-  // Enhanced header animation with slide effect
+  // Header animation variants
   const headerVariants = {
     hidden: { 
       opacity: 0,
@@ -94,25 +104,7 @@ export const Services = () => {
     }
   };
 
-  const descriptionVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20,
-      x: -10
-    },
-    visible: { 
-      opacity: 1,
-      y: 0,
-      x: 0,
-      transition: {
-        duration: prefersReducedMotion ? 0.01 : 0.5,
-        delay: prefersReducedMotion ? 0 : 0.2,
-        ease: [0.4, 0, 0.2, 1] as const
-      }
-    }
-  };
-
-  // New variants for card elements
+  // Variants for card elements
   const cardHeaderVariants = {
     hidden: { 
       opacity: 0,
@@ -149,34 +141,17 @@ export const Services = () => {
     <section id="Philosophy" className="relative">
       <div className="relative">
         <section className="section-padding rounded-t-3xl bg-[var(--color-secondary-400)] text-[var(--color-text-bg)] flex flex-col">
-          <div className="relative flex w-full flex-col gap-y-[var(--space-lg)] md:gap-y-[var(--space-2xl)] pb-12 md:pb-20">
+          <div className="relative flex w-full flex-col gap-y-[var(--space-md)] md:gap-y-[var(--space-lg)] pb-8 md:pb-16">
             {/* Header */}
             <motion.h1 
               initial="hidden"
               whileInView="visible"
               variants={headerVariants}
               viewport={{ once: true, amount: 0.3 }}
-              className="section-heading col-span-6 max-w-[18ch] text-accent-400 text-[2.5rem] sm:text-[length:var(--text-h1-alt)]"
+              className="section-heading col-span-6 max-w-[18ch] text-[var(--color-accent-400)] text-[2rem] sm:text-[2.25rem] md:text-[length:var(--text-h1-alt)]"
             >
-              Approach
+              Services
             </motion.h1>
-
-            {/* Description Section */}
-            <div className="flex grid-cols-12 gap-x-[var(--gap-fluid)] md:grid">
-              <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                variants={descriptionVariants}
-                viewport={{ once: true, amount: 0.3 }}
-                className="col-span-7 flex flex-col gap-x-[var(--space-xl)] gap-y-[var(--space-xs)] sm:flex-row md:col-start-6"
-              >
-                <div 
-                  className="w-full max-w-[50ch] text-balance text-[1rem] sm:text-[length:var(--text-heading-4)] font-medium leading-[1.5] text-[var(--color-secondary-50)]"
-                >
-                 I work from constraints, not possibilities. What&apos;s the actual problem? What&apos;s the fastest way to validate the solution? Build what matters, ship it, and prove it works before building more.
-                </div>
-              </motion.div>
-            </div>
           </div>
 
           {/* Service Cards - Simple Stacked Layout */}
@@ -193,7 +168,7 @@ export const Services = () => {
                   {/* Card Header */}
                   <motion.div 
                     variants={cardHeaderVariants}
-                    className="flex items-start gap-6 md:gap-8 mb-6 md:mb-8"
+                    className="flex items-center gap-6 md:gap-8 mb-6 md:mb-8"
                   >
                     <motion.span 
                       className="text-2xl md:text-4xl font-bold text-[var(--color-secondary-50)]"
@@ -213,7 +188,7 @@ export const Services = () => {
                     className="md:pl-[calc(2.5rem+2rem)] space-y-6"
                   >
                     <motion.p 
-                      className="max-w-[60ch] text-base md:text-xl leading-relaxed text-[var(--color-secondary-50)]"
+                      className="max-w-[60ch] text-sm sm:text-base md:text-lg leading-relaxed text-[var(--color-secondary-50)]"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.3 }}
                     >

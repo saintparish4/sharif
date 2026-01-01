@@ -3,10 +3,10 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { name: 'Approach', href: '/#Philosophy' },
-  { name: 'Work', href: '/#Works' },
-  { name: 'Background', href: '/#About' },
-  { name: 'Contact', href: '/#Contact' },
+  { name: 'SERVICES', href: '/#Philosophy' },
+  { name: 'WORK', href: '/#Works' },
+  { name: 'OPEN SOURCE', href: '/#About' },
+  { name: 'CONTACT', href: '/#Contact' },
 ];
 
 export const Navigation = () => {

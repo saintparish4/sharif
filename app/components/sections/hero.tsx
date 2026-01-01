@@ -73,18 +73,12 @@ export const Hero = () => {
         {/* Content */}
         <div className="flex justify-center">
           <motion.div 
-            className="max-w-3xl flex flex-col gap-8 text-center"
+            className="max-w-3xl flex flex-col gap-6 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="space-y-6">
-              <p className="text-lg leading-[1.6] md:text-xl font-medium text-[var(--color-secondary-200)] max-w-[52ch] mx-auto">
-                Software engineer with a healthcare operations background; building low-latency infrastructure, security tooling, and full-stack applications. Experienced in operational optimization, process improvement, and technical problem-solving across the stack.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 pt-4 items-center">
+            <div className="flex flex-col gap-4 items-center">
               <div className="flex items-center gap-3">
                 <motion.div 
                   className="h-2 w-2 rounded-full bg-green-500"
@@ -104,7 +98,7 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-6 justify-center">
+            <div className="flex flex-wrap gap-4 pt-2 justify-center">
               <a
                 href="#Works"
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--color-secondary-400)] px-8 py-4 text-sm font-medium text-[var(--color-accent-200)] transition-all duration-300 hover:bg-[var(--color-secondary-300)] hover:scale-[1.02] active:scale-[0.98]"

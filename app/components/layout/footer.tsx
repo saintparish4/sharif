@@ -2,9 +2,9 @@
 import { motion } from 'motion/react';
 
 const quickLinks = [
-  { name: 'Approach', href: '/#Philosophy' },
+  { name: 'Services', href: '/#Philosophy' },
   { name: 'Work', href: '/#Works' },
-  { name: 'Background', href: '/#About' },
+  { name: 'Open Source', href: '/#About' },
   { name: 'Contact', href: '/#Contact' },
 ];
 
@@ -27,15 +27,15 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-[var(--color-secondary-400)] text-[var(--color-accent-400)]">
+    <footer className="bg-[var(--color-secondary-400)] text-[var(--color-accent-400)] rounded-t-2xl">
       <div className="section-padding py-12 md:py-16">
         <div className="max-w-6xl mx-auto">
           {/* Main Footer Content */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-dashed border-[rgba(168,164,160,0.3)]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-dashed border-[rgba(168,164,160,0.25)]">
             {/* Brand Column */}
             <div className="md:col-span-5">
               <motion.div 
-                className="space-y-4 border border-dashed border-[rgba(168,164,160,0.2)] rounded-lg p-6 md:p-8"
+                className="space-y-4 border border-dashed border-[rgba(168,164,160,0.15)] rounded-lg p-6 md:p-8"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -59,6 +59,7 @@ export const Footer = () => {
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
+                    aria-hidden="true"
                   />
                   <span className="font-mono text-sm text-[var(--color-secondary-50)]">
                     Available for opportunities
@@ -70,25 +71,25 @@ export const Footer = () => {
             {/* Quick Links */}
             <div className="md:col-span-3 md:col-start-7">
               <motion.div
-                className="border border-dashed border-[rgba(168,164,160,0.2)] rounded-lg p-6 md:p-8"
+                className="border border-dashed border-[rgba(168,164,160,0.15)] rounded-lg p-6 md:p-8"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
               >
-                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4 pb-3 border-b border-dashed border-[rgba(168,164,160,0.2)]">
+                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4 pb-3 border-b border-dashed border-[rgba(168,164,160,0.15)]">
                   Navigation
                 </h4>
-                <ul className="space-y-0">
+                <ul className="space-y-0" role="list">
                   {quickLinks.map((link, index) => (
-                    <li key={link.name} className={index > 0 ? "pt-3 mt-3 border-t border-dashed border-[rgba(168,164,160,0.2)]" : ""}>
+                    <li key={link.name} className={index > 0 ? "pt-3 mt-3 border-t border-dashed border-[rgba(168,164,160,0.15)]" : ""}>
                       <a
                         href={link.href}
                         onClick={(e) => {
                           e.preventDefault();
                           handleNavClick(link.href);
                         }}
-                        className="text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200 cursor-pointer block"
+                        className="text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200 cursor-pointer block focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-400)] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary-400)] rounded"
                       >
                         {link.name}
                       </a>
@@ -101,23 +102,24 @@ export const Footer = () => {
             {/* Social Links */}
             <div className="md:col-span-3">
               <motion.div
-                className="border border-dashed border-[rgba(168,164,160,0.2)] rounded-lg p-6 md:p-8"
+                className="border border-dashed border-[rgba(168,164,160,0.15)] rounded-lg p-6 md:p-8"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
               >
-                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4 pb-3 border-b border-dashed border-[rgba(168,164,160,0.2)]">
+                <h4 className="font-mono text-sm font-medium text-[var(--color-secondary-50)] uppercase tracking-wider mb-4 pb-3 border-b border-dashed border-[rgba(168,164,160,0.15)]">
                   Connect
                 </h4>
-                <ul className="space-y-0">
+                <ul className="space-y-0" role="list">
                   {socialLinks.map((link, index) => (
-                    <li key={link.name} className={index > 0 ? "pt-3 mt-3 border-t border-dashed border-[rgba(168,164,160,0.2)]" : ""}>
+                    <li key={link.name} className={index > 0 ? "pt-3 mt-3 border-t border-dashed border-[rgba(168,164,160,0.15)]" : ""}>
                       <a
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200 block"
+                        className="inline-flex items-center gap-2 text-base text-[var(--color-accent-500)] hover:text-[var(--color-accent-200)] transition-colors duration-200 block focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-400)] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary-400)] rounded"
+                        aria-label={`Visit ${link.name} profile (opens in new tab)`}
                       >
                         <span>{link.name}</span>
                         <svg 
@@ -125,6 +127,7 @@ export const Footer = () => {
                           fill="none" 
                           viewBox="0 0 24 24" 
                           stroke="currentColor"
+                          aria-hidden="true"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
                         </svg>
@@ -151,8 +154,9 @@ export const Footer = () => {
             {/* Back to Top */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="group inline-flex items-center gap-2 font-mono text-sm text-[var(--color-secondary-50)] hover:text-[var(--color-accent-200)] transition-colors duration-200"
+              className="group inline-flex items-center gap-2 font-mono text-sm text-[var(--color-secondary-50)] hover:text-[var(--color-accent-200)] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent-400)] focus:ring-offset-2 focus:ring-offset-[var(--color-secondary-400)] rounded px-2 py-1"
               aria-label="Back to top"
+              type="button"
               suppressHydrationWarning
             >
               <span>Back to top</span>
@@ -161,6 +165,7 @@ export const Footer = () => {
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
+                aria-hidden="true"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
               </svg>
