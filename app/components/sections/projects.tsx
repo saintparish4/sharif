@@ -24,18 +24,18 @@ const projects = [
     background: '/projects/dpe.jpg',
     video: '/videos/stealth.mp4'
   },
+  // {
+  //   id: 3,
+  //   title: 'Winter Square',
+  //   subtitle: 'Lock-free market data infrastructure',
+  //   description: 'C++ Infrastructure',
+  //   year: '2025',
+  //   link: 'https://github.com/saintparish4/winter-square',
+  //   background: '/projects/antler.jpg',
+  //   video: 'viGHALwiNN7x4lw9K5ieeljgwL3z02KfplK56WNafF9k'
+  // },
   {
     id: 3,
-    title: 'Winter Square',
-    subtitle: 'Lock-free market data infrastructure',
-    description: 'C++ Infrastructure',
-    year: '2025',
-    link: 'https://github.com/saintparish4/winter-square',
-    background: '/projects/antler.jpg',
-    video: 'viGHALwiNN7x4lw9K5ieeljgwL3z02KfplK56WNafF9k'
-  },
-  {
-    id: 4,
     title: 'APX',
     subtitle: 'Decentralized Healthcare Claims Verification System',
     description: 'WEB3 Healthcare',
