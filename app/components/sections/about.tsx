@@ -15,31 +15,22 @@ interface Contribution {
   language?: string;
 }
 
-// Placeholder data - user will fill in later
 const contributions: Contribution[] = [
   {
     id: 1,
-    name: "Project Name",
-    description: "Brief description of your contribution to this open source project",
-    type: "Contributor",
-    repo: "https://github.com/username/repo",
-    language: "TypeScript"
-  },
-  {
-    id: 2,
-    name: "Another Project",
-    description: "What you built or contributed to this project",
+    name: "Stealth",
+    description: "Solidity security scanner detecting 7 vulnerability categories through static analysis. Parses raw contracts without compilation, includes confidence scoring for remediation prioritization.",
     type: "Author",
-    repo: "https://github.com/username/repo",
+    repo: "https://github.com/saintparish4/stealth",
     language: "Rust"
   },
   {
-    id: 3,
-    name: "Open Source Tool",
-    description: "Your role in maintaining or improving this tool",
-    type: "Maintainer",
-    repo: "https://github.com/username/repo",
-    language: "Go"
+    id: 2,
+    name: "Cloudflare Workers Security",
+    description: "Cloudflare Workers security features including rate limiting, Turnstile bot protection, WAF rules, and request tracing",
+    type: "Author",
+    repo: "https://github.com/saintparish4/cloudflare/tree/master/cloudflare/workers-security",
+    language: "TypeScript"
   },
 ];
 
