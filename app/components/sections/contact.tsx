@@ -136,8 +136,19 @@ export const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate form submission - replace with actual API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
       
       setSubmitted(true);
       setFormState({ name: '', email: '', message: '' });
@@ -146,12 +157,16 @@ export const Contact = () => {
       
       // Reset submitted state after 5 seconds
       setTimeout(() => setSubmitted(false), 5000);
-    } catch {
-      setSubmitError('Something went wrong. Please try again.');
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error 
+          ? error.message 
+          : 'Something went wrong. Please try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
-  }, [validateForm]);
+  }, [validateForm, formState]);
 
   const animDuration = prefersReducedMotion ? 0.01 : 0.4;
 
@@ -245,12 +260,12 @@ export const Contact = () => {
               whileInView="visible"
               variants={fadeInVariants}
               viewport={{ once: true, amount: 0.2 }}
-              suppressHydrationWarning
             >
               <form 
                 onSubmit={handleSubmit} 
                 className="space-y-5 sm:space-y-6" 
                 noValidate
+                suppressHydrationWarning
                 aria-describedby={submitError ? 'form-error' : undefined}
               >
                 {/* Name Field */}
@@ -275,6 +290,7 @@ export const Contact = () => {
                     aria-describedby={errors.name ? 'name-error' : undefined}
                     className={getInputClasses('name')}
                     placeholder="Your name"
+                    suppressHydrationWarning
                   />
                   {touched.name && errors.name && (
                     <p id="name-error" className="text-red-400 text-xs sm:text-sm mt-1" role="alert">
@@ -305,6 +321,7 @@ export const Contact = () => {
                     aria-describedby={errors.email ? 'email-error' : undefined}
                     className={getInputClasses('email')}
                     placeholder="your@email.com"
+                    suppressHydrationWarning
                   />
                   {touched.email && errors.email && (
                     <p id="email-error" className="text-red-400 text-xs sm:text-sm mt-1" role="alert">
@@ -335,6 +352,7 @@ export const Contact = () => {
                     aria-describedby={errors.message ? 'message-error' : undefined}
                     className={`${getInputClasses('message')} resize-none`}
                     placeholder="Tell me about your project..."
+                    suppressHydrationWarning
                   />
                   {touched.message && errors.message && (
                     <p id="message-error" className="text-red-400 text-xs sm:text-sm mt-1" role="alert">
@@ -358,6 +376,7 @@ export const Contact = () => {
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                   aria-busy={isSubmitting}
+                  suppressHydrationWarning
                 >
                   {isSubmitting ? (
                     <>

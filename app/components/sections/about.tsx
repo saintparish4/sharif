@@ -12,7 +12,7 @@ interface Contribution {
   description: string;
   type: 'Maintainer' | 'Contributor' | 'Author';
   repo: string;
-  language?: string;
+  language?: string | string[];
 }
 
 const contributions: Contribution[] = [
@@ -22,7 +22,7 @@ const contributions: Contribution[] = [
     description: "Solidity security scanner detecting 7 vulnerability categories through static analysis. Parses raw contracts without compilation, includes confidence scoring for remediation prioritization.",
     type: "Author",
     repo: "https://github.com/saintparish4/stealth",
-    language: "Rust"
+    language: ["Rust", "Solidity"]
   },
   {
     id: 2,
@@ -30,7 +30,15 @@ const contributions: Contribution[] = [
     description: "Cloudflare Workers security features including rate limiting, Turnstile bot protection, WAF rules, and request tracing",
     type: "Author",
     repo: "https://github.com/saintparish4/cloudflare/tree/master/cloudflare/workers-security",
-    language: "TypeScript"
+    language: ["Scala", "TypeScript"]
+  },
+  {
+    id: 3,
+    name: "Data-Anon Pipeline",
+    description: "Transform production data into shareable data that's legally safe and actually useful",
+    type: "Author",
+    repo: "https://github.com/saintparish4/data-anon-pipeline",
+    language: ["Python", "ML"]
   },
 ];
 
@@ -48,8 +56,10 @@ const languageColors: Record<string, string> = {
   Rust: 'bg-orange-400',
   Go: 'bg-cyan-400',
   Python: 'bg-green-400',
-  Solidity: 'bg-purple-400',
+  Solidity: 'bg-rose-400',
   Ruby: 'bg-red-400',
+  Scala: 'bg-red-500',
+  ML: 'bg-purple-400',
 };
 
 // Contribution card component
@@ -106,11 +116,15 @@ const ContributionCard = ({
     <div className="flex items-center justify-between">
       {/* Language indicator */}
       {contribution.language && (
-        <div className="flex items-center gap-1.5 sm:gap-2">
-          <span className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full ${languageColors[contribution.language] || 'bg-gray-400'}`} />
-          <span className="text-[0.7rem] sm:text-xs text-[var(--color-secondary-75)] font-mono">
-            {contribution.language}
-          </span>
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+          {(Array.isArray(contribution.language) ? contribution.language : [contribution.language]).map((lang, idx) => (
+            <div key={idx} className="flex items-center gap-1.5 sm:gap-2">
+              <span className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full ${languageColors[lang] || 'bg-gray-400'}`} />
+              <span className="text-[0.7rem] sm:text-xs text-[var(--color-secondary-75)] font-mono">
+                {lang}
+              </span>
+            </div>
+          ))}
         </div>
       )}
       {/* Arrow icon */}
