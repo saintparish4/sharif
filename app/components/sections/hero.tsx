@@ -98,24 +98,31 @@ export const Hero = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-2 justify-center">
-              <a
-                href="#Works"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-secondary-400)] px-8 py-4 text-sm font-medium text-[var(--color-accent-200)] transition-all duration-300 hover:bg-[var(--color-secondary-300)] hover:scale-[1.02] active:scale-[0.98]"
+            <div className="flex flex-col sm:flex-row items-start gap-4 pt-4">
+              <a 
+                href="#Works" 
+                className="group relative inline-flex items-center justify-center bg-[#0C0C0C] text-white px-8 py-4 font-mono text-[12px] font-medium uppercase tracking-[0.05em] transition-all duration-300 w-full sm:w-auto"
               >
-                View Work
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <div className="absolute inset-0 bg-[#E0115F] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                <span className="relative z-10 group-hover:text-[#0C0C0C] transition-colors flex items-center gap-2">
+                  View Work
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
               </a>
-              <a
-                href="#Contact"
-                className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-secondary-200)] bg-transparent px-8 py-4 text-sm font-medium text-[var(--color-secondary-400)] transition-all duration-300 hover:bg-[var(--color-secondary-400)] hover:text-[var(--color-accent-200)] hover:border-[var(--color-secondary-400)]"
+              
+              <a 
+                href="#Contact" 
+                className="group relative inline-flex items-center justify-center border border-[#E7E7E4] bg-white text-[#0C0C0C] px-8 py-4 font-mono text-[12px] font-medium uppercase tracking-[0.05em] transition-all duration-300 hover:border-[#0C0C0C] w-full sm:w-auto"
               >
-                Get in Touch
-                <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <div className="absolute inset-0 bg-[#F3F3F1] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                <span className="relative z-10 flex items-center gap-2">
+                  Get in Touch
+                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </span>
               </a>
             </div>
           </motion.div>
