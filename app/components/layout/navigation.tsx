@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 const navItems = [
   { name: 'SERVICES', href: '/#Philosophy' },
   { name: 'WORK', href: '/#Works' },
-  { name: 'OPEN SOURCE', href: '/#About' },
+  { name: 'OPEN SOURCE', href: '/#OpenSource' },
   { name: 'CONTACT', href: '/#Contact' },
 ];
 
@@ -37,11 +37,61 @@ export const Navigation = () => {
   const handleNavClick = (href: string) => {
     // Convert href like "/#Philosophy" to CSS selector "#Philosophy"
     const selector = href.replace('/#', '#');
-    const target = document.querySelector(selector);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
+    
+    setIsMobileMenuOpen(false);
+    
+    // Function to attempt scrolling
+    const scrollToTarget = () => {
+      const target = document.querySelector(selector) as HTMLElement;
+      if (!target) {
+        return false;
+      }
+
+      // Use Lenis scrollTo if available, otherwise fallback to native scrollIntoView
+      const lenis = (window as any).__lenis;
+      if (lenis) {
+        // Try using selector string first (Lenis supports this)
+        try {
+          lenis.scrollTo(selector, {
+            duration: 1.2,
+            offset: 0,
+          });
+        } catch (e) {
+          // If selector doesn't work, calculate position manually
+          const rect = target.getBoundingClientRect();
+          const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+          const targetScroll = rect.top + currentScroll;
+          
+          requestAnimationFrame(() => {
+            lenis.scrollTo(targetScroll, {
+              duration: 1.2,
+            });
+          });
+        }
+      } else {
+        // Fallback to native scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return true;
+    };
+
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      // Try immediately
+      if (scrollToTarget()) {
+        return;
+      }
+
+      // If element not found (might be dynamically loading), wait a bit and retry
+      let retryCount = 0;
+      const maxRetries = 40; // 2 seconds at 50ms intervals
+      const retryInterval = setInterval(() => {
+        retryCount++;
+        if (scrollToTarget() || retryCount >= maxRetries) {
+          clearInterval(retryInterval);
+        }
+      }, 50);
+    }, 10);
   };
 
   return (
@@ -86,7 +136,7 @@ export const Navigation = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-        className="fixed top-[var(--space-md)] right-[var(--space-md)] z-[9999999] md:hidden p-3"
+        className="fixed top-[var(--space-md)] right-[var(--space-md)] z-[9999999] md:hidden p-3 cursor-pointer"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         whileTap={{ scale: 0.9 }}

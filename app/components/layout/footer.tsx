@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 const quickLinks = [
   { name: 'Services', href: '/#Philosophy' },
   { name: 'Work', href: '/#Works' },
-  { name: 'Open Source', href: '/#About' },
+  { name: 'Open Source', href: '/#OpenSource' },
   { name: 'Contact', href: '/#Contact' },
 ];
 
@@ -12,18 +12,61 @@ const socialLinks = [
   { name: 'GitHub', href: 'https://github.com/saintparish4' },
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/sharifparish/' },
   { name: 'X', href: 'https://x.com/senpaiisaint' },
-  { name: 'Threads', href: 'https://www.threads.com/@senpaiisaint' },
 ];
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const handleNavClick = (href: string) => {
+    // Convert href like "/#Philosophy" to CSS selector "#Philosophy"
     const selector = href.replace('/#', '#');
-    const target = document.querySelector(selector);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    
+    // Function to attempt scrolling
+    const scrollToTarget = () => {
+      const target = document.querySelector(selector) as HTMLElement;
+      if (!target) {
+        return false;
+      }
+
+      // Use Lenis scrollTo if available, otherwise fallback to native scrollIntoView
+      const lenis = (window as any).__lenis;
+      if (lenis) {
+        // Calculate the exact scroll position
+        const rect = target.getBoundingClientRect();
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        const targetScroll = rect.top + currentScroll;
+        
+        // Use requestAnimationFrame to ensure Lenis is ready
+        requestAnimationFrame(() => {
+          lenis.scrollTo(targetScroll, {
+            duration: 1.2,
+            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        });
+      } else {
+        // Fallback to native scroll
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      return true;
+    };
+
+    // Small delay to ensure DOM is ready
+    setTimeout(() => {
+      // Try immediately
+      if (scrollToTarget()) {
+        return;
+      }
+
+      // If element not found (might be dynamically loading), wait a bit and retry
+      let retryCount = 0;
+      const maxRetries = 40; // 2 seconds at 50ms intervals
+      const retryInterval = setInterval(() => {
+        retryCount++;
+        if (scrollToTarget() || retryCount >= maxRetries) {
+          clearInterval(retryInterval);
+        }
+      }, 50);
+    }, 10);
   };
 
   return (

@@ -17,6 +17,9 @@ export function useLenis() {
       autoResize: true,
     });
 
+    // Store instance globally for navigation access
+    (window as any).__lenis = lenis;
+
     // Request animation frame loop for smooth animation
     function raf(time: number) {
       lenis.raf(time);
@@ -28,6 +31,7 @@ export function useLenis() {
     // Cleanup on unmount
     return () => {
       lenis.destroy();
+      delete (window as any).__lenis;
     };
   }, []);
 }

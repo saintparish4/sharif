@@ -27,10 +27,10 @@ const contributions: Contribution[] = [
   {
     id: 2,
     name: "Cloudflare Workers Security",
-    description: "Cloudflare Workers security features including rate limiting, Turnstile bot protection, WAF rules, and request tracing",
+    description: "Edge security platform built on Cloudflare Workers that demonstrates modern serverless architecture, global distribution, and security first design",
     type: "Author",
     repo: "https://github.com/saintparish4/cloudflare/tree/master/cloudflare/workers-security",
-    language: ["Scala", "TypeScript"]
+    language: ["TypeScript", "JavaScript"]
   },
   {
     id: 3,
@@ -39,6 +39,30 @@ const contributions: Contribution[] = [
     type: "Author",
     repo: "https://github.com/saintparish4/data-anon-pipeline",
     language: ["Python", "ML"]
+  },
+  {
+    id: 4,
+    name: "ScalaX",
+    description: "Distributed rate limiting and idempotency platform that enables applications to control API usage, ensure idempotency, stream events, and scale horizontally",
+    type: "Author",
+    repo: "https://github.com/saintparish4/scalax",
+    language: ["Scala", "Terraform", "Docker"]
+  },
+  {
+    id: 5,
+    name: "Password History Plugin",
+    description: "Contributed to Better Auth by implementing a password history plugin to prevent password reuse, enhancing security by enforcing password rotation policies",
+    type: "Contributor",
+    repo: "https://github.com/saintparish4/pwd-reuse-plugin/commit/c1fbef2e875bbae3791fd6a834f79094ba439790",
+    language: ["TypeScript"]
+  },
+  {
+    id: 6,
+    name: "OpenScript",
+    description: "Prompt security system that detects prompt injewction attacks, prevents data leaks, and validates LLM outputs in real time. Includes an attack pattern library built through continuous red teaming and automated test generation that discovers novel injection techniques",
+    type: "Author",
+    repo: "https://github.com/saintparish4/openscript",
+    language: ["Python"]
   },
 ];
 
@@ -60,6 +84,8 @@ const languageColors: Record<string, string> = {
   Ruby: 'bg-red-400',
   Scala: 'bg-red-500',
   ML: 'bg-purple-400',
+  Terraform: 'bg-violet-500',
+  Docker: 'bg-sky-500',
 };
 
 // Contribution card component
@@ -142,29 +168,18 @@ const ContributionCard = ({
 
 // Open Source Grid component
 const OpenSourceGrid = ({ isMobile }: { isMobile: boolean }) => (
-  <section 
-    aria-labelledby="oss-heading"
-    className="self-start px-0 py-3 sm:py-5 sm:px-3 md:px-6 bg-[var(--color-secondary-400)] text-[var(--color-accent-400)] w-full"
-  >
-    <div className="max-w-6xl mx-auto">
-      <h3 
-        id="oss-heading"
-        className="text-[1.25rem] sm:text-[1.5rem] md:text-[2rem] font-bold mb-4 sm:mb-6 md:mb-8 text-[var(--color-secondary-50)]"
-      >
-        Contributions
-      </h3>
-      <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-5">
-        {contributions.map((contribution, index) => (
-          <ContributionCard 
-            key={contribution.id} 
-            contribution={contribution} 
-            index={index}
-            isMobile={isMobile}
-          />
-        ))}
-      </div>
+  <div className="w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+      {contributions.map((contribution, index) => (
+        <ContributionCard 
+          key={contribution.id} 
+          contribution={contribution} 
+          index={index}
+          isMobile={isMobile}
+        />
+      ))}
     </div>
-  </section>
+  </div>
 );
 
 export const About = () => {
@@ -185,35 +200,33 @@ export const About = () => {
   const animDuration = isMobile || prefersReducedMotion ? 0.2 : 0.3;
 
   return (
-    <section id="About" className="mt-[-2vh] z-10 relative">
-      <article className="section-padding pb-[3em] sm:pb-[5em] md:pb-[10em] flex flex-col gap-y-[var(--space-md)] md:gap-y-[var(--space-lg)] rounded-b-3xl bg-[var(--color-secondary-400)] lg:gap-y-[var(--space-2xl)] pt-[8vh] md:pt-[15vh]">
-        <header className="custom-grid">
-          {/* Large Heading on LEFT */}
-          <motion.h2 
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInUpVariants}
-            transition={{ duration: animDuration, ease: [0.4, 0, 0.2, 1] }}
-            viewport={{ once: true }}
-            className="section-heading text-[2rem] sm:text-[2.5rem] md:text-[length:var(--text-menu)] xl:text-[length:var(--text-h1-display)] relative z-30 flex w-full flex-col col-span-full leading-none text-[var(--color-accent-400)] mix-blend-exclusion lg:col-span-6 mt-[0.5em] md:mt-[1em] mb-[0.5em] md:mb-[1em]"
-          >
-            <span>
-              Open Source
-            </span>
-          </motion.h2>
+    <section id="OpenSource" className="mt-[-2vh] z-10 relative border-t-2 border-dashed border-[rgba(168,164,160,0.4)]">
+      <article className="section-padding pb-[3em] sm:pb-[5em] md:pb-[10em] flex flex-col gap-y-[var(--space-md)] md:gap-y-[var(--space-lg)] rounded-b-3xl bg-[var(--color-secondary-400)] lg:gap-y-[var(--space-2xl)] pt-[2vh] md:pt-[3vh]">
+        {/* Large Heading */}
+        <motion.h2 
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUpVariants}
+          transition={{ duration: animDuration, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className="section-heading text-[2rem] sm:text-[2.5rem] md:text-[length:var(--text-menu)] xl:text-[length:var(--text-h1-display)] relative z-30 flex w-full flex-col leading-none text-[var(--color-accent-400)] mix-blend-exclusion mt-0 mb-[0.5em] md:mb-[1em]"
+        >
+          <span>
+            Open Source
+          </span>
+        </motion.h2>
 
-          {/* Open Source Section on RIGHT - spans 6 columns starting from column 7 */}
-          <motion.aside 
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInRightVariants}
-            transition={{ duration: animDuration, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-            viewport={{ once: true }}
-            className="relative z-0 col-span-full lg:col-span-6 lg:col-start-7 flex w-full items-center overflow-clip rounded-xl md:items-end"
-          >
-            <OpenSourceGrid isMobile={isMobile} />
-          </motion.aside>
-        </header>
+        {/* Open Source Projects in Columns */}
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInRightVariants}
+          transition={{ duration: animDuration, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className="relative z-0 w-full"
+        >
+          <OpenSourceGrid isMobile={isMobile} />
+        </motion.div>
       </article>
     </section>
   );

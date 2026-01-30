@@ -23,7 +23,7 @@ const Projects = dynamic(
 );
 
 const About = dynamic(
-  () => import("./components/sections/about").then((mod) => ({ default: mod.About })),
+  () => import("./components/sections/opensource").then((mod) => ({ default: mod.About })),
   {
     loading: () => <SectionLoader />,
     ssr: true,
