@@ -1,20 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 @import "tailwindcss";
-@import "lenis/dist/lenis.css";
-
 
 /* ============================================
-   SMOOTH SCROLLING - Enhanced with Lenis
+   SMOOTH SCROLLING
    ============================================ */
-/* Disable native smooth scroll when Lenis is active */
-html.lenis {
-  scroll-behavior: auto;
-}
-
-/* Fallback smooth scroll for browsers without JS */
 @media (prefers-reduced-motion: no-preference) {
-  html:not(.lenis) {
+  html {
     scroll-behavior: smooth;
   }
 }

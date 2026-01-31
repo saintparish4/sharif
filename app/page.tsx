@@ -3,7 +3,6 @@ import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { Hero } from "./components/sections/hero";
 import { Navigation } from "./components/layout/navigation";
-import { useLenis } from "../hooks/useLenis";
 
 // Lazy load below-the-fold sections with optimized settings
 const Services = dynamic(
@@ -55,9 +54,6 @@ function SectionLoader() {
 }
 
 export default function Home() {
-  // Initialize Lenis smooth scroll
-  useLenis();
-
   return (
     <>
       <Navigation />
