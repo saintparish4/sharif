@@ -106,52 +106,20 @@ const apps: AppProject[] = [
 // Experimental projects (same shape as apps)
 const experimentalProjects: AppProject[] = [
   {
+    id: 0,
+    title: 'Chaos',
+    subtitle: 'Telecom network topology simulator',
+    description: 'Distributed network simulator with chaos engineering: test resilience, fault tolerance, and self-healing with failure injection and adaptive routing.',
+    year: '2025',
+    link: 'https://github.com/saintparish4/chaos',
+  },
+  {
     id: 1,
-    title: 'Neural Linter',
-    subtitle: 'LLM-powered code review assistant',
-    description: 'Experimental CLI that uses local LLMs to suggest fixes and explain lint rules in plain language.',
+    title: 'Altair',
+    subtitle: 'NAT traversal toolkit',
+    description: 'STUN client (RFC 5389) and UDP hole punching for peer-to-peer connections. Discover public endpoints and establish direct P2P UDP through NAT.',
     year: '2025',
-    link: 'https://github.com',
-  },
-  {
-    id: 2,
-    title: 'Edge Cache Sim',
-    subtitle: 'Multi-region cache behavior simulator',
-    description: 'Simulates cache hit rates and latency for different edge topologies. Research prototype.',
-    year: '2025',
-    link: 'https://github.com',
-  },
-  {
-    id: 3,
-    title: 'Schema Drift',
-    subtitle: 'API contract drift detection',
-    description: 'Watches OpenAPI specs and runtime traffic to detect breaking changes before they ship.',
-    year: '2024',
-    link: 'https://github.com',
-  },
-  {
-    id: 4,
-    title: 'Trace Scribe',
-    subtitle: 'Distributed trace to narrative',
-    description: 'Turns trace spans into human-readable incident narratives. Early alpha.',
-    year: '2025',
-    link: 'https://github.com',
-  },
-  {
-    id: 5,
-    title: 'Prompt Fuzzer',
-    subtitle: 'Adversarial prompt testing',
-    description: 'Fuzzes LLM prompts with injection patterns and measures guardrail effectiveness.',
-    year: '2025',
-    link: 'https://github.com',
-  },
-  {
-    id: 6,
-    title: 'Quorum Playground',
-    subtitle: 'Raft consensus visualizer',
-    description: 'Interactive demo of Raft log replication and leader election for teaching and debugging.',
-    year: '2024',
-    link: 'https://github.com',
+    link: 'https://github.com/saintparish4/altair',
   },
 ];
 
@@ -423,7 +391,7 @@ export const About = () => {
           viewport={{ once: true }}
           className="section-heading text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] text-[var(--color-accent-400)] mt-10 md:mt-14 mb-4 md:mb-6"
         >
-          <span>Experimental Projects</span>
+          <span>Experimental</span>
         </motion.h3>
         <motion.div
           initial="hidden"
