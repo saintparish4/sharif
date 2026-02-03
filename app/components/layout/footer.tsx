@@ -2,8 +2,6 @@
 import { motion } from 'motion/react';
 
 const quickLinks = [
-  { name: 'Services', href: '/#Philosophy' },
-  { name: 'Work', href: '/#Works' },
   { name: 'Open Source', href: '/#OpenSource' },
   { name: 'Contact', href: '/#Contact' },
 ];
@@ -75,42 +73,6 @@ export const Footer = () => {
         <div className="max-w-6xl mx-auto">
           {/* Main Footer Content */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 pb-12 border-b border-dashed border-[rgba(168,164,160,0.25)]">
-            {/* Brand Column */}
-            <div className="md:col-span-5">
-              <motion.div 
-                className="space-y-4 border border-dashed border-[rgba(168,164,160,0.15)] rounded-lg p-6 md:p-8"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              >
-                <h3 className="text-2xl md:text-3xl font-bold">Sharif Parish</h3>
-                <p className="text-[var(--color-secondary-50)] text-base max-w-[35ch] leading-relaxed">
-                  Software Engineer crafting digital experiences with precision and purpose.
-                </p>
-                
-                {/* Availability Badge */}
-                <div className="flex items-center gap-2 pt-2">
-                  <motion.div 
-                    className="h-2 w-2 rounded-full bg-green-500"
-                    animate={{
-                      scale: [1, 1.3, 1],
-                      opacity: [1, 0.8, 1]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                    aria-hidden="true"
-                  />
-                  <span className="font-mono text-sm text-[var(--color-secondary-50)]">
-                    Available for opportunities
-                  </span>
-                </div>
-              </motion.div>
-            </div>
-
             {/* Quick Links */}
             <div className="md:col-span-3 md:col-start-7">
               <motion.div

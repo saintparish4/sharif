@@ -66,6 +66,95 @@ const contributions: Contribution[] = [
   },
 ];
 
+// Apps (from projects – card-only, no media)
+interface AppProject {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  year: string;
+  link: string;
+}
+
+const apps: AppProject[] = [
+  {
+    id: 1,
+    title: 'Nora Health',
+    subtitle: 'Medical AI Booking Platform',
+    description: 'Full-stack medical AI platform for booking and care coordination.',
+    year: '2025',
+    link: 'https://mai-omega.vercel.app/get-care',
+  },
+  {
+    id: 2,
+    title: 'Stealth',
+    subtitle: 'Smart Contract Security Scanner',
+    description: 'WEB3 smart contract security scanner for vulnerability detection.',
+    year: '2025',
+    link: 'https://stealth-plum-beta.vercel.app/',
+  },
+  {
+    id: 3,
+    title: 'APX',
+    subtitle: 'Decentralized Healthcare Claims Verification System',
+    description: 'WEB3 healthcare claims verification on decentralized infrastructure.',
+    year: '2025',
+    link: 'https://github.com/saintparish4/apx',
+  },
+];
+
+// Experimental projects (same shape as apps)
+const experimentalProjects: AppProject[] = [
+  {
+    id: 1,
+    title: 'Neural Linter',
+    subtitle: 'LLM-powered code review assistant',
+    description: 'Experimental CLI that uses local LLMs to suggest fixes and explain lint rules in plain language.',
+    year: '2025',
+    link: 'https://github.com',
+  },
+  {
+    id: 2,
+    title: 'Edge Cache Sim',
+    subtitle: 'Multi-region cache behavior simulator',
+    description: 'Simulates cache hit rates and latency for different edge topologies. Research prototype.',
+    year: '2025',
+    link: 'https://github.com',
+  },
+  {
+    id: 3,
+    title: 'Schema Drift',
+    subtitle: 'API contract drift detection',
+    description: 'Watches OpenAPI specs and runtime traffic to detect breaking changes before they ship.',
+    year: '2024',
+    link: 'https://github.com',
+  },
+  {
+    id: 4,
+    title: 'Trace Scribe',
+    subtitle: 'Distributed trace to narrative',
+    description: 'Turns trace spans into human-readable incident narratives. Early alpha.',
+    year: '2025',
+    link: 'https://github.com',
+  },
+  {
+    id: 5,
+    title: 'Prompt Fuzzer',
+    subtitle: 'Adversarial prompt testing',
+    description: 'Fuzzes LLM prompts with injection patterns and measures guardrail effectiveness.',
+    year: '2025',
+    link: 'https://github.com',
+  },
+  {
+    id: 6,
+    title: 'Quorum Playground',
+    subtitle: 'Raft consensus visualizer',
+    description: 'Interactive demo of Raft log replication and leader election for teaching and debugging.',
+    year: '2024',
+    link: 'https://github.com',
+  },
+];
+
 // Contribution type badge colors
 const typeBadgeStyles: Record<Contribution['type'], string> = {
   Author: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
@@ -166,6 +255,59 @@ const ContributionCard = ({
   </motion.a>
 );
 
+// App card component (no images/video)
+const AppCard = ({
+  app,
+  index,
+  isMobile,
+}: {
+  app: AppProject;
+  index: number;
+  isMobile: boolean;
+}) => (
+  <motion.a
+    href={app.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{
+      duration: isMobile ? 0.2 : 0.4,
+      delay: isMobile ? 0 : index * 0.1,
+      ease: TRANSITION_EASE,
+    }}
+    viewport={{ once: true }}
+    className="group block p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl border border-[var(--color-secondary-75)]/20 bg-[var(--color-secondary-300)]/30 backdrop-blur-sm transition-all duration-300 hover:border-[var(--color-secondary-75)]/40 hover:bg-[var(--color-secondary-300)]/50 hover:shadow-lg hover:shadow-black/5 active:scale-[0.98]"
+  >
+    <div className="flex items-start justify-between gap-3 mb-2">
+      <div className="flex flex-col gap-0.5">
+        <span className="font-mono text-[0.65rem] sm:text-[0.7rem] font-medium uppercase tracking-wide text-[var(--color-secondary-75)]">
+          {app.subtitle}
+        </span>
+        <h4 className="text-[0.95rem] sm:text-base md:text-lg font-semibold text-[var(--color-accent-400)] group-hover:text-[var(--color-accent-500)] transition-colors">
+          {app.title}
+        </h4>
+      </div>
+      <span className="shrink-0 px-2 py-0.5 sm:px-2.5 sm:py-1 text-[0.6rem] sm:text-[0.65rem] font-semibold rounded-full border border-[var(--color-accent-400)] bg-[var(--color-accent-400)] text-[var(--color-secondary-400)]">
+        {app.year}
+      </span>
+    </div>
+    <p className="text-[0.8rem] sm:text-[0.85rem] md:text-sm text-[var(--color-secondary-50)] leading-relaxed">
+      {app.description}
+    </p>
+    <div className="mt-3 flex justify-end">
+      <svg
+        className="w-4 h-4 text-[var(--color-secondary-75)] group-hover:text-[var(--color-accent-400)] group-hover:translate-x-1 transition-all"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </motion.a>
+);
+
 // Open Source Grid component
 const OpenSourceGrid = ({ isMobile }: { isMobile: boolean }) => (
   <div className="w-full">
@@ -177,6 +319,28 @@ const OpenSourceGrid = ({ isMobile }: { isMobile: boolean }) => (
           index={index}
           isMobile={isMobile}
         />
+      ))}
+    </div>
+  </div>
+);
+
+// Apps grid (cards only, no media)
+const AppsGrid = ({ isMobile }: { isMobile: boolean }) => (
+  <div className="w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+      {apps.map((app, index) => (
+        <AppCard key={app.id} app={app} index={index} isMobile={isMobile} />
+      ))}
+    </div>
+  </div>
+);
+
+// Experimental projects grid (same card style as apps)
+const ExperimentalGrid = ({ isMobile }: { isMobile: boolean }) => (
+  <div className="w-full">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+      {experimentalProjects.map((project, index) => (
+        <AppCard key={project.id} app={project} index={index} isMobile={isMobile} />
       ))}
     </div>
   </div>
@@ -200,8 +364,8 @@ export const About = () => {
   const animDuration = isMobile || prefersReducedMotion ? 0.2 : 0.3;
 
   return (
-    <section id="OpenSource" className="mt-[-2vh] z-10 relative border-t-2 border-dashed border-[rgba(168,164,160,0.4)]">
-      <article className="section-padding pb-[3em] sm:pb-[5em] md:pb-[10em] flex flex-col gap-y-[var(--space-md)] md:gap-y-[var(--space-lg)] rounded-b-3xl bg-[var(--color-secondary-400)] lg:gap-y-[var(--space-2xl)] pt-[2vh] md:pt-[3vh]">
+    <section id="OpenSource" className="mt-[-2vh] z-10 relative">
+      <article className="section-padding pb-[3em] sm:pb-[5em] md:pb-[10em] flex flex-col gap-y-[var(--space-md)] md:gap-y-[var(--space-lg)] rounded-3xl bg-[var(--color-secondary-400)] lg:gap-y-[var(--space-2xl)] pt-[2vh] md:pt-[3vh] border border-[rgba(168,164,160,0.2)]">
         {/* Large Heading */}
         <motion.h2 
           initial="hidden"
@@ -226,6 +390,50 @@ export const About = () => {
           className="relative z-0 w-full"
         >
           <OpenSourceGrid isMobile={isMobile} />
+        </motion.div>
+
+        {/* APPS section */}
+        <motion.h3
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUpVariants}
+          transition={{ duration: animDuration, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className="section-heading text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] text-[var(--color-accent-400)] mt-10 md:mt-14 mb-4 md:mb-6"
+        >
+          <span>Apps</span>
+        </motion.h3>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInRightVariants}
+          transition={{ duration: animDuration, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className="relative z-0 w-full"
+        >
+          <AppsGrid isMobile={isMobile} />
+        </motion.div>
+
+        {/* EXPERIMENTAL PROJECTS section */}
+        <motion.h3
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInUpVariants}
+          transition={{ duration: animDuration, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className="section-heading text-[1.5rem] sm:text-[1.75rem] md:text-[2rem] text-[var(--color-accent-400)] mt-10 md:mt-14 mb-4 md:mb-6"
+        >
+          <span>Experimental Projects</span>
+        </motion.h3>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeInRightVariants}
+          transition={{ duration: animDuration, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true }}
+          className="relative z-0 w-full"
+        >
+          <ExperimentalGrid isMobile={isMobile} />
         </motion.div>
       </article>
     </section>

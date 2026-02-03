@@ -3,10 +3,14 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { useState, useEffect } from 'react';
 
 const navItems = [
-  { name: 'SERVICES', href: '/#Philosophy' },
-  { name: 'WORK', href: '/#Works' },
   { name: 'OPEN SOURCE', href: '/#OpenSource' },
   { name: 'CONTACT', href: '/#Contact' },
+];
+
+const socialLinks = [
+  { name: 'GitHub', href: 'https://github.com/saintparish4' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/sharifparish/' },
+  { name: 'Twitter', href: 'https://x.com/senpaiisaint' },
 ];
 
 export const Navigation = () => {
@@ -103,8 +107,22 @@ export const Navigation = () => {
           y,
         }}
       >
-        <div className="section-padding-x mt-[var(--space-sm)] flex flex-row items-center justify-end">
-          {/* Navigation - Right aligned, subtle */}
+        <div className="section-padding-x mt-[var(--space-sm)] flex flex-row items-center justify-between">
+          {/* Social links - Left */}
+          <div className="flex items-center gap-x-[var(--space-md)]">
+            {socialLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[1.125rem] lg:text-[1.25rem] font-medium text-[var(--color-secondary-100)] hover:text-[var(--color-secondary-300)] transition-colors duration-200 cursor-pointer"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+          {/* Navigation - Right aligned */}
           <nav className="hidden md:flex">
             <ul className="m-0 flex flex-row items-center gap-x-[var(--space-md)] text-[var(--color-secondary-100)]">
               {navItems.map((item, index) => (

@@ -15,16 +15,16 @@ export const Hero = () => {
         />
       </div>
       
-      <div className="container mx-auto px-6 md:px-12 lg:px-16 py-20 md:py-32 flex-1 flex flex-col justify-center relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-16 2xl:px-20 py-14 sm:py-20 md:py-24 lg:py-28 xl:py-32 2xl:py-36 flex-1 flex flex-col justify-center relative z-10">
         {/* Logo Header */}
-        <div className="mb-12 md:mb-20 flex justify-center">
+        <div className="mb-8 sm:mb-10 md:mb-14 lg:mb-16 xl:mb-20 2xl:mb-24 flex justify-center">
           <h1 className="overflow-hidden w-full flex justify-center">
-            {/* Desktop SVG Logo */}
+            {/* Desktop SVG Logo - scales by viewport */}
             <svg
               width="1758"
               height="144"
               viewBox="0 0 1758 144"
-              className="hidden h-auto w-full max-w-[1200px] md:block mx-auto"
+              className="hidden h-auto w-full max-w-[85vw] md:max-w-[600px] lg:max-w-[800px] xl:max-w-[1000px] 2xl:max-w-[1200px] md:block mx-auto"
               xmlns="http://www.w3.org/2000/svg"
             >
               {/* Simplified path animations - all at once for better performance */}
@@ -50,8 +50,8 @@ export const Hero = () => {
               <motion.path d="M1609.6 144V-7.62939e-06H1625.8V63.8H1740.8V-7.62939e-06H1757.2V144H1740.8V80.2H1625.8V144H1609.6Z" fill="currentColor" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }} />
             </svg>
 
-            {/* Mobile Text Logo - Simplified animation */}
-            <div className="flex flex-col text-7xl font-bold uppercase leading-tight tracking-tight md:hidden items-center text-center mobile-playfair-bold">
+            {/* Mobile Text Logo - fluid size: phone → tablet */}
+            <div className="flex flex-col text-5xl sm:text-6xl font-bold uppercase leading-tight tracking-tight md:hidden items-center text-center mobile-playfair-bold">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -71,69 +71,25 @@ export const Hero = () => {
         </div>
 
         {/* Content */}
-        <div className="flex justify-center">
+        <div className="flex justify-center px-2 sm:px-0">
           <motion.div 
-            className="max-w-3xl flex flex-col gap-6 text-center"
+            className="w-full max-w-[90vw] sm:max-w-xl md:max-w-2xl lg:max-w-3xl xl:max-w-4xl flex flex-col gap-4 sm:gap-5 md:gap-6 text-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
           >
-            <div className="flex flex-col gap-4 items-center">
-              <div className="flex items-center gap-3">
-                <motion.div 
-                  className="h-2 w-2 rounded-full bg-green-500"
-                  animate={{
-                    scale: [1, 1.3, 1],
-                    opacity: [1, 0.8, 1]
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <span className="font-mono text-[1rem] font-semibold text-[var(--color-secondary-300)]">
-                  Available for opportunities
-                </span>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-start gap-4 pt-4">
-              <a 
-                href="#Works" 
-                className="group relative inline-flex items-center justify-center bg-[#0C0C0C] text-white px-8 py-4 font-mono text-[12px] font-medium uppercase tracking-[0.05em] transition-all duration-300 w-full sm:w-auto"
-              >
-                <div className="absolute inset-0 bg-[#E0115F] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-                <span className="relative z-10 group-hover:text-[#0C0C0C] transition-colors flex items-center gap-2">
-                  View Work
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </span>
-              </a>
-              
-              <a 
-                href="#Contact" 
-                className="group relative inline-flex items-center justify-center border border-[#E7E7E4] bg-white text-[#0C0C0C] px-8 py-4 font-mono text-[12px] font-medium uppercase tracking-[0.05em] transition-all duration-300 hover:border-[#0C0C0C] w-full sm:w-auto"
-              >
-                <div className="absolute inset-0 bg-[#F3F3F1] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-                <span className="relative z-10 flex items-center gap-2">
-                  Get in Touch
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </span>
-              </a>
-            </div>
+            <blockquote className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[1.4rem] text-[var(--color-secondary-100)] font-serif italic leading-relaxed">
+              &ldquo;We have forgotten who we are &mdash; explorers, pioneers, not care-takers.&rdquo;
+            </blockquote>
           </motion.div>
         </div>
 
       </div>
 
       {/* Scroll Indicator with Bounce - Positioned at bottom */}
-      <div className="flex justify-center pb-8">
+      <div className="flex justify-center pb-5 sm:pb-6 md:pb-8 lg:pb-10">
         <motion.div 
-          className="flex flex-col items-center gap-2 text-[var(--color-secondary-100)]"
+          className="flex flex-col items-center gap-1.5 sm:gap-2 text-[var(--color-secondary-100)]"
           animate={{
             y: [0, 8, 0]
           }}
@@ -143,8 +99,8 @@ export const Hero = () => {
             ease: "easeInOut"
           }}
         >
-          <span className="font-mono text-sm uppercase tracking-widest">Scroll</span>
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span className="font-mono text-xs sm:text-sm uppercase tracking-widest">Scroll</span>
+          <svg className="h-4 w-4 sm:h-5 sm:w-5 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
           </svg>
         </motion.div>

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { LenisProvider } from "./components/layout/lenis-provider";
 import "./globals.css";
 
 // Preload Montreal font family with optimized settings
@@ -226,7 +227,9 @@ export default function RootLayout({
         </a>
 
         {/* Main content wrapper with id for skip link */}
-        <div id="main-content">{children}</div>
+        <LenisProvider>
+          <div id="main-content">{children}</div>
+        </LenisProvider>
       </body>
     </html>
   );

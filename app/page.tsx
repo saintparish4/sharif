@@ -5,22 +5,6 @@ import { Hero } from "./components/sections/hero";
 import { Navigation } from "./components/layout/navigation";
 
 // Lazy load below-the-fold sections with optimized settings
-const Services = dynamic(
-  () => import("./components/sections/services").then((mod) => ({ default: mod.Services })),
-  {
-    loading: () => <SectionLoader />,
-    ssr: true,
-  }
-);
-
-const Projects = dynamic(
-  () => import("./components/sections/projects").then((mod) => ({ default: mod.Projects })),
-  {
-    loading: () => <SectionLoader />,
-    ssr: true,
-  }
-);
-
 const About = dynamic(
   () => import("./components/sections/opensource").then((mod) => ({ default: mod.About })),
   {
@@ -61,14 +45,6 @@ export default function Home() {
       {/* Portfolio Sections */}
       <main>
         <Hero />
-
-        <Suspense fallback={<SectionLoader />}>
-          <Services />
-        </Suspense>
-
-        <Suspense fallback={<SectionLoader />}>
-          <Projects />
-        </Suspense>
 
         <Suspense fallback={<SectionLoader />}>
           <About />
