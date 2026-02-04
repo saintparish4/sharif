@@ -121,6 +121,14 @@ const experimentalProjects: AppProject[] = [
     year: '2025',
     link: 'https://github.com/saintparish4/altair',
   },
+  {
+    id: 2,
+    title: 'Blackjack AI',
+    subtitle: 'RL-powered game AI platform',
+    description: 'Intelligent Blackjack platform combining C++ performance, reinforcement learning agents, real-time multiplayer, and future AR card detection capabilities.',
+    year: '2026',
+    link: 'https://github.com/saintparish4/blackjack-ai',
+  },
 ];
 
 // Contribution type badge colors
