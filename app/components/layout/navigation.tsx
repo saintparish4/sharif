@@ -1,6 +1,7 @@
 'use client';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const navItems = [
   { name: 'OPEN SOURCE', href: '/#OpenSource' },
@@ -108,8 +109,8 @@ export const Navigation = () => {
         }}
       >
         <div className="section-padding-x mt-[var(--space-sm)] flex flex-row items-center justify-between">
-          {/* Social links - Left */}
-          <div className="flex items-center gap-x-[var(--space-md)]">
+          {/* Social links - Left (hidden on mobile) */}
+          <div className="hidden md:flex items-center gap-x-[var(--space-md)]">
             {socialLinks.map((link) => (
               <a
                 key={link.name}
@@ -132,16 +133,17 @@ export const Navigation = () => {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4, delay: index * 0.05, ease: [0.4, 0, 0.2, 1] }}
                 >
-                  <a
+                  <Link
                     className="text-[1.125rem] lg:text-[1.25rem] font-medium hover:text-[var(--color-secondary-300)] transition-colors duration-200 cursor-pointer"
                     href={item.href}
+                    scroll={false}
                     onClick={(e) => {
                       e.preventDefault();
                       handleNavClick(item.href);
                     }}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -359,6 +361,35 @@ export const Navigation = () => {
                 {item.name}
               </div>
             ))}
+            
+            {/* Social links in mobile menu */}
+            <div style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '1.5rem',
+              marginTop: '1rem',
+            }}>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                    color: '#6b645c',
+                    textTransform: 'uppercase',
+                    padding: '0.5rem',
+                    cursor: 'pointer',
+                    transition: 'opacity 0.2s',
+                  }}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       )}
